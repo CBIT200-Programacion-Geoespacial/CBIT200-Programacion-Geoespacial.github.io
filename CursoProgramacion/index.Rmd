@@ -1,6 +1,6 @@
 --- 
 title: "Programación y Análisis de Datos Ambientales MedianteSoftware Libre"
-author: "Derek Corcoran y Giorgia Graells"
+author: "Horacio Samaniego"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -12,24 +12,22 @@ description: "Gitbook para el curso Programación y Análisis de Datos Ambiental
 
 # Descripción del curso
 
-* **Nombre asignatura:** Programación y Análisis de Datos Ambientales MedianteSoftware Libre
+* **Nombre asignatura:** Introducción al Análisis de Datos Geoespaciales
 * **Código asignatuta:** CBIT200
-* **Docente responsable:** Derek Corcoran B.
-* **Correo electrónico:** derek.corcoran.barrios@gmail.com
-* **Docente colaborador:** Giorgia Graells C.
-* **Correo electrónico:** gygraell@gmail.com
+* **Docente responsable:** Horacio Samaniego
+* **Correo electrónico:** horaciosamaniego@uach.cl
+* **Creadores:** Derek Corcoran B. & Giorgia Graells C.
 * **Modalidad de clases:** 
-    + Prácticas online
-    + Sesiones de clases por youtube 
-    + Ayudantias por zoom
+    + Prácticas 
+    + Presenciales
     + Consultas por Discord (chat o video) y correo electrónico
-* **Horario de clases:** Lunes 9:50-13:00 hrs 
-* **Inicio clases:** 5 octubre 2020
-* **Término clases:** 18 enero 2020 (puede existir alguna modificación por calendario académico)
+* **Horario de clases:** Jueves 9:50-13:00 hrs 
+* **Inicio clases:** 10 agosto 2023
+* **Término clases:** 30 noviembre 2023 (puede existir alguna modificación por calendario académico)
 
 ## DESCRIPCION DEL CURSO
 
-Este curso tiene como objetivo central adquirir los principios de investigación reproducible, conocimientos acerca del diseño y desarrollo de análisis de datos ambientales complejos utilizando el lenguaje de programación R y la plataforma Github.
+Este curso tiene como objetivo central adquirir los principios de investigación reproducible, conocimientos acerca del diseño y desarrollo de análisis de datos ambientales complejos y espacialmente explícitos. 
 
 ### OBJETIVOS
 
@@ -39,3 +37,4 @@ Este curso tiene como objetivo central adquirir los principios de investigación
 
 3. Realizar análisis de datos espaciales, poder hacer mapas y aplicar a preguntas de conservación y manejo de recursos naturales.
 
+4. Aprender a utilizar de forma proficiente el lenguaje de programación R y la plataforma GitHub en un ambiente de trabajo colaborativo.

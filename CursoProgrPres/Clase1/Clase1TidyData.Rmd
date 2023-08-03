@@ -1,6 +1,6 @@
 ---
 title: "Clase 1 El tidyverse"
-author: "Derek Corcoran"
+author: "Horacio Samaniego"
 date: "`r format(Sys.time(), '%d/%m, %Y')`"
 output:
   ioslides_presentation:
@@ -19,7 +19,7 @@ options("kableExtra.html.bsTable" = T)
 
 # Bienvenida
 
-## Curso Análisis y manipulación de datos en R {.build}
+## Curso: Introducción al Análisis y manipulación de datos geoespaciales {.build}
 
 Primeros pasos
 
@@ -75,11 +75,9 @@ knitr::include_graphics("Vector.jpg")
 
 ## Ejercicio
 
-<iframe src="http://etc.ch/xVUm" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 
 ## Respuesta
 
-<iframe src="https://directpoll.com/r?XDbzPBdJ2bAX0ZEucNkscDXLnxGvY7Z4dpc4SsJ1Rt" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 
 
 ## Data Frame {.build}
@@ -114,11 +112,9 @@ kable(DF, digits = 2) %>% kable_styling(bootstrap_options = c("striped"), full_w
 
 ## Alternativas
 
-<iframe src="http://etc.ch/xVUm" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 
 ## Respuesta
 
-<iframe src="https://directpoll.com/r?XDbzPBdJ3cBY1aFvdOltdEYMoyHwZ8a5eqd5TtK2Su" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 
 # Principios de Tidydata
 
@@ -144,7 +140,7 @@ knitr::include_graphics("tidy.png")
 - *filter* (Encuentra filas con ciertas condiciones)
 - *select* junto a *starts_with*, *ends_with* o *contains*
 - *mutate* (Genera variables nuevas)
-- *%>%* pipeline
+- *pipe*: *%>%* o bien *|>* (uso mas reciente) 
 - *arrange* ordenar
 
 ## summarize y group_by {.build .small}
