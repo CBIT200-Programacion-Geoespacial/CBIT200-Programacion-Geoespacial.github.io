@@ -141,6 +141,7 @@ knitr::include_graphics("tidy.png")
 - *select* junto a *starts_with*, *ends_with* o *contains*
 - *mutate* (Genera variables nuevas)
 - *pipe*: *%>%* o bien *|>* (uso mas reciente) 
+- *pipe*: *%>%* o bien *|>* (de uso mas reciente) 
 - *arrange* ordenar
 
 ## summarize y group_by {.build .small}

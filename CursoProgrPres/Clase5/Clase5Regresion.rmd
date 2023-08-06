@@ -93,7 +93,7 @@ ggplot(Data, aes(y = Altura, x = DAP)) + geom_point() + geom_function(fun = func
 equatiomatic::extract_eq(Modelo, use_coefs = T)
 ```
 
-## Vemoslo gráficamente más cerca
+## Veámoslo gráficamente desde más cerca
 
 ```{r, echo = F}
 DataIn<- Data %>% dplyr::filter(DAP >= 0 & DAP <= 10) 
