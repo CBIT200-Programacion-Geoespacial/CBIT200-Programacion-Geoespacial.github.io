@@ -140,7 +140,6 @@ knitr::include_graphics("tidy.png")
 - *filter* (Encuentra filas con ciertas condiciones)
 - *select* junto a *starts_with*, *ends_with* o *contains*
 - *mutate* (Genera variables nuevas)
-- *pipe*: *%>%* o bien *|>* (uso mas reciente) 
 - *pipe*: *%>%* o bien *|>* (de uso mas reciente) 
 - *arrange* ordenar
 
