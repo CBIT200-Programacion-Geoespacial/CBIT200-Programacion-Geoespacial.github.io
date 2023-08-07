@@ -7,6 +7,7 @@ output:
     widescreen: true
     incremental: true
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, cache = T, tidy = TRUE, tidy.opts= list(blank = FALSE, width.cutoff = 60), fig.align='center')
 
@@ -18,32 +19,32 @@ library(kableExtra)
 options("kableExtra.html.bsTable" = T)
 ```
 
-
-# ¿Que son los sensores remotos?
+# ¿Qué son los sensores remotos?
 
 ## Sensores remotos
 
-* Datos satelitales
-* Distintas resoluciones
-    + Resolución espacial (Tamaño del grano)
-    + Resolución temporal (Cada cuanto se toman los datos)
-    + Espectro (Distintas bandas)
+-   Datos satelitales
+-   Distintas resoluciones
+    -   Resolución espacial (Tamaño del grano)
+    -   Resolución temporal (Cada cuanto se toman los datos)
+    -   Espectro (Distintas bandas)
 
 ## Algunos sensores remotos
 
-* Modis
-* Landsat
-* Sentinel
+-   Modis
+-   Landsat
+-   Sentinel
 
 ## Landsat
 
-* Van 8 misiones
+- Van 9 misiones (1972 -- )
 
 ```{r, echo = F}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/en/timeline/87a2d28fbe497b9cd2dfcc98d103af46.png")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/en/timeline/5dqkflwpa9adezwbqqhk8fio51mzy9k.png")
+
 ```
 
-* Chequear coinsidencia entre satélites
+- Chequear coincidencia entre satélites
 
 ## Datos landsat
 
@@ -68,10 +69,16 @@ kable(Landsat) %>%
   scroll_box(width = "800px", height = "600px")
 ```
 
+## Datos Landsat 
+
+
+```{r, echo = F, out.width = "900px", out.height= "400px",fig.cap="Wikipedia"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/0/02/The_spectral_band_placement_for_each_sensor_of_Landsat.jpg")
+```
 
 ## Sentinel 2
 
-* Mayor resolución
+-   Mayor resolución
 
 ```{r , echo = F}
 Sentinel <- tibble::tribble(
@@ -101,10 +108,10 @@ kable(Sentinel) %>%
 
 ## Google Earth Engine
 
-* Servidores de google para [calculos geoespaciales](https://earthengine.google.com/)
-* Gran cantidad de [bases de datos](https://developers.google.com/earth-engine/datasets/) disponibles
-* Tutorial en [español](https://barja8.github.io/Handbook_rgee/pdf/vol01.pdf)
-* Veamos [NDVI](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LE07_C01_T1_8DAY_NDVI) de Landsat 7
+-   Servidores de google para [calculos geoespaciales](https://earthengine.google.com/)
+-   Gran cantidad de [bases de datos](https://developers.google.com/earth-engine/datasets/) disponibles
+-   Tutorial en [español](https://barja8.github.io/Handbook_rgee/pdf/vol01.pdf)
+-   Veamos [NDVI](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LE07_C01_T1_8DAY_NDVI) de Landsat 7
 
 ## NDVI
 
@@ -112,7 +119,7 @@ kable(Sentinel) %>%
 knitr::include_graphics("https://www.agricolus.com/wp-content/uploads/2018/05/NDVI_healthy_stressed.png")
 ```
 
-* entre -1 y 1
+-   entre -1 y 1
 
 ## Empezemos el rgee
 
@@ -121,13 +128,13 @@ library(rgee)
 ee_Initialize()
 ```
 
-* Leamos la capa de google earth engine
+-   Leamos la capa de google earth engine
 
 ```{r, eval = F}
 col<-ee$ImageCollection('COPERNICUS/S2_SR')
 ```
 
-* Filtramos por latitud y longitud y por fecha
+-   Filtramos por latitud y longitud y por fecha
 
 ```{r, eval = F}
 point <- ee$Geometry$Point(-71.6002957, -33.0055093)
@@ -139,7 +146,7 @@ img <- filter$first()
 
 ## Visualización
 
-* Seleccionamos bandas
+-   Seleccionamos bandas
 
 ```{r, eval = F}
 vPar <- list(bands = c("B4", "B3", "B2"),
@@ -147,7 +154,7 @@ vPar <- list(bands = c("B4", "B3", "B2"),
              gamma = c(1.9,1.7,1.7))
 ```
 
-* Visualizamos
+-   Visualizamos
 
 ```{r, eval = F}
 Map$setCenter(-71.6002957, -33.0055093, zoom = 10)
@@ -156,7 +163,7 @@ Map$addLayer(img, vPar, "Color real")
 
 ## Ahora NDVI
 
-* Obtenemos el NDVI
+-   Obtenemos el NDVI
 
 ```{r, eval=F}
 getNDVI <- function(image) {  
@@ -170,7 +177,7 @@ ndviPar <- list(palette = c(
   min=0,max=1)
 ```
 
-## Como se vé
+## ¿Cómo se vé?
 
 ```{r, eval = F}
 Map$setCenter(-71.6002957, -33.0055093, zoom = 10)
@@ -181,7 +188,7 @@ Map$addLayer(ndvi1, ndviPar, "NDVI verano")
 
 ## Más NDVI
 
-* Leemos un polígono y lo tranformamos en fomrato `ee`
+-   Leemos un polígono y lo tranformamos en fomrato `ee`
 
 ```{r, eval = F}
 library(raster)
@@ -199,7 +206,7 @@ ValpoVina <- getData("GADM", country = "CHL", level = 2) %>%
 
 ## Cortamos NDVI
 
-* Obtenemos NDVI para un año
+-   Obtenemos NDVI para un año
 
 ```{r, eval = FALSE}
 start <- ee$Date("2020-01-01")
@@ -234,7 +241,7 @@ ggplot(ee_ndvi_valpo2, aes(x = Fecha, y = NDVI)) + geom_path() + geom_point()
 
 ## Análisis
 
-* Que pasa por día
+-   ¿Qué pasa por día?
 
 ```{r, eval = F}
 ee_ndvi_valpo2 <- ee_ndvi_valpo2 %>% mutate(Dia = lubridate::yday(Fecha), Mes =  lubridate::month(Fecha))
@@ -242,7 +249,7 @@ ee_ndvi_valpo2 <- ee_ndvi_valpo2 %>% mutate(Dia = lubridate::yday(Fecha), Mes = 
 ggplot(ee_ndvi_valpo2, aes(x = Dia, y = NDVI)) + geom_point()
 ```
 
-* Que pasa por mes
+-   ¿Qué pasa por mes?
 
 ```{r, eval = F}
 ee_ndvi_valpo_summary <- ee_ndvi_valpo2 %>% group_by(Mes) %>% summarise(sd = sd(NDVI), NDVI = mean(NDVI))
@@ -250,4 +257,3 @@ ee_ndvi_valpo_summary <- ee_ndvi_valpo2 %>% group_by(Mes) %>% summarise(sd = sd(
 ggplot(ee_ndvi_valpo_summary, aes(x = Mes, y = NDVI)) + geom_ribbon(aes(ymax = NDVI + sd, ymin = NDVI -sd), alpha = 0.3, fill = "red") + geom_point() + geom_path()
 
 ```
-

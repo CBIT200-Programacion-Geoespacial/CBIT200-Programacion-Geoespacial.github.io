@@ -1,4 +1,3 @@
-base
 sf
 tidyverse
 ggplot2
@@ -14,3 +13,4 @@ raster
 rworldxtra
 kableExtra
 rgee
+lubridate

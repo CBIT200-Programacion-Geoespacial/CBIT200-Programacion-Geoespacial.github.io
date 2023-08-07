@@ -15,19 +15,19 @@ options("kableExtra.html.bsTable" = T)
 
 ## Objetivos de hoy
 
-* Graficando Polígonos (y projecciones)
-    + Escalas de colores
-* Puntos
-    + Nombres de lugares
-    + Escalas diferentes
-    + Separación de nombres
-* Exportar gráficos en alta calidad
-    + Que nos pide una revista
-* Rasters
-    + Variables categóricas
-    + Cambiar las projecciones
-* Inset maps
-    
+-   Graficando Polígonos (y projecciones)
+    -   Escalas de colores
+-   Puntos
+    -   Nombres de lugares
+    -   Escalas diferentes
+    -   Separación de nombres
+-   Exportar gráficos en alta calidad
+    -   Que nos pide una revista
+-   Rasters
+    -   Variables categóricas
+    -   Cambiar las projecciones
+-   Inset maps
+
 ## Cargamos paquetes
 
 ```{r}
@@ -39,7 +39,6 @@ library(sf)
 library(tidyverse)
 ```
 
-    
 # Polígonos
 
 ## Partimos con un gráfico básico
@@ -62,8 +61,6 @@ Casos_Activos_Valpo <- readRDS("Casos_Activos_Valpo.rds")
 ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) +
   facet_wrap(~Fecha)
 ```
-
-
 
 ## Partimos con un gráfico básico (cont.)
 
@@ -88,7 +85,7 @@ ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) 
 
 ## Modifiquemos la escala
 
-* Experimentemos con el número de colores
+-   Experimentemos con el número de colores
 
 ```{r, eval = F}
 ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) +
@@ -106,12 +103,12 @@ ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) 
                        colours = heat.colors(10))
 ```
 
-## Otras paletas
+## Otras paletas de colores
 
-* rainbow
-* terrain.colors
-* topo.colors
-* cm.colors
+-   rainbow
+-   terrain.colors
+-   topo.colors
+-   cm.colors
 
 Ejemplo feo
 
@@ -131,7 +128,7 @@ ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) 
                        colours = rainbow(10))
 ```
 
-## Virids
+## Viridis
 
 ```{r, eval = T}
 ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) +
@@ -147,10 +144,9 @@ ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) 
   scale_fill_binned(name = "Activos por 100.000 hab")
 ```
 
-
 ## Cambiando algunos default
 
-* breaks: donde se cortan los bins
+-   breaks: donde se cortan los bins
 
 ```{r, eval=FALSE}
 ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) +
@@ -161,11 +157,11 @@ ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) 
 
 ## Escala gradient2
 
-* Algunos parametros importantes
-  + mid = color de punto medio
-  + high = color de valor alto
-  + low = color de valor bajo
-  + mipoint = que valor se considera medio
+-   Algunos parametros importantes
+    -   mid = color de punto medio
+    -   high = color de valor alto
+    -   low = color de valor bajo
+    -   mipoint = que valor se considera medio
 
 ```{r, eval=F}
 ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) + 
@@ -191,10 +187,10 @@ ggplot() + geom_sf(data = Casos_Activos_Valpo, aes(fill = Activos_por_100.000)) 
 
 ## últimos toques
 
-* Punto de referencia del MINSAL 40 por cada 100.000 (midpoint)
-* Agregamos titulo, subtitulo y fuente al pie
-* Leyenda abajo
-* lineas mas tenues
+-   Punto de referencia del MINSAL 40 por cada 100.000 (midpoint)
+-   Agregamos titulo, subtitulo y fuente al pie
+-   Leyenda abajo
+-   lineas mas tenues
 
 ```{r, eval = F}
 ggplot() + geom_sf(data = Casos_Activos_Valpo, size = 0.05, aes(fill = Activos_por_100.000)) +
@@ -222,13 +218,12 @@ ggplot() + geom_sf(data = Casos_Activos_Valpo, size = 0.05, aes(fill = Activos_p
        x = NULL)
 ```
 
-
 # Puntos
 
 ## Bajaremos puntos desde la biblioteca naciona
 
-* Mapas [vectoriales de Chile](https://www.bcn.cl/siit/mapas_vectoriales/index_html)
-* Ciudades y mas
+-   Mapas [vectoriales de Chile](https://www.bcn.cl/siit/mapas_vectoriales/index_html)
+-   Ciudades y mas
 
 ```{r}
 # Bajamos el archivo
@@ -310,9 +305,9 @@ Mapa +
 
 ## Problemas
 
-* Tapan los puntos y chocan los nombres
-* ggrepel
-* cambio de tema
+-   Tapan los puntos y chocan los nombres
+-   ggrepel
+-   cambio de tema
 
 ```{r, eval=FALSE}
 Mapa + 
@@ -338,7 +333,6 @@ Mapa +
   ) + theme_bw()
 ```
 
-
 # Exportando archivos
 
 ## Usando tif
@@ -358,7 +352,7 @@ Mapa +
 dev.off()
 ```
 
-* Se puede usar bmp, jpeg, png, svg, cairo_pdf
+-   Se puede usar bmp, jpeg, png, svg, cairo_pdf
 
 ```{r, echo =F}
 
@@ -370,8 +364,8 @@ file.remove('Mapa.tiff')
 
 ## Prioridades de conservación en el neotrópico
 
-* De este [paper](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.05166)
-* De [acá](https://figshare.com/collections/Hannah_et_al_2020_Ecography/4868019) pueden bajarlo para otros continentes
+-   De este [paper](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.05166)
+-   De [acá](https://figshare.com/collections/Hannah_et_al_2020_Ecography/4868019) pueden bajarlo para otros continentes
 
 ```{r}
 download.file("https://ndownloader.figshare.com/files/21843771", destfile = "Priority.tiff")
@@ -386,14 +380,13 @@ Priority <- readAll(Priority)
 file.remove("Priority.tiff")
 ```
 
-## Poligono para el mismo lugar
+## Polígono para el mismo lugar
 
 ```{r}
 data("countriesHigh")
 SA <- countriesHigh %>% st_as_sf()  %>% st_make_valid() %>% st_crop(extent(Priority))
 ggplot() + geom_sf(data = SA)
 ```
-
 
 ## Cambiando Priority
 
@@ -416,9 +409,9 @@ Priority <- raster::trim(Priority)
 
 ## Transformamos las prioridades en categorías
 
-* Valores de 1 es el 17%
-* Valores de 0.87 son el 30%
-* Valores de 0 son lugares muy desarrollados (Agricultura o ciudad)
+-   Valores de 1 es el 17%
+-   Valores de 0.87 son el 30%
+-   Valores de 0 son lugares muy desarrollados (Agricultura o ciudad)
 
 ```{r}
 Priority2 <- Priority %>% as("SpatialPixelsDataFrame") %>% 
@@ -439,7 +432,6 @@ P  <- ggplot() + geom_sf(data = SA, size = 0.1) + geom_raster(data = Priority2, 
 P
 ```
 
-
 ## Mejoremos los colores
 
 ```{r}
@@ -449,7 +441,6 @@ P <- P + scale_fill_manual(name = "Priority",values = c("#006d2c","#31a354","#d7
 ```{r, echo = F}
 P
 ```
-
 
 ## Avancemos más
 
@@ -480,4 +471,3 @@ P
 
 dev.off()
 ```
-
