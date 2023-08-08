@@ -1,40 +1,114 @@
---- 
-title: "Programación y Análisis de Datos Ambientales MedianteSoftware Libre"
-author: "Horacio Samaniego"
+---
+title: "Programación y Análisis de Datos Geoespaciales"
+author: "Horacio Samaniego, Derek Corcoran, Giorgia Graells"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
+output: pdf_document
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography:
+- book.bib
+- packages.bib
 biblio-style: apalike
 link-citations: yes
-description: "Gitbook para el curso Programación y Análisis de Datos Ambientales MedianteSoftware Libre (CBIT200), Universidad Austral"
+description: Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200),
+  Universidad Austral de Chile
+site: bookdown::bookdown_site
 ---
 
-# Descripción del curso
+# Datos del curso
 
-* **Nombre asignatura:** Introducción al Análisis de Datos Geoespaciales
-* **Código asignatuta:** CBIT200
-* **Docente responsable:** Horacio Samaniego
-* **Correo electrónico:** horaciosamaniego@uach.cl
-* **Creadores:** Derek Corcoran B. & Giorgia Graells C.
-* **Modalidad de clases:** 
-    + Prácticas 
-    + Presenciales
-    + Consultas por Discord (chat o video) y correo electrónico
-* **Horario de clases:** Jueves 9:50-13:00 hrs 
-* **Inicio clases:** 10 agosto 2023
-* **Término clases:** 30 noviembre 2023 (puede existir alguna modificación por calendario académico)
+-   **Nombre asignatura:** Introducción al Análisis de Datos Geoespaciales
+-   **Código asignatuta:** CBIT200
+-   **Docente responsable:** Horacio Samaniego
+-   **Correo electrónico:** [horaciosamaniego\@uach.cl](mailto:horaciosamaniego@uach.cl){.email}
+-   **Creadores:** Derek Corcoran B. & Giorgia Graells C.
+-   **Modalidad de clases:**
+    -   Prácticas
+    -   Presenciales
+    -   Consultas por Discord (chat o video) y correo electrónico
+-   **Horario de clases:** Jueves 10:00 - 13:00 hrs
+-   **Inicio clases:** 10 agosto 2023
+-   **Término clases:** 30 noviembre 2023 (puede existir alguna modificación por calendario académico)
 
-## DESCRIPCION DEL CURSO
+## DESCRIPCIÓN DEL CURSO
 
-Este curso tiene como objetivo central adquirir los principios de investigación reproducible, conocimientos acerca del diseño y desarrollo de análisis de datos ambientales complejos y espacialmente explícitos. 
+Este curso tiene como objetivo central adquirir herramientas para el manejo de datos con un énfasis en datos espaciales para el menejo de los recursos naturales y la aproximación y resolución de problemas ambientaleslos. Se busca la creación de competencias en los principios de investigación reproducible, representación y análisis de información espacial y la creación de mapas estáticos e interactivos. Esto permitirá la adquisiciónde herramientas para profundizar el conocimientos acerca del diseño y desarrollo de análisis de datos ambientales complejos y espacialmente explícitos.
 
 ### OBJETIVOS
 
-1. Conocer y entender el concepto de  Investigación Reproducible como una forma y filosofía de  trabajo  que permite que las investigaciones sean más ordenadas y replicables, desde la toma de datos hasta la escritura de resultados utilizando R
+1.  Conocer y entender el concepto de Investigación Reproducible como una forma y filosofía de trabajo que permite que las investigaciones sean más ordenadas y replicables, desde la toma de datos hasta la escritura de resultados utilizando R
 
-2. Realizar análisis críticos de la naturaleza de los datos al realizar análisis exploratorios y reforzar conociminetos en estadística
+2.  Realizar análisis críticos de la naturaleza de los datos al realizar análisis exploratorios y reforzar conociminetos en estadística
 
-3. Realizar análisis de datos espaciales, poder hacer mapas y aplicar a preguntas de conservación y manejo de recursos naturales.
+3.  Realizar análisis de datos espaciales, poder hacer mapas y aplicar a preguntas de conservación y manejo de recursos naturales.
 
-4. Aprender a utilizar de forma proficiente el lenguaje de programación R y la plataforma GitHub en un ambiente de trabajo colaborativo.
+4.  Aprender a utilizar de forma proficiente el lenguaje de programación R y la plataforma GitHub en un ambiente de trabajo colaborativo.
+
+## Evaluación
+
+-   Luego de cada clase se entregarán ejercicios que deben resolverse. Se usará la plataforma GitHub para generar repositorios individuales para cada estudiante donde se debe subir el ejercicio. La evaluación será por pares entre los miembros del curso con moderación y revisión del profesor.
+-   Se desarrollá un proyecto de análisis y de programación que será desarrollado durante el último mes de clases y presentado en las últimas dos sesiones del curso.
+
+```{=html}
+<style type="text/css">
+  .calificaciones {width: 35%; left: 50%}
+</style>
+```
+::: calificaciones
+| *Evaluación*               | *Ponderación* |
+|----------------------------|---------------|
+| Ejercicios \& Tareas  $$\frac{1}{n}\sum_i^n nota\, tarea_i$$       | 50%           |
+| Proyecto reporte           | 10%           |
+| Proyecto código            | 20%           |
+| Presentación               | 15%           |
+| Participación / Asistencia | 5%            |
+:::
+
+## Calendario
+
++------------+---------------+-------------------------------------------------------------+
+| Semana     | Fecha         | Actividad                                                   |
++============+===============+=============================================================+
+| 1          | 10 Agosto     | -   Presentación del curso                                  |
+|            |               |                                                             |
+|            |               | -   Procedimientos y reglas de evaluación.                  |
+|            |               |                                                             |
+|            |               | -   R, sus variables, objetos y funciones                   |
++------------+---------------+-------------------------------------------------------------+
+| 2          | 17 Agosto     | -   Introducción a GitHub;                                  |
+|            |               |                                                             |
+|            |               | -   Investigación reproducible                              |
++------------+---------------+-------------------------------------------------------------+
+| 3          | 24 Agosto     | Markdown y Rmd avanzado                                     |
++------------+---------------+-------------------------------------------------------------+
+| 4          | 31 Agosto     | Visualización I                                             |
+|            |               |                                                             |
+|            |               | -   ggplot2                                                 |
+|            |               |                                                             |
+|            |               | -   otras librerías                                         |
++------------+---------------+-------------------------------------------------------------+
+| 5          | 7 Septiembre  | Correlación y Regresión                                     |
++------------+---------------+-------------------------------------------------------------+
+| 6          | 14 Septiembre | Intorducción a R como un Sistemas de Información Geográfica |
++------------+---------------+-------------------------------------------------------------+
+| 7          | 21 Septiembre | Rasters                                                     |
++------------+---------------+-------------------------------------------------------------+
+| 8          | 28 Septiembre | Modelos en rasters                                          |
++------------+---------------+-------------------------------------------------------------+
+| 9          | 5 Octubre     | Autocorrelación espacial                                    |
++------------+---------------+-------------------------------------------------------------+
+| 10         | 12 Octubre    | Visualización II (mapas)                                    |
++------------+---------------+-------------------------------------------------------------+
+| 11         | 19 Octubre    | Visualización III (interactiva)                             |
++------------+---------------+-------------------------------------------------------------+
+| 12         | 26 Octubre    | Sensores Remotos                                            |
++------------+---------------+-------------------------------------------------------------+
+| 13         | 2 Noviembre   | Proyecto - Definición de Objetivos                          |
++------------+---------------+-------------------------------------------------------------+
+| 14         | 9 Noviembre   | Proyecto - Modelo de Estudio e hipótesis de trabajo         |
++------------+---------------+-------------------------------------------------------------+
+| 15         | 16 Noviembre  | Proyecto - Resultados                                       |
++------------+---------------+-------------------------------------------------------------+
+| 16         | 23 Noviembre  | Proyecto - Presentación de Proyectos                        |
++------------+---------------+-------------------------------------------------------------+
+| 17         | 30 Noviembre  | Epílogo & Presentación de Proyectos                         |
++------------+---------------+-------------------------------------------------------------+

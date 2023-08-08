@@ -28,24 +28,24 @@ options("kableExtra.html.bsTable" = T)
 
 ## Sistema de Información Geográfica {.build}
 
-* Representación de datos de forma espacial
-* Muchos tipos de datos
-    + Datos de captura remota (Satelites lidar)
-    + Datos modelados (Modelos Distribución de Especies)
-    + Datos de expertos
-    + Planes futuros (Panificación territorial)
-    + Mapas de fantasía (Tierra Media, Westeros)
-* Dos formatos principales
-    + Datos Vectoriales (Shapefiles)
-    + Datos en grilla (Rasters)
+-   Representación de datos de forma espacial
+-   Muchos tipos de datos
+    -   Datos de captura remota (Satelites lidar)
+    -   Datos modelados (Modelos Distribución de Especies)
+    -   Datos de expertos
+    -   Planes futuros (Panificación territorial)
+    -   Mapas de fantasía (Tierra Media, Westeros)
+-   Dos formatos principales
+    -   Datos Vectoriales (Shapefiles)
+    -   Datos en grilla (Rasters)
 
 ## Datos Vectoriales
 
-* Shapefiles
-* Puntos (Ciudades, presencias de especies, sucesos, sitios de muestreo)
-* Lineas (Ríos, Carreteras, Caminos, Senderos)
-* Polígonos (Países, Regiones, Lagos)
-* Paquetes (sf, sp, raster)
+-   Shapefiles
+-   Puntos (Ciudades, presencias de especies, sucesos, sitios de muestreo)
+-   Lineas (Ríos, Carreteras, Caminos, Senderos)
+-   Polígonos (Países, Regiones, Lagos)
+-   Paquetes (sf, sp, raster)
 
 ## Ejemplos datos vectoriales
 
@@ -65,14 +65,12 @@ ggplot() + geom_sf(data = Mundo, aes(fill = POP_EST))
 ggplot() + geom_sf(data = Mundo, aes(fill = continent))
 ```
 
-
 ## Elegir parte de datos vectoriales
 
 ```{r, echo = TRUE}
 Africa <- Mundo %>% dplyr::filter(continent == "Africa")
 ggplot() + geom_sf(data = Africa, aes(fill = POP_EST))
 ```
-
 
 ## Modificar datos vectoriales
 
@@ -82,7 +80,6 @@ ggplot() + geom_sf(data = Africa, aes(fill = Poblacion_mill)) + theme_bw() + sca
 ```
 
 ## Modificar datos vectoriales (Cont.)
-
 
 ```{r, echo = T}
 Africa <- Africa %>% mutate(PIB_per_Cap = GDP_MD_EST/POP_EST)
@@ -98,42 +95,37 @@ Africa2 <- read_sf("Africa.shp")
 ggplot() + geom_sf(data = Africa2, aes(fill = GLOCAF)) + theme_dark() 
 ```
 
+## Algunas bases de datos vectoriales
+
+-   [Datos vectoriales del mundo](http://www.diva-gis.org/gdata)
+-   [Datos vectoriales de Chile](https://www.bcn.cl/siit/mapas_vectoriales)
 
 ## Algunas bases de datos vectoriales
 
-* [Datos vectoriales del mundo](http://www.diva-gis.org/gdata)
-* [Datos vectoriales de Chile](https://www.bcn.cl/siit/mapas_vectoriales)
-
-
-## Algunas bases de datos vectoriales
-
-* En raster función `getData("GADM")`
+-   En raster función `getData("GADM")`
 
 ```{r, echo = T}
 Peru <- getData(name = "GADM", country = "PER", level = 1) %>% st_as_sf()
 ggplot() + geom_sf(data = Peru) + theme(legend.position = "none")
 ```
 
-
 # Raster
 
 ## Datos en grilla
 
-* Como una foto
-* Cada pixel tiene ciertas caracteristicas (Resolución, Proyección, Unidades)
+-   Como una foto
+-   Cada pixel tiene ciertas caracteristicas (Resolución, Proyección, Unidades)
 
 ```{r, echo = T}
 Prec <- getData("worldclim", res = 10, var = "prec") 
 Prec
 ```
 
-
 ## Precipitacion
 
 ```{r, echo = T}
 plot(Prec)
 ```
-
 
 ## Subset de stacks
 
@@ -157,7 +149,6 @@ PP_Total <- sum(Prec)
 plot(PP_Total)
 ```
 
-
 ## Cortar un raster (En base a otro mapa)
 
 ```{r, echo = T, echo = T, echo = T}
@@ -172,15 +163,11 @@ writeRaster(Raster_Africa, "PP_Africa.tif", overwrite = T)
 AfricaRast2 <- raster("PP_Africa.tif")
 ```
 
-
-
-
 ## Exportar y leer un raster
 
 ```{r, echo = T}
 plot(AfricaRast2)
 ```
-
 
 ## Proyecciones y por que importan
 
@@ -195,11 +182,10 @@ plot(Area)
 proj4string(AfricaRast2)
 ```
 
-
-* Supongamos que el gráfico anterior fuera de diversidad
-    + Tiene sentido comparar diversidad de especies en celdas de áreas diferentes?
-* [Projection wizard](https://projectionwizard.org/)
-* Además por presentación
+-   Supongamos que el gráfico anterior fuera de diversidad
+    -   Tiene sentido comparar diversidad de especies en celdas de áreas diferentes?
+-   [Projection wizard](https://projectionwizard.org/)
+-   Además por presentación
 
 ## Reproyectar a equal area
 
@@ -215,7 +201,6 @@ plot(Africa_igual)
 Area <- area(Africa_igual) %>% mask(Africa_igual)
 plot(Area)
 ```
-
 
 # Graficar juntos
 

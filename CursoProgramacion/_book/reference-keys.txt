@@ -6,3 +6,7 @@ investigación-reproducible-y-github
 mas-usos-de-rmd
 visualización-en-r-con-ggplot2
 regresion-lineal-y-pivoting
+introducción
+calendario
+datos-del-curso
+evaluación

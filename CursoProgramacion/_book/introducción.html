@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Introducción | Introducción: Principios básicos</title>
+  <meta name="description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Introducción | Introducción: Principios básicos" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Introducción | Introducción: Principios básicos" />
+  
+  <meta name="twitter:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
+  
+
+<meta name="author" content="Horacio Samaniego, Derek Corcoran, Giorgia Graells" />
+
+
+<meta name="date" content="2023-08-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="investigación-reproducible-y-github.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de programación</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Datos del curso</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#descripción-del-curso"><i class="fa fa-check"></i><b>1.1</b> DESCRIPCIÓN DEL CURSO</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i><b>1.1.1</b> OBJETIVOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#evaluación"><i class="fa fa-check"></i><b>1.2</b> Evaluación</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#calendario"><i class="fa fa-check"></i><b>1.3</b> Calendario</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
+<li class="chapter" data-level="3" data-path="investigación-reproducible-y-github.html"><a href="investigación-reproducible-y-github.html"><i class="fa fa-check"></i><b>3</b> Investigación reproducible y github</a></li>
+<li class="chapter" data-level="4" data-path="mas-usos-de-rmd.html"><a href="mas-usos-de-rmd.html"><i class="fa fa-check"></i><b>4</b> Mas usos de Rmd</a></li>
+<li class="chapter" data-level="5" data-path="visualización-en-r-con-ggplot2.html"><a href="visualización-en-r-con-ggplot2.html"><i class="fa fa-check"></i><b>5</b> Visualización en r con ggplot2</a></li>
+<li class="chapter" data-level="6" data-path="regresion-lineal-y-pivoting.html"><a href="regresion-lineal-y-pivoting.html"><i class="fa fa-check"></i><b>6</b> Regresion lineal y pivoting</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción: Principios básicos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introducción" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Introducción<a href="introducción.html#introducción" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>R es un entorno y lenguaje de programación con un enfoque al análisis
+estadístico. Permite hacer todos los análisis numéricos que requieras en
+tu vida profesional. Es una implementación de libre distribución de otro
+programa estadístico de uso comercial, S. Al ser software libre, es la
+comunidad de usuarios la que guía su desarrollo, transformándolo en uno
+de los programas más versátiles para trabajos cuantitativos existentes
+hoy en día. La página principal desde la que se puede acceder a los
+archivos y documentación necesarias para su utilización es:</p>
+<p><a href="http://www.r-project.org">www.r-project.org</a></p>
+<p>Sin embargo, para trabajar ……. utilizaremos R studio: Un Entorno de
+Desarrollo Integrado (IDE) que, al igual que R, es software libre y
+permite integrar herramientas necesarias para el desarrollo y así
+facilitarlo. La página oficial para descargarlo es:</p>
+<p><a href="http://www.rstudio.com">www.rstudio.com</a></p>
+<p><strong>Objetos:</strong></p>
+<p>En términos genéricos, todos los elementos que R maneja son objetos. Un
+objeto tiene ciertas propiedades y en ocasiones es capaz de llevar a
+cabo ciertas tareas si se le dan los argumentos necesarios. Por ejemplo,
+un teléfono es capaz de realizar llamadas siempre que le demos el número
+a marcar.</p>
+<p><strong>Variables</strong></p>
+<p>Al momento de trabajar, es probable que necesitemos guardar valores o
+cálculos, de manera que no necesitemos escribirlos cada vez que los
+usemos, para esto utilizamos variables.</p>
+<p>Para realizar una asignación de variable:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introducción.html#cb1-1" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">200</span></span></code></pre></div>
+<p>Luego, podemos utilizar el valor contenido en la variable, utilizando su
+nombre:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introducción.html#cb2-1" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<p><strong>Tipos de variables:</strong></p>
+<p>Existen diversos tipos o clases de variables, dependiendo de las
+características del objeto que les es asignado. Para conocer a qué tipo
+corresponde un objeto usamos class:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introducción.html#cb4-1" tabindex="-1"></a>x<span class="ot">=</span><span class="dv">7</span></span>
+<span id="cb4-2"><a href="introducción.html#cb4-2" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="introducción.html#cb6-1" tabindex="-1"></a><span class="fu">class</span> (x)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="introducción.html#cb8-1" tabindex="-1"></a>x<span class="ot">=</span><span class="dv">5</span><span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb8-2"><a href="introducción.html#cb8-2" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 1.666667</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="introducción.html#cb10-1" tabindex="-1"></a><span class="fu">class</span> (x)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="introducción.html#cb12-1" tabindex="-1"></a>x<span class="ot">=</span><span class="st">&quot;Trece&quot;</span></span>
+<span id="cb12-2"><a href="introducción.html#cb12-2" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] &quot;Trece&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="introducción.html#cb14-1" tabindex="-1"></a><span class="fu">class</span> (x)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p><strong>Funciones:</strong></p>
+<p>Muchas cosas en R pueden hacerse a través del uso de funciones, estas
+permiten realizar operaciones típicas sin necesidad de escribir grandes
+cantidades de código. Por ejemplo:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="introducción.html#cb16-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 3.162278</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introducción.html#cb18-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">1.9</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introducción.html#cb20-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1]  0  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introducción.html#cb22-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1]  0  2  4  6  8 10</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introducción.html#cb24-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] 5 5 5 5 5 5 5 5 5 5</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introducción.html#cb26-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">10</span>), <span class="st">&quot;elefantes&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;5 elefantes&quot;  &quot;6 elefantes&quot;  &quot;7 elefantes&quot;  &quot;8 elefantes&quot;  &quot;9 elefantes&quot; 
+## [6] &quot;10 elefantes&quot;</code></pre>
+<p>Los datos o variables que van dentro de las funciones, se denominan
+<em>argumentos</em> y cada función requiere que se le entreguen los argumentos
+apropiados para ejecutar la acción prevista.</p>
+<p>Por ejemplo, la función mean() no puede calcular el promedio si como
+argumentos se le pasan letras.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introducción.html#cb28-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning in mean.default(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)): argument is not numeric or logical:
+## returning NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>Esto es importante, porque al introducir datos podemos estar utilizando
+números como palabras:</p>
+<p>1, 2, 3 ≠ “1”, “2”, “3”</p>
+<p>Si nos encontramos con este problema, debemos transformar los datos al
+tipo o clase adecuada, con las funciones:</p>
+<p><code>as.numeric()</code> y <code>as. character()</code>x`</p>
+<p><strong>Vectores:</strong></p>
+<p>Conjunto ordenado de valores del mismo tipo, agrupados en un único
+objeto. Para crear una variable vector utilizamos:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introducción.html#cb31-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb31-2"><a href="introducción.html#cb31-2" tabindex="-1"></a>vector <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;mi&quot;</span>, <span class="st">&quot;primer&quot;</span>, <span class="st">&quot;vector&quot;</span>)</span>
+<span id="cb31-3"><a href="introducción.html#cb31-3" tabindex="-1"></a>vector</span></code></pre></div>
+<pre><code>## [1] &quot;mi&quot;     &quot;primer&quot; &quot;vector&quot;</code></pre>
+<p>Cada objeto dentro de un vector posee un índice, el cual indica la
+posición que ocupa dentro del vector, para acceder a una posición
+específica usamos:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introducción.html#cb33-1" tabindex="-1"></a>vector[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;mi&quot;</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introducción.html#cb35-1" tabindex="-1"></a>vector[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;primer&quot;</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introducción.html#cb37-1" tabindex="-1"></a>vector[<span class="dv">3</span>] </span></code></pre></div>
+<pre><code>## [1] &quot;vector&quot;</code></pre>
+<p>y si queremos reemplazar alguno de esos objetos:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introducción.html#cb39-1" tabindex="-1"></a>vector[<span class="dv">2</span>]<span class="ot">=</span><span class="st">&quot;segundo&quot;</span></span>
+<span id="cb39-2"><a href="introducción.html#cb39-2" tabindex="-1"></a>vector</span></code></pre></div>
+<pre><code>## [1] &quot;mi&quot;      &quot;segundo&quot; &quot;vector&quot;</code></pre>
+<p>Un vector permite almacenar varios valores en una única variable y
+permite ejecutar operaciones o funciones a un conjunto de datos:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="introducción.html#cb41-1" tabindex="-1"></a>vector <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb41-2"><a href="introducción.html#cb41-2" tabindex="-1"></a>vector<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1]  2  4  6  8 10</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="introducción.html#cb43-1" tabindex="-1"></a>vector<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1]  1  4  9 16 25</code></pre>
+<p>o incluso realizar operaciones entre vectores:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="introducción.html#cb45-1" tabindex="-1"></a>v1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb45-2"><a href="introducción.html#cb45-2" tabindex="-1"></a>v2<span class="ot">=</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introducción.html#cb46-1" tabindex="-1"></a>v1</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introducción.html#cb48-1" tabindex="-1"></a>v2</span></code></pre></div>
+<pre><code>## [1]  6  8 10</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="introducción.html#cb50-1" tabindex="-1"></a>v1 <span class="sc">+</span> v2</span></code></pre></div>
+<pre><code>## [1]  7 10 13</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducción.html#cb52-1" tabindex="-1"></a>v1<span class="sc">*</span>v2</span></code></pre></div>
+<pre><code>## [1]  6 16 30</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducción.html#cb54-1" tabindex="-1"></a>v3<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>)</span>
+<span id="cb54-2"><a href="introducción.html#cb54-2" tabindex="-1"></a>v1 <span class="sc">*</span> v3</span></code></pre></div>
+<pre><code>## Error in v1 * v3: non-numeric argument to binary operator</code></pre>
+<p><strong>Data frame:</strong></p>
+<p><strong>Instalar librerías:</strong></p>
+<p>Muchas veces las funciones incorporadas en R son insuficientes para
+nuestros fines, por lo que es necesario instalar paquetes o “packages”
+de herramientas hechas por la comunidad. En este caso, usaremos el
+paquete “openxlsx”, que nos permite leer archivos Excel. Para
+instalarlo:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="introducción.html#cb56-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;openxlsx&quot;</span>)</span></code></pre></div>
+<p>Debe hacerse una única vez, los paquetes quedan instalados en nuestra
+versión de R. Y para usarlo dentro de nuestro proyecto:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="introducción.html#cb57-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span></code></pre></div>
+<p>Debe incluirse en cada proyecto donde queramos usarlo y ejecutarse cada
+vez que abrimos R.</p>
+<p><strong>R Notebook</strong></p>
+<p>Un Notebook en R es un documento con bloques o “chunks” que pueden ser
+ejecutados directa e interactivamente, para así visualizar los
+resultados directamente bajo el código.</p>
+<p>Para instalar esta librería:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introducción.html#cb58-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
+<p>Una vez instalada, puedes crear un nuevo notebook en RStudio llendo a
+<em>File -&gt; new file -&gt; R notebook</em>.</p>
+<p>Agrega un nuevo chunk haciendo click en el botón <em>Insert Chunk</em> en la
+barra de herramientas o presionando <em>Ctrl+Alt+I</em></p>
+<p>Un chunk puede ser ejecutado usando:</p>
+<ol style="list-style-type: decimal">
+<li><p>Haciendo click en el triángulo verde o “Run Current Chunk” en la
+esquina superior derecha de cada chunk.</p></li>
+<li><p>Clickeando al interior de un chunk y presionando <em>Ctrl + Enter</em>.</p></li>
+</ol>
+<p>De ambas formas se ejecutará todo el código contenido dentro de el
+chunk.</p>
+<p>Cuando guardas ul notebook, un archivo HTML que contiene el código y los
+resultados se guardará junto a él (Click en el botón de <em>Preview</em> o
+presiona <em>Ctrl+Shift+K</em> para previsualizar el archivo HMTL)</p>
+<p><strong>Leer datos:</strong></p>
+<p>Delimitados por coma: read_csv(“file.csv”)</p>
+<p>Con cualquier delimitador: read_delim(“file.txt”, delim = “|”)</p>
+<p>……..</p>
+<p><strong>tidyr?</strong></p>
+<p><strong>Bajar archivos de la web:</strong></p>
+<p><strong>Construcción de set de datos:</strong></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="investigación-reproducible-y-github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CursoProgramacion.pdf", "CursoProgramacion.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

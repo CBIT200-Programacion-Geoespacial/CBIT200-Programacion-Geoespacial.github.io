@@ -55,7 +55,6 @@ write_sf(Datos, "Datos.shp")
 ggplot() + geom_sf(data = Mapa) + theme_bw()
 ```
 
-
 ## Agreguemos los puntos
 
 ```{r}
@@ -74,17 +73,15 @@ ggplot() + geom_sf(data = Mapa) + geom_sf(data =  Datos, aes(color = species)) +
 ggplot() + geom_sf(data = Mapa) + geom_sf(data =  Datos, aes(color = species, size = Measurement)) + theme_bw()
 ```
 
-
 ## o un panel por especie
 
 ```{r}
 ggplot() + geom_sf(data = Mapa) + geom_sf(data =  Datos, aes(size = Measurement)) + theme_bw() + facet_wrap(~species)
 ```
 
-
 ## Resumen
 
-* Ver video [tidyverse](https://youtu.be/5tjCeFb2oSk)
+-   Ver video [tidyverse](https://youtu.be/5tjCeFb2oSk)
 
 ```{r, echo = FALSE}
 Datos %>% as.data.frame() %>% group_by(species) %>% summarise(n = n(), mean = mean(Measurement), max = max(Measurement), min = min(Measurement)) %>% arrange(desc(mean)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
@@ -129,7 +126,6 @@ Clima <- raster::extract(Bioclim, B_impatiens) %>% as.data.frame()
 kable(Clima) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%  scroll_box(width = "100%", height = "400px")
 ```
 
-
 ## Juntamos con abundancia
 
 ```{r}
@@ -163,14 +159,13 @@ Prediccion <- predict(Bioclim, FitLM)
 plot(Prediccion, colNA = "black")
 ```
 
-* Que porblema hay acá?
-
+-   Que porblema hay acá?
 
 # GLM
 
 ## GLM
 
-* Para mas información ver [este video](https://youtu.be/1gLswJR7ZSc) sobre GLMs
+-   Para mas información ver [este video](https://youtu.be/1gLswJR7ZSc) sobre GLMs
 
 ```{r}
 Fit1 <- glm(Measurement ~ bio1 + I(bio1^2) + bio7 + I(bio7^2) + bio12 + I(bio12^2) + bio15+ I(bio15^2), family = poisson , data = B_impatiens)
@@ -186,7 +181,6 @@ broom::tidy(Fit1) %>%  kable() %>% kable_styling(bootstrap_options = c("striped"
 Prediccion <- predict(Bioclim, Fit1, type = "response")
 plot(Prediccion, colNA = "black")
 ```
-
 
 # Dudas?
 
@@ -209,5 +203,3 @@ ggplot() + geom_tile(data = Prediccion_DF, aes(x = x, y = y, fill = Abundancia))
 ```{r, echo=FALSE}
 ggplot() + geom_tile(data = Prediccion_DF, aes(x = x, y = y, fill = Abundancia)) + geom_sf(data = Mapa, alpha = 0) + geom_sf(data = B_impatiens, aes(size = Measurement)) + theme_bw() + scale_fill_viridis_c(option = "plasma")  + theme(legend.position = "bottom") + xlab("") + ylab("")
 ```
-
-

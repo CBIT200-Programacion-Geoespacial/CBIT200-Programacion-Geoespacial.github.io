@@ -1,73 +1,83 @@
 ---
 title: "Introducción: Principios básicos"
-
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
+```{=html}
 <!-- # El tidyverso {#tidy}
 
 En esta clase empezaremos a trabajar en r, puedes seguir la presentación en el siguiente [link](https://derek-corcoran-barrios.github.io/CursoProgrPres/Clase1/Clase1TidyData.html), y a continuación tienes el link de la clase online en youtube:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pr6dMwtto0w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 -->
+```
 # Introducción
 
-
-
-
 R es un entorno y lenguaje de programación con un enfoque al análisis
-estadístico. Permite hacer todos los análisis numéricos
-que requieras en tu vida profesional. Es una implementación de libre distribución de otro programa estadístico de uso comercial, S. Al ser software libre, es la comunidad de usuarios la que guía su desarrollo, transformándolo en uno de los programas más versátiles para trabajos cuantitativos existentes hoy en día. La página principal desde la que se puede acceder a los archivos y documentación necesarias para su utilización es:
+estadístico. Permite hacer todos los análisis numéricos que requieras en
+tu vida profesional. Es una implementación de libre distribución de otro
+programa estadístico de uso comercial, S. Al ser software libre, es la
+comunidad de usuarios la que guía su desarrollo, transformándolo en uno
+de los programas más versátiles para trabajos cuantitativos existentes
+hoy en día. La página principal desde la que se puede acceder a los
+archivos y documentación necesarias para su utilización es:
 
 [www.r-project.org](http://www.r-project.org)
 
-Sin embargo, para trabajar ....... utilizaremos R studio: Un Entorno de Desarrollo Integrado
-(IDE) que, al igual que R, es software libre y permite integrar herramientas necesarias para el desarrollo y así facilitarlo. La página oficial para descargarlo es:
+Sin embargo, para trabajar ....... utilizaremos R studio: Un Entorno de
+Desarrollo Integrado (IDE) que, al igual que R, es software libre y
+permite integrar herramientas necesarias para el desarrollo y así
+facilitarlo. La página oficial para descargarlo es:
 
 [www.rstudio.com](http://www.rstudio.com)
 
 **Objetos:**
 
-En términos genéricos, todos los elementos que R maneja son objetos.
-Un objeto tiene ciertas propiedades y en ocasiones es capaz de llevar a
-cabo ciertas tareas si se le dan los argumentos necesarios.
-Por ejemplo, un teléfono es capaz de realizar llamadas siempre que le
-demos el número a marcar.
+En términos genéricos, todos los elementos que R maneja son objetos. Un
+objeto tiene ciertas propiedades y en ocasiones es capaz de llevar a
+cabo ciertas tareas si se le dan los argumentos necesarios. Por ejemplo,
+un teléfono es capaz de realizar llamadas siempre que le demos el número
+a marcar.
 
 **Variables**
 
-Al momento de trabajar, es probable que necesitemos guardar valores
-o cálculos, de manera que no necesitemos escribirlos cada vez que los
+Al momento de trabajar, es probable que necesitemos guardar valores o
+cálculos, de manera que no necesitemos escribirlos cada vez que los
 usemos, para esto utilizamos variables.
 
 Para realizar una asignación de variable:
 
-```{r}
+```{r }
 a = 200
 ```
 
 Luego, podemos utilizar el valor contenido en la variable, utilizando su
 nombre:
 
-```{r}
-a
+```{r }
+print(a)
 ```
 
 **Tipos de variables:**
 
 Existen diversos tipos o clases de variables, dependiendo de las
-características del objeto que les es asignado.
-Para conocer a qué tipo corresponde un objeto usamos class:
+características del objeto que les es asignado. Para conocer a qué tipo
+corresponde un objeto usamos class:
 
 ```{r}
 x=7
 x
 class (x)
 ```
+
 ```{r}
 x=5/3
 x
 class (x)
 ```
+
 ```{r}
 x="Trece"
 x
@@ -89,38 +99,48 @@ rep(5,10)
 paste(seq(5,10), "elefantes")
 ```
 
-Los datos o variables que van dentro de las funciones, se denominan argumentos y cada función requiere que se le entreguen los argumentos apropiados para ejecutar la acción prevista.
+Los datos o variables que van dentro de las funciones, se denominan
+*argumentos* y cada función requiere que se le entreguen los argumentos
+apropiados para ejecutar la acción prevista.
 
-Por ejemplo, la función mean() no puede calcular el promedio si como argumentos se le pasan letras.
+Por ejemplo, la función mean() no puede calcular el promedio si como
+argumentos se le pasan letras.
+
 ```{r}
 mean(c("a","b","c"))
 ```
-Esto es importante, porque al introducir datos podemos estar utilizando números como palabras:
 
-1, 2, 3 ≠ “1”, ”2”, ”3”
+Esto es importante, porque al introducir datos podemos estar utilizando
+números como palabras:
 
-Si nos encontramos con este problema, debemos transformar los datos al tipo o clase adecuada, con las funciones:
+1, 2, 3 ≠ "1", "2", "3"
 
-as.numeric() y as. character()
+Si nos encontramos con este problema, debemos transformar los datos al
+tipo o clase adecuada, con las funciones:
 
+`as.numeric()` y `as. character()`x\`
 
 **Vectores:**
 
 Conjunto ordenado de valores del mismo tipo, agrupados en un único
 objeto. Para crear una variable vector utilizamos:
+
 ```{r}
 v = c(1,1,2,3)
 vector = c("mi", "primer", "vector")
 vector
 ```
 
-Cada objeto dentro de un vector posee un índice, el cual indica la posición que ocupa dentro del vector, para acceder a una posición específica usamos:
+Cada objeto dentro de un vector posee un índice, el cual indica la
+posición que ocupa dentro del vector, para acceder a una posición
+específica usamos:
 
 ```{r}
 vector[1]
 vector[2]
 vector[3] 
 ```
+
 y si queremos reemplazar alguno de esos objetos:
 
 ```{r}
@@ -128,7 +148,8 @@ vector[2]="segundo"
 vector
 ```
 
-Un vector permite almacenar varios valores en una única variable y permite ejecutar operaciones o funciones a un conjunto de datos:
+Un vector permite almacenar varios valores en una única variable y
+permite ejecutar operaciones o funciones a un conjunto de datos:
 
 ```{r}
 vector = c(1,2,3,4,5)
@@ -147,12 +168,15 @@ v2=c(6,8,10)
 v1
 v2
 ```
+
 ```{r}
 v1 + v2
 ```
+
 ```{r}
 v1*v2
 ```
+
 ```{r error=TRUE, echo = T, results = 'hide'}
 v3=c("a","b","c")
 v1 * v3
@@ -160,28 +184,33 @@ v1 * v3
 
 **Data frame:**
 
-
-
 **Instalar librerías:**
 
-Muchas veces las funciones incorporadas en R son insuficientes para nuestros fines,
-por lo que es necesario instalar paquetes o “packages” de herramientas hechas por
-la comunidad.
-En este caso, usaremos el paquete “openxlsx”, que nos permite leer archivos Excel.
-Para instalarlo:
+Muchas veces las funciones incorporadas en R son insuficientes para
+nuestros fines, por lo que es necesario instalar paquetes o "packages"
+de herramientas hechas por la comunidad. En este caso, usaremos el
+paquete "openxlsx", que nos permite leer archivos Excel. Para
+instalarlo:
+
 ```{r eval=FALSE}
 install.packages("openxlsx")
 ```
-Debe hacerse una única vez, los paquetes quedan instalados en nuestra versión de R.
-Y para usarlo dentro de nuestro proyecto:
+
+Debe hacerse una única vez, los paquetes quedan instalados en nuestra
+versión de R. Y para usarlo dentro de nuestro proyecto:
+
 ```{r eval=FALSE}
 library(openxlsx)
 ```
-Debe incluirse en cada proyecto donde queramos usarlo y ejecutarse cada vez que abrimos R.
+
+Debe incluirse en cada proyecto donde queramos usarlo y ejecutarse cada
+vez que abrimos R.
 
 **R Notebook**
 
-Un Notebook en R es un documento con bloques o "chunks" que pueden ser ejecutados directa e interactivamente, para así visualizar los resultados directamente bajo el código. 
+Un Notebook en R es un documento con bloques o "chunks" que pueden ser
+ejecutados directa e interactivamente, para así visualizar los
+resultados directamente bajo el código.
 
 Para instalar esta librería:
 
@@ -189,33 +218,36 @@ Para instalar esta librería:
 install.packages("rmarkdown")
 ```
 
-Una vez instalada, puedes crear un nuevo notebook en RStudio llendo a *File -> new file -> R notebook*.
+Una vez instalada, puedes crear un nuevo notebook en RStudio llendo a
+*File -\> new file -\> R notebook*.
 
-Agrega un nuevo chunk haciendo click en el botón *Insert Chunk* en la barra de herramientas o presionando *Ctrl+Alt+I*
+Agrega un nuevo chunk haciendo click en el botón *Insert Chunk* en la
+barra de herramientas o presionando *Ctrl+Alt+I*
 
 Un chunk puede ser ejecutado usando:
 
-1. Haciendo click en el triángulo verde o "Run Current Chunk" en la esquina superior derecha de cada chunk.
+1.  Haciendo click en el triángulo verde o "Run Current Chunk" en la
+    esquina superior derecha de cada chunk.
 
-2. Clickeando al interior de un chunk y presionando *Ctrl + Enter*. 
+2.  Clickeando al interior de un chunk y presionando *Ctrl + Enter*.
 
-De ambas formas se ejecutará todo el código contenido dentro de el chunk.
+De ambas formas se ejecutará todo el código contenido dentro de el
+chunk.
 
-Cuando guardas ul notebook, un archivo HTML que contiene el código y los resultados se guardará junto a él (Click en el botón de *Preview* o presiona *Ctrl+Shift+K* para previsualizar el archivo HMTL)
+Cuando guardas ul notebook, un archivo HTML que contiene el código y los
+resultados se guardará junto a él (Click en el botón de *Preview* o
+presiona *Ctrl+Shift+K* para previsualizar el archivo HMTL)
 
-**Leer datos: **
+**Leer datos:**
 
 Delimitados por coma: read_csv("file.csv")
 
-Con cualquier delimitador: read_delim("file.txt", delim = "|") 
+Con cualquier delimitador: read_delim("file.txt", delim = "\|")
 
 ........
 
-
 **tidyr?**
 
+**Bajar archivos de la web:**
 
-**Bajar archivos de la web: **
-
-**Construcción de set de datos: **
-
+**Construcción de set de datos:**
