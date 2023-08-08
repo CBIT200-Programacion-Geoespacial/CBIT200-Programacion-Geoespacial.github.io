@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Horacio Samaniego">
+<meta name="dcterms.date" content="2023-08-08">
+
+<title>CBIT200 Programación Geoespacial - Clase 1 El tidyverse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="../../site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="../../site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CBIT200 Programación Geoespacial</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../CursoProgamacion/_book/index.Rmd">
+ <span class="menu-text">Libro del curso</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#bienvenida" id="toc-bienvenida" class="nav-link active" data-scroll-target="#bienvenida">Bienvenida</a>
+  <ul class="collapse">
+  <li><a href="#curso-introducción-al-análisis-y-manipulación-de-datos-geoespaciales" id="toc-curso-introducción-al-análisis-y-manipulación-de-datos-geoespaciales" class="nav-link" data-scroll-target="#curso-introducción-al-análisis-y-manipulación-de-datos-geoespaciales">Curso: Introducción al Análisis y manipulación de datos geoespaciales</a></li>
+  </ul></li>
+  <li><a href="#como-se-organizan-los-datos-en-r" id="toc-como-se-organizan-los-datos-en-r" class="nav-link" data-scroll-target="#como-se-organizan-los-datos-en-r">Como se organizan los datos en R</a>
+  <ul class="collapse">
+  <li><a href="#estructura-de-datos" id="toc-estructura-de-datos" class="nav-link" data-scroll-target="#estructura-de-datos">Estructura de datos</a></li>
+  <li><a href="#vector" id="toc-vector" class="nav-link" data-scroll-target="#vector">Vector</a></li>
+  </ul></li>
+  <li><a href="#lo-entendimos" id="toc-lo-entendimos" class="nav-link" data-scroll-target="#lo-entendimos">Lo entendimos?</a>
+  <ul class="collapse">
+  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio">Ejercicio</a></li>
+  <li><a href="#respuesta" id="toc-respuesta" class="nav-link" data-scroll-target="#respuesta">Respuesta</a></li>
+  <li><a href="#data-frame" id="toc-data-frame" class="nav-link" data-scroll-target="#data-frame">Data Frame</a></li>
+  <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link" data-scroll-target="#ejercicio-1">Ejercicio</a></li>
+  <li><a href="#alternativas" id="toc-alternativas" class="nav-link" data-scroll-target="#alternativas">Alternativas</a></li>
+  <li><a href="#respuesta-1" id="toc-respuesta-1" class="nav-link" data-scroll-target="#respuesta-1">Respuesta</a></li>
+  </ul></li>
+  <li><a href="#principios-de-tidydata" id="toc-principios-de-tidydata" class="nav-link" data-scroll-target="#principios-de-tidydata">Principios de Tidydata</a>
+  <ul class="collapse">
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy Data</a></li>
+  </ul></li>
+  <li><a href="#trabajemos-tidy" id="toc-trabajemos-tidy" class="nav-link" data-scroll-target="#trabajemos-tidy">Trabajemos tidy</a>
+  <ul class="collapse">
+  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr">dplyr</a></li>
+  <li><a href="#summarize-y-group_by" id="toc-summarize-y-group_by" class="nav-link" data-scroll-target="#summarize-y-group_by">summarize y group_by</a></li>
+  <li><a href="#summarize-y-group_by-continuado" id="toc-summarize-y-group_by-continuado" class="nav-link" data-scroll-target="#summarize-y-group_by-continuado">summarize y group_by (continuado)</a></li>
+  <li><a href="#summarize-y-group_by-continuado-1" id="toc-summarize-y-group_by-continuado-1" class="nav-link" data-scroll-target="#summarize-y-group_by-continuado-1">summarize y group_by (continuado)</a></li>
+  </ul></li>
+  <li><a href="#dudas" id="toc-dudas" class="nav-link" data-scroll-target="#dudas">Dudas?</a>
+  <ul class="collapse">
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate">mutate</a></li>
+  <li><a href="#pipeline" id="toc-pipeline" class="nav-link" data-scroll-target="#pipeline">Pipeline (%&gt;%)</a></li>
+  <li><a href="#pipeline-1" id="toc-pipeline-1" class="nav-link" data-scroll-target="#pipeline-1">Pipeline (%&gt;%)</a></li>
+  <li><a href="#pipeline-2" id="toc-pipeline-2" class="nav-link" data-scroll-target="#pipeline-2">Pipeline (%&gt;%)</a></li>
+  <li><a href="#pipeline-otro-ejemplo" id="toc-pipeline-otro-ejemplo" class="nav-link" data-scroll-target="#pipeline-otro-ejemplo">Pipeline (%&gt;%) otro ejemplo</a></li>
+  </ul></li>
+  <li><a href="#mas-dudas" id="toc-mas-dudas" class="nav-link" data-scroll-target="#mas-dudas">Mas dudas?</a>
+  <ul class="collapse">
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">Filter</a></li>
+  <li><a href="#ejemplos-de-filter-agregando-a-lo-anterior" id="toc-ejemplos-de-filter-agregando-a-lo-anterior" class="nav-link" data-scroll-target="#ejemplos-de-filter-agregando-a-lo-anterior">Ejemplos de filter agregando a lo anterior</a></li>
+  <li><a href="#ejemplos-de-filter" id="toc-ejemplos-de-filter" class="nav-link" data-scroll-target="#ejemplos-de-filter">Ejemplos de filter</a></li>
+  <li><a href="#más-de-una-función" id="toc-más-de-una-función" class="nav-link" data-scroll-target="#más-de-una-función">Más de una función</a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select">Select</a></li>
+  <li><a href="#resultado" id="toc-resultado" class="nav-link" data-scroll-target="#resultado">Resultado</a></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios">Ejercicios</a></li>
+  <li><a href="#bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos" id="toc-bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos" class="nav-link" data-scroll-target="#bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos"><strong>Bonus</strong> (Esto requiere investigar no basta con lo que aprendimos)</a></li>
+  <li><a href="#para-la-otra-clase-es-necesario" id="toc-para-la-otra-clase-es-necesario" class="nav-link" data-scroll-target="#para-la-otra-clase-es-necesario">Para la otra clase, es necesario:</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Clase 1 El tidyverse</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Horacio Samaniego </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 8, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="bienvenida" class="level1">
+<h1>Bienvenida</h1>
+<section id="curso-introducción-al-análisis-y-manipulación-de-datos-geoespaciales" class="level2 build">
+<h2 class="build anchored" data-anchor-id="curso-introducción-al-análisis-y-manipulación-de-datos-geoespaciales">Curso: Introducción al Análisis y manipulación de datos geoespaciales</h2>
+<p>Primeros pasos</p>
+<ul>
+<li>¿Quien no ha usado nunca R? <a href="https://www.youtube.com/watch?v=w6L7Ye18yPE&amp;feature=youtu.be">Swirl</a></li>
+<li>Evaluación sencilla (Informes reproducibles + presentación reproducible)</li>
+<li>Evaluación por pares (Quien evalua a los evaluadores)</li>
+<li>Mucho trabajo personal guiado</li>
+<li>Pagina donde esta <a href="https://derek-corcoran-barrios.github.io/CursoProgramacion/_book/index.html">todo el curso</a></li>
+</ul>
+</section>
+</section>
+<section id="como-se-organizan-los-datos-en-r" class="level1">
+<h1>Como se organizan los datos en R</h1>
+<section id="estructura-de-datos" class="level2 build">
+<h2 class="build anchored" data-anchor-id="estructura-de-datos">Estructura de datos</h2>
+<div style="float: left; width: 40%;">
+<ul>
+<li>Vector: Un conjunto lineal de datos (secuencia génica, serie de tiempo)</li>
+<li>Matrix: Una tabla con solo números</li>
+<li>Data Frame: Una tabla donde cada columna tiene un tipo de datos (estándar dorado)</li>
+<li>List: Aqui podemos meter lo que queramos</li>
+</ul>
+</div>
+<div style="float: right; width: 60%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Data.png" class="img-fluid" width="512"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="vector" class="level2 build">
+<h2 class="build anchored" data-anchor-id="vector">Vector</h2>
+<div style="float: left; width: 40%;">
+<ul>
+<li>Secuencia lineal de datos</li>
+<li>Pueden ser de muchos tipos (numéricos, de carácteres, lógicos, etc.)</li>
+<li>Ejemplo data(uspop)</li>
+<li>para crear uno c(1,4,6,7,8)</li>
+<li>para subsetear un vector se pone el índice entre []</li>
+<li>uspop[4], uspop[2:10], uspop[c(3,5,8)]</li>
+</ul>
+</div>
+<div style="float: right; width: 60%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Vector.jpg" class="img-fluid" width="500"></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lo-entendimos" class="level1">
+<h1>Lo entendimos?</h1>
+<section id="ejercicio" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio">Ejercicio</h2>
+</section>
+<section id="respuesta" class="level2">
+<h2 class="anchored" data-anchor-id="respuesta">Respuesta</h2>
+</section>
+<section id="data-frame" class="level2 build">
+<h2 class="build anchored" data-anchor-id="data-frame">Data Frame</h2>
+<div style="float: left; width: 40%;">
+<ul>
+<li>Una tabla, cada columna un tipo de datos (Numérico, lógico, etc)</li>
+<li>Cada columna un vector</li>
+<li>Ejemplo data(iris)</li>
+<li>Para subsetear data.frame[filas,columnas]</li>
+<li>Ejemplos iris[,3], iris[“Petal.Length”], iris[2:5,c(1,5)], iris$Petal.Length</li>
+</ul>
+</div>
+<div style="float: right; width: 60%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DataFrame.jpg" class="img-fluid" width="400"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-1" class="level2 small">
+<h2 class="small anchored" data-anchor-id="ejercicio-1">Ejercicio</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Numero </th>
+   <th style="text-align:left;"> Letra </th>
+   <th style="text-align:right;"> Medida </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> A </td>
+   <td style="text-align:right;"> 67.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Q </td>
+   <td style="text-align:right;"> 69.39 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> D </td>
+   <td style="text-align:right;"> 57.71 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> J </td>
+   <td style="text-align:right;"> 77.59 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> F </td>
+   <td style="text-align:right;"> 61.17 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="alternativas" class="level2">
+<h2 class="anchored" data-anchor-id="alternativas">Alternativas</h2>
+</section>
+<section id="respuesta-1" class="level2">
+<h2 class="anchored" data-anchor-id="respuesta-1">Respuesta</h2>
+</section>
+</section>
+<section id="principios-de-tidydata" class="level1">
+<h1>Principios de Tidydata</h1>
+<section id="tidy-data" class="level2 build">
+<h2 class="build anchored" data-anchor-id="tidy-data">Tidy Data</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="tidy.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<ul>
+<li>Cada columna una variable</li>
+<li>Cada fila una observación</li>
+</ul>
+</section>
+</section>
+<section id="trabajemos-tidy" class="level1">
+<h1>Trabajemos tidy</h1>
+<section id="dplyr" class="level2 build">
+<h2 class="build anchored" data-anchor-id="dplyr">dplyr</h2>
+<ul>
+<li><p>Paquete con pocas funciones <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">muy poderosas</a> para ordenar datos</p></li>
+<li><p>Parte del <a href="https://www.tidyverse.org/">tidyverse</a></p></li>
+<li><p><em>group_by</em> (agrupa datos)</p></li>
+<li><p><em>summarize</em> (resume datos agrupados)</p></li>
+<li><p><em>filter</em> (Encuentra filas con ciertas condiciones)</p></li>
+<li><p><em>select</em> junto a <em>starts_with</em>, <em>ends_with</em> o <em>contains</em></p></li>
+<li><p><em>mutate</em> (Genera variables nuevas)</p></li>
+<li><p><em>pipe</em>: <em>%&gt;%</em> o bien <em>|&gt;</em> (de uso mas reciente)</p></li>
+<li><p><em>arrange</em> ordenar</p></li>
+</ul>
+</section>
+<section id="summarize-y-group_by" class="level2 build small">
+<h2 class="build small anchored" data-anchor-id="summarize-y-group_by">summarize y group_by</h2>
+<ul>
+<li><em>group_by</em> reune observaciones según una variable</li>
+<li><em>summarize</em> resume una variable</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Summary.Petal <span class="ot">&lt;-</span> <span class="fu">summarize</span>(iris, <span class="at">Mean.Petal.Length =</span> <span class="fu">mean</span>(Petal.Length),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD.Petal.Length =</span> <span class="fu">sd</span>(Petal.Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Mean.Petal.Length </th>
+   <th style="text-align:right;"> SD.Petal.Length </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3.758 </td>
+   <td style="text-align:right;"> 1.765298 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="summarize-y-group_by-continuado" class="level2 small build">
+<h2 class="small build anchored" data-anchor-id="summarize-y-group_by-continuado">summarize y group_by (continuado)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Summary.Petal <span class="ot">&lt;-</span> <span class="fu">group_by</span>(iris, Species)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Summary.Petal <span class="ot">&lt;-</span> <span class="fu">summarize</span>(Summary.Petal, <span class="at">Mean.Petal.Length =</span> <span class="fu">mean</span>(Petal.Length),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD.Petal.Length =</span> <span class="fu">sd</span>(Petal.Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:right;"> Mean.Petal.Length </th>
+   <th style="text-align:right;"> SD.Petal.Length </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 1.462 </td>
+   <td style="text-align:right;"> 0.1736640 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 4.260 </td>
+   <td style="text-align:right;"> 0.4699110 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 5.552 </td>
+   <td style="text-align:right;"> 0.5518947 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="summarize-y-group_by-continuado-1" class="level2 small build">
+<h2 class="small build anchored" data-anchor-id="summarize-y-group_by-continuado-1">summarize y group_by (continuado)</h2>
+<ul>
+<li>Pueden agrupar por más de una variable a la vez</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"mtcars"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Mtcars2 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(mtcars, am, cyl)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Consumo <span class="ot">&lt;-</span> <span class="fu">summarize</span>(Mtcars2, <span class="at">Consumo_promedio =</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">desv =</span> <span class="fu">sd</span>(mpg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> am </th>
+   <th style="text-align:right;"> cyl </th>
+   <th style="text-align:right;"> Consumo_promedio </th>
+   <th style="text-align:right;"> desv </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 22.90000 </td>
+   <td style="text-align:right;"> 1.4525839 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 19.12500 </td>
+   <td style="text-align:right;"> 1.6317169 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 15.05000 </td>
+   <td style="text-align:right;"> 2.7743959 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 28.07500 </td>
+   <td style="text-align:right;"> 4.4838599 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 20.56667 </td>
+   <td style="text-align:right;"> 0.7505553 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 15.40000 </td>
+   <td style="text-align:right;"> 0.5656854 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+</section>
+<section id="dudas" class="level1">
+<h1>Dudas?</h1>
+<section id="mutate" class="level2 small">
+<h2 class="small anchored" data-anchor-id="mutate">mutate</h2>
+<ul>
+<li>Crea variables nuevas</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">mutate</span>(iris, <span class="at">Petal.Sepal.Ratio =</span> Petal.Length<span class="sc">/</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:900px; "><table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Sepal.Length </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Sepal.Width </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Petal.Length </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Petal.Width </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Species </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Petal.Sepal.Ratio </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 5.8 </td>
+   <td style="text-align:right;"> 4.0 </td>
+   <td style="text-align:right;"> 1.2 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 0.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4.7 </td>
+   <td style="text-align:right;"> 3.2 </td>
+   <td style="text-align:right;"> 1.6 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 0.34 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5.1 </td>
+   <td style="text-align:right;"> 3.8 </td>
+   <td style="text-align:right;"> 1.9 </td>
+   <td style="text-align:right;"> 0.4 </td>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 0.37 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5.2 </td>
+   <td style="text-align:right;"> 2.7 </td>
+   <td style="text-align:right;"> 3.9 </td>
+   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 0.75 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6.4 </td>
+   <td style="text-align:right;"> 2.9 </td>
+   <td style="text-align:right;"> 4.3 </td>
+   <td style="text-align:right;"> 1.3 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 0.67 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5.5 </td>
+   <td style="text-align:right;"> 2.5 </td>
+   <td style="text-align:right;"> 4.0 </td>
+   <td style="text-align:right;"> 1.3 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 0.73 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6.5 </td>
+   <td style="text-align:right;"> 3.0 </td>
+   <td style="text-align:right;"> 5.8 </td>
+   <td style="text-align:right;"> 2.2 </td>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 0.89 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6.0 </td>
+   <td style="text-align:right;"> 2.2 </td>
+   <td style="text-align:right;"> 5.0 </td>
+   <td style="text-align:right;"> 1.5 </td>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 0.83 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6.1 </td>
+   <td style="text-align:right;"> 2.6 </td>
+   <td style="text-align:right;"> 5.6 </td>
+   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 0.92 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5.9 </td>
+   <td style="text-align:right;"> 3.0 </td>
+   <td style="text-align:right;"> 5.1 </td>
+   <td style="text-align:right;"> 1.8 </td>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 0.86 </td>
+  </tr>
+</tbody>
+</table></div>
+
+</div>
+</div>
+</section>
+<section id="pipeline" class="level2 small build">
+<h2 class="small build anchored" data-anchor-id="pipeline">Pipeline (%&gt;%)</h2>
+<ul>
+<li>Para realizar varias operaciones de forma secuencial</li>
+<li>sin recurrir a parentesis anidados</li>
+<li>sobrescribir multiples bases de datos</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">sqrt</span>(<span class="fu">log</span>(x))), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Que hice ahí?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sqrt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.99</code></pre>
+</div>
+</div>
+</section>
+<section id="pipeline-1" class="level2 small build">
+<h2 class="small build anchored" data-anchor-id="pipeline-1">Pipeline (%&gt;%)</h2>
+<ul>
+<li>Muchos objetos intermedios</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">mutate</span>(iris, <span class="at">Petal.Sepal.Ratio =</span> Petal.Length<span class="sc">/</span>Sepal.Length)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>BySpecies <span class="ot">&lt;-</span> <span class="fu">group_by</span>(DF, Species)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Summary.Byspecies <span class="ot">&lt;-</span> <span class="fu">summarize</span>(BySpecies, <span class="at">MEAN =</span> <span class="fu">mean</span>(Petal.Sepal.Ratio),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(Petal.Sepal.Ratio))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:right;"> MEAN </th>
+   <th style="text-align:right;"> SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 0.2927557 </td>
+   <td style="text-align:right;"> 0.0347958 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 0.7177285 </td>
+   <td style="text-align:right;"> 0.0536255 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 0.8437495 </td>
+   <td style="text-align:right;"> 0.0438064 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="pipeline-2" class="level2 small build">
+<h2 class="small build anchored" data-anchor-id="pipeline-2">Pipeline (%&gt;%)</h2>
+<ul>
+<li>Con pipe</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Summary.Byspecies <span class="ot">&lt;-</span> <span class="fu">summarize</span>(<span class="fu">group_by</span>(<span class="fu">mutate</span>(iris,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">Petal.Sepal.Ratio =</span> Petal.Length<span class="sc">/</span>Sepal.Length),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    Species), <span class="at">MEAN =</span> <span class="fu">mean</span>(Petal.Sepal.Ratio), <span class="at">SD =</span> <span class="fu">sd</span>(Petal.Sepal.Ratio))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:right;"> MEAN </th>
+   <th style="text-align:right;"> SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 0.2927557 </td>
+   <td style="text-align:right;"> 0.0347958 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 0.7177285 </td>
+   <td style="text-align:right;"> 0.0536255 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 0.8437495 </td>
+   <td style="text-align:right;"> 0.0438064 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="pipeline-otro-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-otro-ejemplo">Pipeline (%&gt;%) otro ejemplo</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>MEAN <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_all</span>(<span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">Mean =</span> mean, <span class="at">SD =</span> sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:right;"> Sepal.Length_Mean </th>
+   <th style="text-align:right;"> Sepal.Width_Mean </th>
+   <th style="text-align:right;"> Petal.Length_Mean </th>
+   <th style="text-align:right;"> Petal.Width_Mean </th>
+   <th style="text-align:right;"> Sepal.Length_SD </th>
+   <th style="text-align:right;"> Sepal.Width_SD </th>
+   <th style="text-align:right;"> Petal.Length_SD </th>
+   <th style="text-align:right;"> Petal.Width_SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 5.006 </td>
+   <td style="text-align:right;"> 3.428 </td>
+   <td style="text-align:right;"> 1.462 </td>
+   <td style="text-align:right;"> 0.246 </td>
+   <td style="text-align:right;"> 0.3524897 </td>
+   <td style="text-align:right;"> 0.3790644 </td>
+   <td style="text-align:right;"> 0.1736640 </td>
+   <td style="text-align:right;"> 0.1053856 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 5.936 </td>
+   <td style="text-align:right;"> 2.770 </td>
+   <td style="text-align:right;"> 4.260 </td>
+   <td style="text-align:right;"> 1.326 </td>
+   <td style="text-align:right;"> 0.5161711 </td>
+   <td style="text-align:right;"> 0.3137983 </td>
+   <td style="text-align:right;"> 0.4699110 </td>
+   <td style="text-align:right;"> 0.1977527 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 6.588 </td>
+   <td style="text-align:right;"> 2.974 </td>
+   <td style="text-align:right;"> 5.552 </td>
+   <td style="text-align:right;"> 2.026 </td>
+   <td style="text-align:right;"> 0.6358796 </td>
+   <td style="text-align:right;"> 0.3224966 </td>
+   <td style="text-align:right;"> 0.5518947 </td>
+   <td style="text-align:right;"> 0.2746501 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+</section>
+<section id="mas-dudas" class="level1">
+<h1>Mas dudas?</h1>
+<section id="filter" class="level2 build">
+<h2 class="build anchored" data-anchor-id="filter">Filter</h2>
+<ul>
+<li>Selecciona según una o más variables</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> simbolo </th>
+   <th style="text-align:left;"> significado </th>
+   <th style="text-align:left;"> simbolo_cont </th>
+   <th style="text-align:left;"> significado_cont </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> &gt; </td>
+   <td style="text-align:left;"> Mayor que </td>
+   <td style="text-align:left;"> != </td>
+   <td style="text-align:left;"> distinto a </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> &lt; </td>
+   <td style="text-align:left;"> Menor que </td>
+   <td style="text-align:left;"> %in% </td>
+   <td style="text-align:left;"> dentro del grupo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> == </td>
+   <td style="text-align:left;"> Igual a </td>
+   <td style="text-align:left;"> is.na </td>
+   <td style="text-align:left;"> es NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> &gt;= </td>
+   <td style="text-align:left;"> mayor o igual a </td>
+   <td style="text-align:left;"> !is.na </td>
+   <td style="text-align:left;"> no es NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> &lt;= </td>
+   <td style="text-align:left;"> menor o igual a </td>
+   <td style="text-align:left;"> | &amp; </td>
+   <td style="text-align:left;"> o, y </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="ejemplos-de-filter-agregando-a-lo-anterior" class="level2 small">
+<h2 class="small anchored" data-anchor-id="ejemplos-de-filter-agregando-a-lo-anterior">Ejemplos de filter agregando a lo anterior</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"iris"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">"versicolor"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_all</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:right;"> Sepal.Length </th>
+   <th style="text-align:right;"> Sepal.Width </th>
+   <th style="text-align:right;"> Petal.Length </th>
+   <th style="text-align:right;"> Petal.Width </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 5.006 </td>
+   <td style="text-align:right;"> 3.428 </td>
+   <td style="text-align:right;"> 1.462 </td>
+   <td style="text-align:right;"> 0.246 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 6.588 </td>
+   <td style="text-align:right;"> 2.974 </td>
+   <td style="text-align:right;"> 5.552 </td>
+   <td style="text-align:right;"> 2.026 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="ejemplos-de-filter" class="level2 small">
+<h2 class="small anchored" data-anchor-id="ejemplos-de-filter">Ejemplos de filter</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Petal.Length <span class="sc">&gt;=</span> <span class="dv">4</span> <span class="sc">&amp;</span> Sepal.Length <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">N =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:right;"> N </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 39 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 49 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="más-de-una-función" class="level2 small">
+<h2 class="small anchored" data-anchor-id="más-de-una-función">Más de una función</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"iris"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">"versicolor"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_all</span>(<span class="at">.funs =</span> <span class="fu">list</span>(<span class="at">Mean =</span> mean, <span class="at">SD =</span> sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:right;"> Sepal.Length_Mean </th>
+   <th style="text-align:right;"> Sepal.Width_Mean </th>
+   <th style="text-align:right;"> Petal.Length_Mean </th>
+   <th style="text-align:right;"> Petal.Width_Mean </th>
+   <th style="text-align:right;"> Sepal.Length_SD </th>
+   <th style="text-align:right;"> Sepal.Width_SD </th>
+   <th style="text-align:right;"> Petal.Length_SD </th>
+   <th style="text-align:right;"> Petal.Width_SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 5.006 </td>
+   <td style="text-align:right;"> 3.428 </td>
+   <td style="text-align:right;"> 1.462 </td>
+   <td style="text-align:right;"> 0.246 </td>
+   <td style="text-align:right;"> 0.3524897 </td>
+   <td style="text-align:right;"> 0.3790644 </td>
+   <td style="text-align:right;"> 0.1736640 </td>
+   <td style="text-align:right;"> 0.1053856 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 6.588 </td>
+   <td style="text-align:right;"> 2.974 </td>
+   <td style="text-align:right;"> 5.552 </td>
+   <td style="text-align:right;"> 2.026 </td>
+   <td style="text-align:right;"> 0.6358796 </td>
+   <td style="text-align:right;"> 0.3224966 </td>
+   <td style="text-align:right;"> 0.5518947 </td>
+   <td style="text-align:right;"> 0.2746501 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="select" class="level2 small build">
+<h2 class="small build anchored" data-anchor-id="select">Select</h2>
+<ul>
+<li>Selecciona columnas dentro de un data.frame, se pueden restar</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Petal.Length, Petal.Width) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_all</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>Sepal.Length, <span class="sc">-</span>Sepal.Width) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_all</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Petal"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_all</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">contains</span>(<span class="st">"Sepal"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_all</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+</section>
+<section id="resultado" class="level2">
+<h2 class="anchored" data-anchor-id="resultado">Resultado</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:right;"> Petal.Length </th>
+   <th style="text-align:right;"> Petal.Width </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:right;"> 1.462 </td>
+   <td style="text-align:right;"> 0.246 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:right;"> 4.260 </td>
+   <td style="text-align:right;"> 1.326 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:right;"> 5.552 </td>
+   <td style="text-align:right;"> 2.026 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+</section>
+<section id="section" class="level1">
+<h1></h1>
+<section id="ejercicios" class="level2 build small">
+<h2 class="build small anchored" data-anchor-id="ejercicios">Ejercicios</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Casos_Activos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto19/CasosActivosPorComuna_std.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Usando la base de datos del repositorio del ministerio de ciencias, genera un dataframe que responda lo siguiente:</p>
+<ul>
+<li>¿Que proporción de las comunas ha tenido en algun momento mas de 50 casos por cada 100.000 habitantes?</li>
+<li>Genera un dataframe, donde aparezca para cada comuna que haya tenido sobre 50 casos por cada 100.000 habitantes, cuantos días ha tenido sobre ese valor.</li>
+<li>Genera una tabla de cuales comunas han tenido sobre 50 casos por cada 100.000 habitantes y de esas comunas crea una variable que sea la prevalencia máxima de dicha comuna.</li>
+</ul>
+</section>
+<section id="bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos"><strong>Bonus</strong> (Esto requiere investigar no basta con lo que aprendimos)</h2>
+<ul>
+<li><p>Ve cuales son las 10 comunas que han tenido la mayor mediana de prevalencia, para cada una de estas 10 comunas, genera una tabla con la mediana, prevalencia máxima y fecha en que se alcanzó la prevalencia máxima</p></li>
+<li><p>Nos vemos a las 12:45</p></li>
+</ul>
+</section>
+<section id="para-la-otra-clase-es-necesario" class="level2 small build">
+<h2 class="small build anchored" data-anchor-id="para-la-otra-clase-es-necesario">Para la otra clase, es necesario:</h2>
+<ul>
+<li>Crearse cuenta de <a href="https://github.com/">github</a></li>
+<li>Instalar los paquetes knitr, rmarkdown y kableExtra</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

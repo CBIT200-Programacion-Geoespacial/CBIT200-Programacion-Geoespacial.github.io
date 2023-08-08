@@ -1,0 +1,9 @@
+---
+title: "Bienvenida"
+---
+
+Bienvenido al curso de Progarmacion geospacial
+
+```{r}
+1 + 1
+```
