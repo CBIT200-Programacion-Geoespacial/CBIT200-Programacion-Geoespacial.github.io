@@ -6,6 +6,8 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+    - text: "Book"
+      href: CursoProgramacion/_book/index.html
 output_dir: "."
 output:
   html_document:
