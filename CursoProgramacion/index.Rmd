@@ -46,7 +46,10 @@ Este curso tiene como objetivo central adquirir herramientas para el manejo de d
 
 ## Evaluación
 
--   Luego de cada clase se entregarán ejercicios que deben resolverse. Se usará la plataforma GitHub para generar repositorios individuales para cada estudiante donde se debe subir el ejercicio. La evaluación será por pares entre los miembros del curso con moderación y revisión del profesor.
+### tareas
+-   Se entregarán ejercicios que deben resolverse semanales. La entrega se hará usando la plataforma GitHub. Cada estudiante será responsable de entregar su tarea y de corregir a dos compañeros al azar. Las correcciones ocurrirán en modalidad "doble ciego", es decir, tanto el corrector como el autor de la tarea serán mantenido como anónimo. Esta modalidad de corrección por pares será moderada por el profesor y seguirá una pauta entregada para cada tarea.
+
+### proyecto
 -   Se desarrollá un proyecto de análisis y de programación que será desarrollado durante el último mes de clases y presentado en las últimas dos sesiones del curso.
 
 ```{=html}

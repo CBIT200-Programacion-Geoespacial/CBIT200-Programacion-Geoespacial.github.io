@@ -26,10 +26,13 @@ archivos y documentación necesarias para su utilización es:
 
 [www.r-project.org](http://www.r-project.org)
 
-Sin embargo, para trabajar ....... utilizaremos R studio: Un Entorno de
-Desarrollo Integrado (IDE) que, al igual que R, es software libre y
-permite integrar herramientas necesarias para el desarrollo y así
-facilitarlo. La página oficial para descargarlo es:
+Si bien R es un software que puede usarse desde la línea de comando,
+para trabajar utilizaremos [http://www.rstudio.org](%60R%20Studio%60).
+
+Este es un Entorno de Desarrollo Integrado (IDE, por su sigla en inglés)
+que, al igual que R, es software libre y permite integrar herramientas
+necesarias para el desarrollo y así facilitarlo. La página oficial para
+descargarlo es:
 
 [www.rstudio.com](http://www.rstudio.com)
 
