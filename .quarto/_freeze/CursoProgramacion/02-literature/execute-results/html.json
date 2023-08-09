@@ -1,0 +1,14 @@
+{
+  "hash": "7dbbd83e311fc28e8743ddd289b77cd1",
+  "result": {
+    "markdown": "# Investigación reproducible y github\n\nEn esta clase usaremos rmarkdown y github, puedes seguir la presentación en el siguiente [link](https://derek-corcoran-barrios.github.io/CursoProgrPres/Clase2/Clase2InvestigacionReproducible.html), y a continuación tienes el link de la clase online en youtube:\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Q6Tbk1HaY4Y\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

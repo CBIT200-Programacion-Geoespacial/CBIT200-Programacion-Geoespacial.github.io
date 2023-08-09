@@ -231,7 +231,7 @@ ggplot(PA, aes(x = STATUS_YR, y = TERR_AREA)) +
 
 ```{r, echo = FALSE, out.width="500px", fig.align='center'}
 #knitr::include_graphics("https://ia803206.us.archive.org/23/items/Comunas/Metropolitana_Map_Comunas.gif")
-knitr::include_graphics("/home/derek/derek-corcoran-barrios.github.io/Clase4/Patagonia_Chile23.jpeg")
+#knitr::include_graphics("/home/derek/derek-corcoran-barrios.github.io/Clase4/Patagonia_Chile23.jpeg")
 ```
 
 
