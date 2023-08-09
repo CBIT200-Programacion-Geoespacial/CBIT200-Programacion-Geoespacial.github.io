@@ -1,13 +1,14 @@
 name: "my-website"
 navbar:
-  title: "My Website"
+  title: "Ciencia de datos para problemas ambientales"
   left:
     - text: "Home"
       href: index.html
-    - text: "About"
+    - text: "Sobre Nosotros"
       href: about.html
-    - text: "Book"
-      href: CursoProgramacion/_book/index.html
+    - text: "Cursos"
+      - text: "CBIT200"
+        href: CursoProgramacion/_book/index.html
 output_dir: "."
 output:
   html_document:
