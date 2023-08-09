@@ -16,18 +16,20 @@ site: bookdown::bookdown_site
 
 # Datos del curso
 
+-   **Universidad Austral de Chile:** [Laboratorio de Ecoinformatica](http://www.ecoinformatica.cl)
 -   **Nombre asignatura:** Introducción al Análisis de Datos Geoespaciales
 -   **Código asignatuta:** CBIT200
 -   **Docente responsable:** Horacio Samaniego
 -   **Correo electrónico:** [horaciosamaniego\@uach.cl](mailto:horaciosamaniego@uach.cl){.email}
--   **Creadores:** Derek Corcoran B. & Giorgia Graells C.
+-   **Creadores:** [Derek Corcoran B.](https://derek-corcoran-barrios.github.io/) & Giorgia Graells C.
 -   **Modalidad de clases:**
     -   Prácticas
     -   Presenciales
-    -   Consultas por Discord (chat o video) y correo electrónico
+    -   Consultas por [Discord](https://discord.gg/TWGvq53tm) (chat o video) -- link válido hasta 9/9/2023
 -   **Horario de clases:** Jueves 10:00 - 13:00 hrs
+-   **Lugar:** Sala de computación, Facultad de Ciencias Forestales y Recursos Naturales, Campus Isla Teja, Valdivia
 -   **Inicio clases:** 10 agosto 2023
--   **Término clases:** 30 noviembre 2023 (puede existir alguna modificación por calendario académico)
+-   **Término clases:** 30 noviembre 2023 (puede modificarse según calendario académico)
 -   **Web del curso** [aqui](https://cbit200-programacion-geoespacial.github.io/)
 
 ## DESCRIPCIÓN DEL CURSO
@@ -52,6 +54,7 @@ Este curso tiene como objetivo central adquirir herramientas para el manejo de d
 ### proyecto
 -   Se desarrollá un proyecto de análisis y de programación que será desarrollado durante el último mes de clases y presentado en las últimas dos sesiones del curso.
 
+### calificaciones
 ```{=html}
 <style type="text/css">
   .calificaciones {width: 35%; left: 50%}

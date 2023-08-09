@@ -1,5 +1,5 @@
 ---
-title: "Introducción: Principios básicos"
+title: "Introducción al Análisis de Datos Geoespaciales"
 editor_options: 
   markdown: 
     wrap: 72
