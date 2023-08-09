@@ -28,7 +28,7 @@ site: bookdown::bookdown_site
 -   **Horario de clases:** Jueves 10:00 - 13:00 hrs
 -   **Inicio clases:** 10 agosto 2023
 -   **Término clases:** 30 noviembre 2023 (puede existir alguna modificación por calendario académico)
--   **Web del curso** [https://cbit200-programacion-geoespacial.github.io/](https://cbit200-programacion-geoespacial.github.io/)
+-   **Web del curso** [aqui](https://cbit200-programacion-geoespacial.github.io/)
 
 ## DESCRIPCIÓN DEL CURSO
 
