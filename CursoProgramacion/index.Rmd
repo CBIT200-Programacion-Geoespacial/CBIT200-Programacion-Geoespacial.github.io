@@ -119,3 +119,14 @@ Este curso tiene como objetivo central adquirir herramientas para el manejo de d
 +------------+---------------+-------------------------------------------------------------+
 | 17         | 30 Noviembre  | Epílogo & Presentación de Proyectos                         |
 +------------+---------------+-------------------------------------------------------------+
+
+
+## Recursos adicionales
+
+Si bien intentamos buscar ejemplos originales y sets de datos locales, gran parte del material con que trabajaremos ha sido ya 
+trabajado  elaborado por otros. Es por eso que se sugiere revisar algunos sitios claves como los siguientes:
+
+- [R for Data Sciences](https://r4ds.hadley.nz)
+- [Stackoverflow](https://stackoverflow.com/)
+- [GIS Stack Exchange] (https://gis.stackexchange.com/)
+

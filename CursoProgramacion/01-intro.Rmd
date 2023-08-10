@@ -36,7 +36,7 @@ descargarlo es:
 
 [www.rstudio.com](http://www.rstudio.com)
 
-**Objetos:**
+## Objetos
 
 En términos genéricos, todos los elementos que R maneja son objetos. Un
 objeto tiene ciertas propiedades y en ocasiones es capaz de llevar a
@@ -44,7 +44,7 @@ cabo ciertas tareas si se le dan los argumentos necesarios. Por ejemplo,
 un teléfono es capaz de realizar llamadas siempre que le demos el número
 a marcar.
 
-**Variables**
+## Variables
 
 Al momento de trabajar, es probable que necesitemos guardar valores o
 cálculos, de manera que no necesitemos escribirlos cada vez que los
@@ -63,7 +63,7 @@ nombre:
 print(a)
 ```
 
-**Tipos de variables:**
+### Tipos de variables
 
 Existen diversos tipos o clases de variables, dependiendo de las
 características del objeto que les es asignado. Para conocer a qué tipo
@@ -87,7 +87,7 @@ x
 class (x)
 ```
 
-**Funciones:**
+## Funciones
 
 Muchas cosas en R pueden hacerse a través del uso de funciones, estas
 permiten realizar operaciones típicas sin necesidad de escribir grandes
@@ -123,7 +123,7 @@ tipo o clase adecuada, con las funciones:
 
 `as.numeric()` y `as. character()`x\`
 
-**Vectores:**
+## Vectores
 
 Conjunto ordenado de valores del mismo tipo, agrupados en un único
 objeto. Para crear una variable vector utilizamos:
@@ -185,9 +185,8 @@ v3=c("a","b","c")
 v1 * v3
 ```
 
-**Data frame:**
 
-**Instalar librerías:**
+## Instalar librerías
 
 Muchas veces las funciones incorporadas en R son insuficientes para
 nuestros fines, por lo que es necesario instalar paquetes o "packages"
@@ -209,7 +208,7 @@ library(openxlsx)
 Debe incluirse en cada proyecto donde queramos usarlo y ejecutarse cada
 vez que abrimos R.
 
-**R Notebook**
+## R Notebook
 
 Un Notebook en R es un documento con bloques o "chunks" que pueden ser
 ejecutados directa e interactivamente, para así visualizar los
@@ -241,7 +240,7 @@ Cuando guardas ul notebook, un archivo HTML que contiene el código y los
 resultados se guardará junto a él (Click en el botón de *Preview* o
 presiona *Ctrl+Shift+K* para previsualizar el archivo HMTL)
 
-**Leer datos:**
+## Leer datos
 
 Delimitados por coma: read_csv("file.csv")
 

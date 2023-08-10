@@ -153,8 +153,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#calificaciones"><i class="fa fa-check"></i><b>1.2.3</b> calificaciones</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#calendario"><i class="fa fa-check"></i><b>1.3</b> Calendario</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#recursos-adicionales"><i class="fa fa-check"></i><b>1.4</b> Recursos adicionales</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>2</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción.html"><a href="introducción.html#objetos"><i class="fa fa-check"></i><b>2.1</b> Objetos</a></li>
+<li class="chapter" data-level="2.2" data-path="introducción.html"><a href="introducción.html#variables"><i class="fa fa-check"></i><b>2.2</b> Variables</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introducción.html"><a href="introducción.html#tipos-de-variables"><i class="fa fa-check"></i><b>2.2.1</b> Tipos de variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introducción.html"><a href="introducción.html#funciones"><i class="fa fa-check"></i><b>2.3</b> Funciones</a></li>
+<li class="chapter" data-level="2.4" data-path="introducción.html"><a href="introducción.html#vectores"><i class="fa fa-check"></i><b>2.4</b> Vectores</a></li>
+<li class="chapter" data-level="2.5" data-path="introducción.html"><a href="introducción.html#instalar-librerías"><i class="fa fa-check"></i><b>2.5</b> Instalar librerías</a></li>
+<li class="chapter" data-level="2.6" data-path="introducción.html"><a href="introducción.html#r-notebook"><i class="fa fa-check"></i><b>2.6</b> R Notebook</a></li>
+<li class="chapter" data-level="2.7" data-path="introducción.html"><a href="introducción.html#leer-datos"><i class="fa fa-check"></i><b>2.7</b> Leer datos</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -193,13 +206,16 @@ que, al igual que R, es software libre y permite integrar herramientas
 necesarias para el desarrollo y así facilitarlo. La página oficial para
 descargarlo es:</p>
 <p><a href="http://www.rstudio.com">www.rstudio.com</a></p>
-<p><strong>Objetos:</strong></p>
+<div id="objetos" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Objetos<a href="introducción.html#objetos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En términos genéricos, todos los elementos que R maneja son objetos. Un
 objeto tiene ciertas propiedades y en ocasiones es capaz de llevar a
 cabo ciertas tareas si se le dan los argumentos necesarios. Por ejemplo,
 un teléfono es capaz de realizar llamadas siempre que le demos el número
 a marcar.</p>
-<p><strong>Variables</strong></p>
+</div>
+<div id="variables" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Variables<a href="introducción.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Al momento de trabajar, es probable que necesitemos guardar valores o
 cálculos, de manera que no necesitemos escribirlos cada vez que los
 usemos, para esto utilizamos variables.</p>
@@ -209,7 +225,8 @@ usemos, para esto utilizamos variables.</p>
 nombre:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introducción.html#cb2-1" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
-<p><strong>Tipos de variables:</strong></p>
+<div id="tipos-de-variables" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Tipos de variables<a href="introducción.html#tipos-de-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Existen diversos tipos o clases de variables, dependiendo de las
 características del objeto que les es asignado. Para conocer a qué tipo
 corresponde un objeto usamos class:</p>
@@ -228,7 +245,10 @@ corresponde un objeto usamos class:</p>
 <pre><code>## [1] &quot;Trece&quot;</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="introducción.html#cb14-1" tabindex="-1"></a><span class="fu">class</span> (x)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<p><strong>Funciones:</strong></p>
+</div>
+</div>
+<div id="funciones" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Funciones<a href="introducción.html#funciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Muchas cosas en R pueden hacerse a través del uso de funciones, estas
 permiten realizar operaciones típicas sin necesidad de escribir grandes
 cantidades de código. Por ejemplo:</p>
@@ -260,7 +280,9 @@ números como palabras:</p>
 <p>Si nos encontramos con este problema, debemos transformar los datos al
 tipo o clase adecuada, con las funciones:</p>
 <p><code>as.numeric()</code> y <code>as. character()</code>x`</p>
-<p><strong>Vectores:</strong></p>
+</div>
+<div id="vectores" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Vectores<a href="introducción.html#vectores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Conjunto ordenado de valores del mismo tipo, agrupados en un único
 objeto. Para crear una variable vector utilizamos:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introducción.html#cb31-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
@@ -301,8 +323,9 @@ permite ejecutar operaciones o funciones a un conjunto de datos:</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducción.html#cb54-1" tabindex="-1"></a>v3<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>)</span>
 <span id="cb54-2"><a href="introducción.html#cb54-2" tabindex="-1"></a>v1 <span class="sc">*</span> v3</span></code></pre></div>
 <pre><code>## Error in v1 * v3: non-numeric argument to binary operator</code></pre>
-<p><strong>Data frame:</strong></p>
-<p><strong>Instalar librerías:</strong></p>
+</div>
+<div id="instalar-librerías" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Instalar librerías<a href="introducción.html#instalar-librerías" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Muchas veces las funciones incorporadas en R son insuficientes para
 nuestros fines, por lo que es necesario instalar paquetes o “packages”
 de herramientas hechas por la comunidad. En este caso, usaremos el
@@ -314,7 +337,9 @@ versión de R. Y para usarlo dentro de nuestro proyecto:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="introducción.html#cb57-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span></code></pre></div>
 <p>Debe incluirse en cada proyecto donde queramos usarlo y ejecutarse cada
 vez que abrimos R.</p>
-<p><strong>R Notebook</strong></p>
+</div>
+<div id="r-notebook" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> R Notebook<a href="introducción.html#r-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Un Notebook en R es un documento con bloques o “chunks” que pueden ser
 ejecutados directa e interactivamente, para así visualizar los
 resultados directamente bajo el código.</p>
@@ -335,7 +360,9 @@ chunk.</p>
 <p>Cuando guardas ul notebook, un archivo HTML que contiene el código y los
 resultados se guardará junto a él (Click en el botón de <em>Preview</em> o
 presiona <em>Ctrl+Shift+K</em> para previsualizar el archivo HMTL)</p>
-<p><strong>Leer datos:</strong></p>
+</div>
+<div id="leer-datos" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Leer datos<a href="introducción.html#leer-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Delimitados por coma: read_csv(“file.csv”)</p>
 <p>Con cualquier delimitador: read_delim(“file.txt”, delim = “|”)</p>
 <p>……..</p>
@@ -343,6 +370,7 @@ presiona <em>Ctrl+Shift+K</em> para previsualizar el archivo HMTL)</p>
 <p><strong>Bajar archivos de la web:</strong></p>
 <p><strong>Construcción de set de datos:</strong></p>
 
+</div>
 </div>
             </section>
 
