@@ -1,0 +1,44 @@
+---
+title: "Evaluación tarea 1"
+output: github_document
+params:
+  q1_score: [Escribe tu puntaje acá, borra esto y deja los corchetes]
+  q2_score: [Escribe tu puntaje acá, borra esto y deja los corchetes]
+  q3_score: [Escribe tu puntaje acá, borra esto y deja los corchetes]
+---
+
+
+## Instrucciones
+Knitea de a una las tareas que te tocaron, léela y completa lo siguiente en este documento .Rmd
+
+- Completa la evaluación de estudiantes. Para cada actitividad escribe un comentario para el estudiante al que estas revisando sobre si consideras que está bien realizado o no.
+
+- Completa los puntajes. Determina el puntaje correspondiente a cada actividad con los siguientes valores 0 = no cumple, 1= cumple incompleto, 2 = cumple. Escribe el valor (solo el número) en la parte superior de este documento .Rmd llamado Yaml (donde dice "Escribe tu puntaje acá, borra esto y deja los corchetes"). 
+
+Por ejemplo, si consideras que tu compañere realizó una tabla para la actividad 1, incluyendo la superficie de las áreas protegidas por región pero olvidó poner el resumen por cada tipo de área protegida, entonces la actividad estaría incompleta. 
+En este caso podrias escribir un comentario: "Actividad incompleta porque olvidaste hacer el resumen por el tipo de área protegida" y el puntaje sería de 1.
+Entonces deberías dejar arriba en el Yaml de la siguiente forma **q1_score: [1]**.
+
+## Importante
+
+Completa lo requerido solo en las secciones indicadas. No cambies el nombre del archivo ni escribas tu nombre en este documento.
+Trata de hacer comentarios a tus compañeres, tú también recibirás comentarios del resto ya que cada uno deberá revisar tres tareas.
+Esta actividad de evaluación de pares es parte del proceso de aprendizaje del curso. Los estudiantes recibirán un punto por cada tarea revisada, lo que sumará para completar el puntaje de su propia tarea.
+
+## Evaluación
+
+#### q1. El documento cuenta con una tabla resumen de la superficie comprendida por áreas protegidas terrestres, considerando regiones por separado y cada tipo de area protegida por separado. [0 = no cumple, 1= cumple incompleto, 2 = cumple]
+
+Escribe aca tu comentario
+
+
+#### q2. El documento cuenta con una tabla resumen del número de áreas protegidas por cada tipo, considerando solo la región de Los lagos. [0 = no cumple, 1= cumple incompleto, 2 = cumple]
+
+Escribe aca tu comentario
+
+
+#### q3. El documento posee un inline code en el cual indica el área protegida terrestre que posee la mayor superficie en la región de Los Lagos o un inline code en el cual indica la mayor superficie que posee un área protegida terrestre e indica el nombre de ésta. [0 = no cumple, 1= cumple incompleto, 2 = cumple]
+
+Escribe aca tu comentario
+
+
