@@ -246,10 +246,3 @@ Delimitados por coma: read_csv("file.csv")
 
 Con cualquier delimitador: read_delim("file.txt", delim = "\|")
 
-........
-
-**tidyr?**
-
-**Bajar archivos de la web:**
-
-**Construcción de set de datos:**
