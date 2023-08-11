@@ -246,3 +246,26 @@ Delimitados por coma: read_csv("file.csv")
 
 Con cualquier delimitador: read_delim("file.txt", delim = "\|")
 
+
+## Ejercicios
+
+
+1. Cree una nueva variable que contenga un vector con 10 números aleatorios
+2. multiplíquela por seis.
+3. cree una segunda variable que contenga una secuencia de 5 caracteres
+4. combine las dos variable en una sola variable
+5. ¿cuál es el largo de esta última variable creada?
+6. ¿de qué tipo es esta variable?
+7. ¿qué sucede si divie esta última variable por 3?
+8. cree un vector con los elementos 1 2 3 4 5 6 y llámelo `x`
+9. cree un nuevo vector con los elementos 10 20 30 40 50 y llámelo `y`
+10. ¿qué ocurre si intenta sumar `x` e `y`? explique
+11. agregue el valor 60 al vector `y` (hint: you can use the c() function)
+12. sume `x` e `y`
+13. multiplique `x` e `y`
+14. cree un `data.frame`  con el mímimo código posible usando los datos de la siguiente imagen y llámelo `z`:
+
+```{r echo=FALSE}
+knitr::include_graphics("df.png")
+```
+
