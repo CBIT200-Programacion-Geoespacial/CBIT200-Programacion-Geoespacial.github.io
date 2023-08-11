@@ -120,7 +120,7 @@
 
 \title{Introducción al Análisis de Datos Geoespaciales}
 \author{Horacio Samaniego, Derek Corcoran, Giorgia Graells}
-\date{2023-08-09}
+\date{2023-08-11}
 
 \begin{document}
 \maketitle
@@ -297,6 +297,24 @@ Visualización I
 17 & 30 Noviembre & Epílogo \& Presentación de Proyectos \\
 \end{longtable}
 
+\hypertarget{recursos-adicionales}{%
+\section{Recursos adicionales}\label{recursos-adicionales}}
+
+Si bien intentamos buscar ejemplos originales y sets de datos locales, gran parte del material con que trabajaremos ha sido ya
+trabajado elaborado por otros. Es por eso que se sugiere revisar algunos sitios claves como los siguientes:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://r4ds.hadley.nz}{R for Data Sciences}
+\item
+  \href{https://stackoverflow.com/}{Stackoverflow}
+\item
+  {[}GIS Stack Exchange{]} (\url{https://gis.stackexchange.com/})
+\item
+  {[}Spatial Data Science{]} (\url{https://rspatial.org/index.html})
+\end{itemize}
+
 \hypertarget{introducciuxf3n}{%
 \chapter{Introducción}\label{introducciuxf3n}}
 
@@ -321,7 +339,8 @@ descargarlo es:
 
 \href{http://www.rstudio.com}{www.rstudio.com}
 
-\textbf{Objetos:}
+\hypertarget{objetos}{%
+\section{Objetos}\label{objetos}}
 
 En términos genéricos, todos los elementos que R maneja son objetos. Un
 objeto tiene ciertas propiedades y en ocasiones es capaz de llevar a
@@ -329,7 +348,8 @@ cabo ciertas tareas si se le dan los argumentos necesarios. Por ejemplo,
 un teléfono es capaz de realizar llamadas siempre que le demos el número
 a marcar.
 
-\textbf{Variables}
+\hypertarget{variables}{%
+\section{Variables}\label{variables}}
 
 Al momento de trabajar, es probable que necesitemos guardar valores o
 cálculos, de manera que no necesitemos escribirlos cada vez que los
@@ -356,7 +376,8 @@ nombre:
 ## [1] 200
 \end{verbatim}
 
-\textbf{Tipos de variables:}
+\hypertarget{tipos-de-variables}{%
+\subsection{Tipos de variables}\label{tipos-de-variables}}
 
 Existen diversos tipos o clases de variables, dependiendo de las
 características del objeto que les es asignado. Para conocer a qué tipo
@@ -425,7 +446,8 @@ corresponde un objeto usamos class:
 ## [1] "character"
 \end{verbatim}
 
-\textbf{Funciones:}
+\hypertarget{funciones}{%
+\section{Funciones}\label{funciones}}
 
 Muchas cosas en R pueden hacerse a través del uso de funciones, estas
 permiten realizar operaciones típicas sin necesidad de escribir grandes
@@ -524,7 +546,8 @@ tipo o clase adecuada, con las funciones:
 
 \texttt{as.numeric()} y \texttt{as.\ character()}x`
 
-\textbf{Vectores:}
+\hypertarget{vectores}{%
+\section{Vectores}\label{vectores}}
 
 Conjunto ordenado de valores del mismo tipo, agrupados en un único
 objeto. Para crear una variable vector utilizamos:
@@ -672,9 +695,8 @@ o incluso realizar operaciones entre vectores:
 ## Error in v1 * v3: non-numeric argument to binary operator
 \end{verbatim}
 
-\textbf{Data frame:}
-
-\textbf{Instalar librerías:}
+\hypertarget{instalar-libreruxedas}{%
+\section{Instalar librerías}\label{instalar-libreruxedas}}
 
 Muchas veces las funciones incorporadas en R son insuficientes para
 nuestros fines, por lo que es necesario instalar paquetes o ``packages''
@@ -700,7 +722,8 @@ versión de R. Y para usarlo dentro de nuestro proyecto:
 Debe incluirse en cada proyecto donde queramos usarlo y ejecutarse cada
 vez que abrimos R.
 
-\textbf{R Notebook}
+\hypertarget{r-notebook}{%
+\section{R Notebook}\label{r-notebook}}
 
 Un Notebook en R es un documento con bloques o ``chunks'' que pueden ser
 ejecutados directa e interactivamente, para así visualizar los
@@ -738,19 +761,50 @@ Cuando guardas ul notebook, un archivo HTML que contiene el código y los
 resultados se guardará junto a él (Click en el botón de \emph{Preview} o
 presiona \emph{Ctrl+Shift+K} para previsualizar el archivo HMTL)
 
-\textbf{Leer datos:}
+\hypertarget{leer-datos}{%
+\section{Leer datos}\label{leer-datos}}
 
 Delimitados por coma: read\_csv(``file.csv'')
 
 Con cualquier delimitador: read\_delim(``file.txt'', delim = ``\textbar{}'')
 
-\ldots\ldots..
+\hypertarget{ejercicios}{%
+\section{Ejercicios}\label{ejercicios}}
 
-\textbf{tidyr?}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Cree una nueva variable que contenga un vector con 10 números aleatorios
+\item
+  multiplíquela por seis.
+\item
+  cree una segunda variable que contenga una secuencia de 5 caracteres
+\item
+  combine las dos variable en una sola variable
+\item
+  ¿cuál es el largo de esta última variable creada?
+\item
+  ¿de qué tipo es esta variable?
+\item
+  ¿qué sucede si divie esta última variable por 3?
+\item
+  cree un vector con los elementos 1 2 3 4 5 6 y llámelo \texttt{x}
+\item
+  cree un nuevo vector con los elementos 10 20 30 40 50 y llámelo \texttt{y}
+\item
+  ¿qué ocurre si intenta sumar \texttt{x} e \texttt{y}? explique
+\item
+  agregue el valor 60 al vector \texttt{y} (hint: you can use the c() function)
+\item
+  sume \texttt{x} e \texttt{y}
+\item
+  multiplique \texttt{x} e \texttt{y}
+\item
+  cree un \texttt{data.frame} con el mímimo código posible usando los datos de la siguiente imagen y llámelo \texttt{z}:
+\end{enumerate}
 
-\textbf{Bajar archivos de la web:}
-
-\textbf{Construcción de set de datos:}
+\includegraphics[width=8.33in]{df}
 
   \bibliography{book.bib,packages.bib}
 
