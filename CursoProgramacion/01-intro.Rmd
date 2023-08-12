@@ -266,6 +266,7 @@ Con cualquier delimitador: read_delim("file.txt", delim = "\|")
 14. cree un `data.frame`  con el mímimo código posible usando los datos de la siguiente imagen y llámelo `z`:
 
 ```{r}
-knitr::include_graphics('df.jpg')
+knitr::include_graphics('./df.jpg')
+# print(getwd())
 ```
 <!-- ![¿Cuál es el código mas corto para crear este df?](df.jpg) -->
