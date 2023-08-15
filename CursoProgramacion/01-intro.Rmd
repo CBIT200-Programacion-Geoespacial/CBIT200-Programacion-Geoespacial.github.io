@@ -268,4 +268,8 @@ Con cualquier delimitador: read_delim("file.txt", delim = "\|")
 ```{r echo=FALSE}
 knitr::include_graphics('df.jpg')
 ```
+
+15. cree un dataframe de datos ficticios que represente una muestra de 100 individuos de aves y su tamaño corporal. Use 4 tipos de aves: un paseriforme, un columbiforme, un rapaz y trochiliformes en aproximadamente las mismas proporciones. (Averigue el real tamaño promedio de cada grupo)
+16. grafique los pesos corporales de cada grupo (ayuda: puede usar graficos de distribuciones, caja y bigote o bien de violín)
+
 <!-- ![¿Cuál es el código mas corto para crear este df?](df.JPG) -->
