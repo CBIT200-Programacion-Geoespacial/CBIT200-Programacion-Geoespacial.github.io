@@ -264,16 +264,14 @@ cantidades de código. Por ejemplo:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introducción.html#cb24-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1] 5 5 5 5 5 5 5 5 5 5</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introducción.html#cb26-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">10</span>), <span class="st">&quot;elefantes&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;5 elefantes&quot;  &quot;6 elefantes&quot;  &quot;7 elefantes&quot;  &quot;8 elefantes&quot;  &quot;9 elefantes&quot; 
-## [6] &quot;10 elefantes&quot;</code></pre>
+<pre><code>## [1] &quot;5 elefantes&quot;  &quot;6 elefantes&quot;  &quot;7 elefantes&quot;  &quot;8 elefantes&quot;  &quot;9 elefantes&quot;  &quot;10 elefantes&quot;</code></pre>
 <p>Los datos o variables que van dentro de las funciones, se denominan
 <em>argumentos</em> y cada función requiere que se le entreguen los argumentos
 apropiados para ejecutar la acción prevista.</p>
 <p>Por ejemplo, la función mean() no puede calcular el promedio si como
 argumentos se le pasan letras.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introducción.html#cb28-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning in mean.default(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)): argument is not numeric or logical:
-## returning NA</code></pre>
+<pre><code>## Warning in mean.default(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)): argument is not numeric or logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>Esto es importante, porque al introducir datos podemos estar utilizando
 números como palabras:</p>
