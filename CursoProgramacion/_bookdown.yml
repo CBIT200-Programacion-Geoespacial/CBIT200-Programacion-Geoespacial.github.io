@@ -1,6 +1,6 @@
 book_filename: "CursoProgramacion"
 delete_merged_file: true
-rmd_files: ["index.Rmd", "01-intro.Rmd"]
+rmd_files: ["index.Rmd", "01-intro.Rmd", "02-dplyr.Rmd"]
 language:
   ui:
     chapter_name: "Capítulo "

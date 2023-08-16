@@ -197,7 +197,7 @@ knitr::include_graphics("https://archive.org/download/NewRmd/NewRmd.png")
   1. Texto
   2. Chunks
   3. Inline code
-  4. [Cheat sheet Rmd](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+  4. [Cheat sheet Rmd](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) (torpedo)
   5. El botón mágico **Knit**
 
 ```{r, echo = FALSE}
@@ -206,7 +206,7 @@ knitr::include_graphics("RMDexample.png")
 
 </div>
 
-## Texto
+## Texto (sintáxis de markdown)
 
 [link](https://stackoverflow.com/users/3808018/derek-corcoran)
 
