@@ -10,7 +10,7 @@ editor_options:
 Gran parte del manejo de datos consiste en limpiar, ordenar, redistribuir, reemplazar datos.
 La gran mayoría de esas tareas son complejas y repetitivas. 
 
-Se dice en [esta página](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) que:
+Se dice [aqui](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) que:
 
 > Los principios de tidydata (datos ordenados, en castellano) proporcionan una forma estándar de organizar los valores de los datos dentro de un conjunto de datos. Un estándar facilita la limpieza inicial de los datos, ya que no es necesario empezar de cero y reinventar la rueda cada vez. El estándar tidydata se ha diseñado para facilitar la exploración y el análisis de los datos, y para simplificar el desarrollo de herramientas de análisis de datos que funcionen bien juntas. Las herramientas actuales suelen requerir traducción. Hay que dedicar tiempo a procesar los resultados de una herramienta para poder introducirlos en otra. Los conjuntos de datos ordenados y las herramientas ordenadas trabajan codo a codo para facilitar el análisis, lo que permite centrarse en la parte interesante del problema, no en lo "aburrido" de la logística de los datos.
 
@@ -18,9 +18,10 @@ Se dice en [esta página](https://cran.r-project.org/web/packages/tidyr/vignette
 
 En el manejo estadístico de los datos estructuramos, usualmente, con tablas (dataframes) con filas y columnas. Las columnas siempre tienen títulos, aunque las filas solo a veces.
 
-![elementos de una tabla](https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png)
+![Elementos de una tabla](https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png)
 
-Usemos el set de datos de ejemplo `iris`, pero le vamos a agregar un año de colecta ficticio. Para eso, vamos a crear un vector con 3 fechas asignadas de forma aleatoria a cada fila. Vamos a mirar las primeras 7 filas con la función `head()`.
+
+Usemos el set de datos de ejemplo llamado `iris`, pero le vamos a agregar un año de colecta ficticio. Para eso, vamos a crear un vector con 3 fechas asignadas de forma aleatoria a cada fila. Veamos las primeras 7 filas con la función `head()`.
 
 ```{r}
 
