@@ -139,3 +139,4 @@ miIris |>
 
 ## Recursos
  - [data wrangling cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+ - [tablas bonitinhas con Kable] (https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
