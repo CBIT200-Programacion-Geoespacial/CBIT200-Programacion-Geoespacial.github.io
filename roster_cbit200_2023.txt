@@ -1,4 +1,4 @@
-Discord, Nombre, Email1, Email2, GitHub
+discord, nombre, email1, email2, github
 crishodragos, Cristobal Bustamante, cristobaldragon@hotmail.com, , CrishoDragos
 pedrodelacuadra_08986, Pedro de la Cuadra, pedrodelacuadra21@gmail.com, ,pdelacuadra23 
 nadjjja,Nadja Aranda Sessler,sessleranadja@gmail.com, , narandja
