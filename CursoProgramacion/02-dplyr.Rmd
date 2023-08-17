@@ -132,7 +132,10 @@ miIris |>
   select(Species, Año,Tamaño,Sepal.Width) |>
   tidyr::pivot_wider(names_from = Tamaño, values_from = Sepal.Width,values_fn=mean)
 ```
-
+### ¿Podemos explicar que sucedió aquí?
+- ¿En qué caso aparecen los `NA`?
+- ¿Qué tipo de gráfico evidenciaría la relación entre el ratio largo:ancho del pétalo y el ancho del sépalo?
+- grafica
 
 ## Recursos
  - [data wrangling cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
