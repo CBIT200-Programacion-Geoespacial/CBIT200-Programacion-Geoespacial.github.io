@@ -56,20 +56,20 @@ Esta "conexión", se hace con este operador `%>%` o bien `|>`. La diferencia ent
 
 por ejemplo, podemos calcular el largo promedio de los petalos de las especie en el set de datos `iris`.
 
-```{r echo=TRUE}
+```{r warning=FALSE, message=FALSE}
 library(dplyr)
 iris |>
   group_by(Species) |>
   summarize(Promedio=mean(Petal.Length)) 
 ```
 
-## agrupar datos
+### Agrupar 
 
-dplyr provee un set acotado de funciones, pero muy poderosas para manejar y ordenarnos con los datos. El ejemplo anterior muestra como se conecta una consulta con otra. Lo primero que hace es definir la tabla sobre la que vamos a trabajar, `iris`. Esta tabla es luego agrupada por la columna Species y luego usamos la funcion  `summarise` para calcultar la media.
+`dplyr` provee un set acotado de funciones, pero muy poderosas para manejar y ordenarnos con los datos. El ejemplo anterior muestra como se conecta una función con otra. Lo primero que hace es definir la tabla sobre la que vamos a trabajar, `iris`. Esta tabla es luego agrupada por la columna Species que es finalmente usada en la función  `summarize` para calcular la media sobre los groupos de filas para cada especie.
 
-Podriamos tambien buscar la varianza de todas las columnas que son de tipo numérico, adjuntar una columna con el número de filas sobre el que calculamos dicha varianza y luego imprimirla a la pantalla de forma mas estilizada. 
+De forma similar, podriamos también buscar la varianza de todas las columnas que son de tipo numérico, adjuntar una columna con el número de filas sobre el que calculamos dicha varianza y luego imprimirla a la pantalla de forma mas estilizada. 
 
-```{r}
+```{r warning=FALSE}
 iris |>
   group_by(Species) |>
   summarise(across(where(is.numeric), var, na.rm = TRUE), N = n())|>
@@ -78,7 +78,7 @@ iris |>
 ```
 
 
-## filtrar
+### Filtrar
 
 Filter nos permite encontrar, y operar, solo sobre filas que cumplen una condición determinada. Por ejemplo solo un tipo de especie
 
@@ -95,7 +95,7 @@ iris |>
   filter(Petal.Length > 4.5)
 ```
 
-## computar nuevas variables
+### Crear nuevas variables
 
 Con `mutate()` podemos crear una nueva columna de forma explícita. Por ejemplo, si quisieramos saber cuales son las especies y años en que se colectaron especies con una razon largo/ancho determinado.
 
@@ -113,7 +113,7 @@ iris |>
  - En función del último análisis, ¿existe diferencia interespecífica en la relación entre largo y ancho largo para estes grupo de especies?
  -¿Cómo formularías la pregunta anterior de forma mas precisa en función del análisis anterior?
 
-## cambiar formato de tabla
+## Cambiar formato de tabla
 
 Muchas veces es necesario reorientar la tabla de datos. 
 
