@@ -1,0 +1,137 @@
+---
+title: "Introducción al Análisis de Datos Geoespaciales"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Principios de Tidydata
+
+Gran parte del manejo de datos consiste en limpiar, ordenar, redistribuir, reemplazar datos.
+La gran mayoría de esas tareas son complejas y repetitivas. 
+
+Se dice en [esta página](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) que:
+
+> Los principios de tidydata (datos ordenados, en castellano) proporcionan una forma estándar de organizar los valores de los datos dentro de un conjunto de datos. Un estándar facilita la limpieza inicial de los datos, ya que no es necesario empezar de cero y reinventar la rueda cada vez. El estándar tidydata se ha diseñado para facilitar la exploración y el análisis de los datos, y para simplificar el desarrollo de herramientas de análisis de datos que funcionen bien juntas. Las herramientas actuales suelen requerir traducción. Hay que dedicar tiempo a procesar los resultados de una herramienta para poder introducirlos en otra. Los conjuntos de datos ordenados y las herramientas ordenadas trabajan codo a codo para facilitar el análisis, lo que permite centrarse en la parte interesante del problema, no en lo "aburrido" de la logística de los datos.
+
+## Definiciones
+
+En el manejo estadístico de los datos estructuramos, usualmente, con tablas (dataframes) con filas y columnas. Las columnas siempre tienen títulos, aunque las filas solo a veces.
+
+![elementos de una tabla](https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png)
+
+Usemos el set de datos de ejemplo `iris`, pero le vamos a agregar un año de colecta ficticio. Para eso, vamos a crear un vector con 3 fechas asignadas de forma aleatoria a cada fila. Vamos a mirar las primeras 7 filas con la función `head()`.
+
+```{r}
+
+data(iris)
+año <- sample(rep(c("2003","2013","2023"), nrow(iris) / 3))
+
+iris$Año <- año
+
+kableExtra::kable(head(iris,7))
+```
+
+
+## Lógica y funciones
+
+La lógica básica para el manejo de datos usando `dplyr` es que el resultado de una operación puede ser "conectada" a otra, lo que facilita la letura del código cuando lo revisitamos. Para eso existe una operador que hace esta conexión.
+
+### Funciones esenciales
+
+- *pipe*: *|>*
+- *group_by* (agrupa datos)
+- *summarize* (resume datos agrupados)
+- *filter* (Encuentra filas con ciertas condiciones)
+- *select* junto a *starts_with*, *ends_with* o *contains*
+- *mutate* (Genera variables nuevas)
+- *arrange* ordenar
+
+
+
+### pipe
+
+Esta "conexión", se hace con este operador `%>%` o bien `|>`. La diferencia entre los dos es que el uso del segundo no debieras requerir pre cargar la librería y es de uso mas reciente.
+
+por ejemplo, podemos calcular el largo promedio de los petalos de las especie en el set de datos `iris`.
+
+```{r echo=TRUE}
+library(dplyr)
+iris |>
+  group_by(Species) |>
+  summarize(Promedio=mean(Petal.Length)) 
+```
+
+## agrupar datos
+
+dplyr provee un set acotado de funciones, pero muy poderosas para manejar y ordenarnos con los datos. El ejemplo anterior muestra como se conecta una consulta con otra. Lo primero que hace es definir la tabla sobre la que vamos a trabajar, `iris`. Esta tabla es luego agrupada por la columna Species y luego usamos la funcion  `summarise` para calcultar la media.
+
+Podriamos tambien buscar la varianza de todas las columnas que son de tipo numérico, adjuntar una columna con el número de filas sobre el que calculamos dicha varianza y luego imprimirla a la pantalla de forma mas estilizada. 
+
+```{r}
+iris |>
+  group_by(Species) |>
+  summarise(across(where(is.numeric), var, na.rm = TRUE), N = n())|>
+  kableExtra::kable() |>
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F)
+```
+
+
+## filtrar
+
+Filter nos permite encontrar, y operar, solo sobre filas que cumplen una condición determinada. Por ejemplo solo un tipo de especie
+
+```{r}
+iris |>
+  filter(Species == 'virginica')
+```
+
+Debemos tener en cuenta que si usamos filter tendremos que siempre tener un operador en el argumento de la función. En este caso era el operado `==` que es un *igual*, pero de forma literal, no como una asignación.
+Otro ejemplo podría ser seleccionar aquellas filas que tengan un largo de petalos mayor a 4.5, por ejemplo
+
+```{r}
+iris |>
+  filter(Petal.Length > 4.5)
+```
+
+## computar nuevas variables
+
+Con `mutate()` podemos crear una nueva columna de forma explícita. Por ejemplo, si quisieramos saber cuales son las especies y años en que se colectaron especies con una razon largo/ancho determinado.
+
+```{r}
+iris |>
+  mutate(Petal.Ratio = Petal.Length/Petal.Width)|>
+  select(Petal.Ratio,Species,Año) |>
+  group_by(Species,Año) |>
+  summarize(Petal.Ratio.Mean = mean(Petal.Ratio)) |>
+  filter(Petal.Ratio.Mean > median(Petal.Ratio.Mean))
+```
+
+### Responder:
+ - ¿Escriba la pregunta que responde el análisis?
+ - En función del último análisis, ¿existe diferencia interespecífica en la relación entre largo y ancho largo para estes grupo de especies?
+ -¿Cómo formularías la pregunta anterior de forma mas precisa en función del análisis anterior?
+
+## cambiar formato de tabla
+
+Muchas veces es necesario reorientar la tabla de datos. 
+
+Primero, podiríamos interesarnos en definir clases para las muestras. Definimos tamaños como clases usando terciles.
+
+```{r}
+etiquetas <- c("alto","medio","bajo")
+miIris <- iris |>
+  mutate(Tamaño = factor(ntile(Petal.Length/Petal.Width,3),ordered = TRUE, labels = etiquetas))
+```
+
+Luego vamos a re-orientar la tabla de manera a poder indagar si existe diferencia entre especies respecto de la característica `Tamaño` 
+
+```{r}
+#miIris |>
+#  select(Species, Año,Tamaño,Sepal.Width) |>
+#  tidyr::pivot_wider(names_from = Tamaño, values_from = Sepal.Width,values_fm=mean)
+```
+
+
+## Recursos
+ - [data wrangling cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
