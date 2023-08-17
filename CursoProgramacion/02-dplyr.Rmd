@@ -117,7 +117,7 @@ iris |>
 
 Muchas veces es necesario reorientar la tabla de datos. 
 
-Primero, podiríamos interesarnos en definir clases para las muestras. Definimos tamaños como clases usando terciles.
+Primero, podríamos interesarnos en definir clases para las muestras. Definimos tamaños como clases usando terciles.
 
 ```{r}
 etiquetas <- c("alto","medio","bajo")
@@ -128,9 +128,9 @@ miIris <- iris |>
 Luego vamos a re-orientar la tabla de manera a poder indagar si existe diferencia entre especies respecto de la característica `Tamaño` 
 
 ```{r}
-#miIris |>
-#  select(Species, Año,Tamaño,Sepal.Width) |>
-#  tidyr::pivot_wider(names_from = Tamaño, values_from = Sepal.Width,values_fm=mean)
+miIris |>
+  select(Species, Año,Tamaño,Sepal.Width) |>
+  tidyr::pivot_wider(names_from = Tamaño, values_from = Sepal.Width,values_fn=mean)
 ```
 
 

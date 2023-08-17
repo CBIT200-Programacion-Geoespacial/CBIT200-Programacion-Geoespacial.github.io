@@ -1,22 +1,22 @@
 discord, nombre, email1, email2, github
-crishodragos, Cristobal Bustamante, cristobaldragon@hotmail.com, , CrishoDragos
-pedrodelacuadra_08986, Pedro de la Cuadra, pedrodelacuadra21@gmail.com, ,pdelacuadra23 
-nadjjja,Nadja Aranda Sessler,sessleranadja@gmail.com, , narandja
-pancho___, Francisco Sebastián Pérez, frsbtpzpz@gmail.com, , Franciscprz
-petrix.dance, Romina Pulgar, pulgarromina@gmail.com, , Rominapulgar 
-sausalsa, Benjamín Saucedo, benjasaucedo7@gmail.com, , Saucedoh
-hugobiofer, Hugo Luis Fernández Rocha, fer.hugo.luis@outlook.com, , HBIOF1 
-karensandoval., Karen Sandoval Salazar, karen.sandoval01@alumnos.uach.cl, karenavi20@gmail.com, Karenavi20
-vry.pulent0, Vicente Santibáñez Bermeo, vicente.santibanez@alumnos.uach.cl, , v.santib
-tami_tp, Tamara Torres Paris, tamara.torres@alumnos.uach.cl, , ttorresparis
-natalialmazan, Natalia Almazán Igor, nt_almazan@hotmail.com, , nalmazan 
-G4lvezjorge,Jorge Gálvez Palominos, jorge.galvez.2002gmail.com, , G4lvezJorge 
-ignacio2019, Ignacio Rebolledo Dominguez, irebolledod@gmail.com, , nachilco 
-Angel Diaz F.#3802, Angel Diaz Fourcade, asdiazfo@gmail.com, , Adzf23
-martinaflores007, Martina Flores Beltrán, martina.flores@alumnos.uach.cl, martif2210@gmail.com, martina 007 
-anahi___r, Anahí Rojas Gajardo, anahi.03.belen@gmail.com, , anahi1703 
-bdebosque,Jenny Ramírez Farías, je.ramirezfarias@gmail.com, , bdebosque
-benjaminmancilla_94262, Benjamín Mancilla Panichine, b.eduardo.mp@gmail.com, , Hubbardtek
-vichongo1997,Vicente Navia Castro, vnaviac@gmail.com, , Vichongo
-caaroconstanza,Carol Fuentealba Escalante ,caaroconstanza@gmail.com, ,caroconstanza
-robertovera_36092, Roberto Vera, roberto.vera01@alumnos.uach.cl,roberver97@gmail.com,roberver
+crishodragos,Cristobal Bustamante,cristobaldragon@hotmail.com,,CrishoDragos
+pedrodelacuadra_08986,Pedro de la Cuadra,pedrodelacuadra21@gmail.com,,pdelacuadra23
+nadjjja,Nadja Aranda Sessler,sessleranadja@gmail.com,,narandja
+pancho___,Francisco Sebastián Pérez,frsbtpzpz@gmail.com,,Franciscprz
+petrix.dance,Romina Pulgar,pulgarromina@gmail.com,,Rominapulgar
+sausalsa,Benjamín Saucedo,benjasaucedo7@gmail.com,,Saucedoh
+hugobiofer,Hugo Luis Fernández Rocha,fer.hugo.luis@outlook.com,,HBIOF1
+karensandoval.,Karen Sandoval Salazar,karen.sandoval01@alumnos.uach.cl,karenavi20@gmail.com,Karenavi20
+vry.pulent0,Vicente Santibáñez Bermeo,vicente.santibanez@alumnos.uach.cl,,v.santib
+tami_tp,Tamara Torres Paris,tamara.torres@alumnos.uach.cl,,ttorresparis
+natalialmazan,Natalia Almazán Igor,nt_almazan@hotmail.com,,nalmazan
+G4lvezjorge,Jorge Gálvez Palominos,jorge.galvez.2002gmail.com,,G4lvezJorge
+ignacio2019,Ignacio Rebolledo Dominguez,irebolledod@gmail.com,,nachilco
+Angel Diaz F.#3802,Angel Diaz Fourcade,asdiazfo@gmail.com,,Adzf23
+martinaflores007,Martina Flores Beltrán,martina.flores@alumnos.uach.cl,martif2210@gmail.com,martina007
+anahi___r,Anahí Rojas Gajardo,anahi.03.belen@gmail.com,,anahi1703
+bdebosque,Jenny Ramírez Farías,je.ramirezfarias@gmail.com,,bdebosque
+benjaminmancilla_94262,Benjamín Mancilla Panichine,b.eduardo.mp@gmail.com,,Hubbardtek
+vichongo1997,Vicente Navia Castro,vnaviac@gmail.com,,Vichongo
+caaroconstanza,Carol Fuentealba Escalante ,caaroconstanza@gmail.com,,caroconstanza
+robertovera_36092,Roberto Vera,roberto.vera01@alumnos.uach.cl,roberver97@gmail.com,roberver
