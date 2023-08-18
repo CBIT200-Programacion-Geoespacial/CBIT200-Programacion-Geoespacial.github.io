@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introducción al Análisis de Datos Geoespaciales</title>
+  <title>Introduccion al Analisis de Datos Geoespaciales</title>
   <meta name="description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introducción al Análisis de Datos Geoespaciales" />
+  <meta property="og:title" content="Introduccion al Analisis de Datos Geoespaciales" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introducción al Análisis de Datos Geoespaciales" />
+  <meta name="twitter:title" content="Introduccion al Analisis de Datos Geoespaciales" />
   
   <meta name="twitter:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Horacio Samaniego, Derek Corcoran, Giorgia Graells" />
 
 
-<meta name="date" content="2023-08-14" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -169,8 +171,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="introducción.html"><a href="introducción.html#leer-datos"><i class="fa fa-check"></i><b>2.7</b> Leer datos</a></li>
 <li class="chapter" data-level="2.8" data-path="introducción.html"><a href="introducción.html#ejercicios"><i class="fa fa-check"></i><b>2.8</b> Ejercicios</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html"><i class="fa fa-check"></i><b>3</b> Principios de Tidydata</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#definiciones"><i class="fa fa-check"></i><b>3.1</b> Definiciones</a></li>
+<li class="chapter" data-level="3.2" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#lógica-y-funciones"><i class="fa fa-check"></i><b>3.2</b> Lógica y funciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#funciones-esenciales"><i class="fa fa-check"></i><b>3.2.1</b> Funciones esenciales</a></li>
+<li class="chapter" data-level="3.2.2" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#pipe"><i class="fa fa-check"></i><b>3.2.2</b> pipe</a></li>
+<li class="chapter" data-level="3.2.3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#agrupar"><i class="fa fa-check"></i><b>3.2.3</b> Agrupar</a></li>
+<li class="chapter" data-level="3.2.4" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#filtrar"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar</a></li>
+<li class="chapter" data-level="3.2.5" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
+<li class="chapter" data-level="3.2.6" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#responder"><i class="fa fa-check"></i><b>3.2.6</b> Responder:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#cambiar-formato-de-tabla"><i class="fa fa-check"></i><b>3.3</b> Cambiar formato de tabla</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#podemos-explicar-que-sucedió-aquí"><i class="fa fa-check"></i><b>3.3.1</b> ¿Podemos explicar que sucedió aquí?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#recursos"><i class="fa fa-check"></i><b>3.4</b> Recursos</a></li>
+</ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
 
@@ -181,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción al Análisis de Datos Geoespaciales</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduccion al Analisis de Datos Geoespaciales</a>
           </h1>
         </div>
 
@@ -190,9 +210,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Introducción al Análisis de Datos Geoespaciales</h1>
+<h1 class="title">Introduccion al Analisis de Datos Geoespaciales</h1>
 <p class="author"><em>Horacio Samaniego, Derek Corcoran, Giorgia Graells</em></p>
-<p class="date"><em>2023-08-14</em></p>
+<p class="date"><em>2023-08-18</em></p>
 </div>
 <div id="datos-del-curso" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Capítulo 1</span> Datos del curso<a href="index.html#datos-del-curso" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -467,7 +487,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["CursoProgramacion.pdf", "CursoProgramacion.epub"],
+"download": ["CursoProgramacion.pdf", "CursoProgramacion.epub", "CursoProgramacion.docx"],
 "search": {
 "engine": "fuse",
 "options": null

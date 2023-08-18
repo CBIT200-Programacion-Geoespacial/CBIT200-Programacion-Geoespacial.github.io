@@ -22,12 +22,10 @@ definiciones
 lógica-y-funciones
 funciones-esenciales
 pipe
-agrupar-datos
+agrupar
 filtrar
-computar-nuevas-variables
+crear-nuevas-variables
 responder
 cambiar-formato-de-tabla
-recursos
-agrupar
-crear-nuevas-variables
 podemos-explicar-que-sucedió-aquí
+recursos

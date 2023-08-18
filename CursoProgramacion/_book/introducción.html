@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Introducción | Introducción al Análisis de Datos Geoespaciales</title>
+  <title>Capítulo 2 Introducción | Introduccion al Analisis de Datos Geoespaciales</title>
   <meta name="description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Introducción | Introducción al Análisis de Datos Geoespaciales" />
+  <meta property="og:title" content="Capítulo 2 Introducción | Introduccion al Analisis de Datos Geoespaciales" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Introducción | Introducción al Análisis de Datos Geoespaciales" />
+  <meta name="twitter:title" content="Capítulo 2 Introducción | Introduccion al Analisis de Datos Geoespaciales" />
   
   <meta name="twitter:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Horacio Samaniego, Derek Corcoran, Giorgia Graells" />
 
 
-<meta name="date" content="2023-08-16" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-
+<link rel="next" href="principios-de-tidydata.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -169,8 +171,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="introducción.html"><a href="introducción.html#leer-datos"><i class="fa fa-check"></i><b>2.7</b> Leer datos</a></li>
 <li class="chapter" data-level="2.8" data-path="introducción.html"><a href="introducción.html#ejercicios"><i class="fa fa-check"></i><b>2.8</b> Ejercicios</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html"><i class="fa fa-check"></i><b>3</b> Principios de Tidydata</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#definiciones"><i class="fa fa-check"></i><b>3.1</b> Definiciones</a></li>
+<li class="chapter" data-level="3.2" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#lógica-y-funciones"><i class="fa fa-check"></i><b>3.2</b> Lógica y funciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#funciones-esenciales"><i class="fa fa-check"></i><b>3.2.1</b> Funciones esenciales</a></li>
+<li class="chapter" data-level="3.2.2" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#pipe"><i class="fa fa-check"></i><b>3.2.2</b> pipe</a></li>
+<li class="chapter" data-level="3.2.3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#agrupar"><i class="fa fa-check"></i><b>3.2.3</b> Agrupar</a></li>
+<li class="chapter" data-level="3.2.4" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#filtrar"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar</a></li>
+<li class="chapter" data-level="3.2.5" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
+<li class="chapter" data-level="3.2.6" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#responder"><i class="fa fa-check"></i><b>3.2.6</b> Responder:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#cambiar-formato-de-tabla"><i class="fa fa-check"></i><b>3.3</b> Cambiar formato de tabla</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#podemos-explicar-que-sucedió-aquí"><i class="fa fa-check"></i><b>3.3.1</b> ¿Podemos explicar que sucedió aquí?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#recursos"><i class="fa fa-check"></i><b>3.4</b> Recursos</a></li>
+</ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
 
@@ -181,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción al Análisis de Datos Geoespaciales</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduccion al Analisis de Datos Geoespaciales</a>
           </h1>
         </div>
 
@@ -264,16 +284,14 @@ cantidades de código. Por ejemplo:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introducción.html#cb24-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1] 5 5 5 5 5 5 5 5 5 5</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introducción.html#cb26-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">10</span>), <span class="st">&quot;elefantes&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;5 elefantes&quot;  &quot;6 elefantes&quot;  &quot;7 elefantes&quot;  &quot;8 elefantes&quot;  &quot;9 elefantes&quot; 
-## [6] &quot;10 elefantes&quot;</code></pre>
+<pre><code>## [1] &quot;5 elefantes&quot;  &quot;6 elefantes&quot;  &quot;7 elefantes&quot;  &quot;8 elefantes&quot;  &quot;9 elefantes&quot;  &quot;10 elefantes&quot;</code></pre>
 <p>Los datos o variables que van dentro de las funciones, se denominan
 <em>argumentos</em> y cada función requiere que se le entreguen los argumentos
 apropiados para ejecutar la acción prevista.</p>
 <p>Por ejemplo, la función mean() no puede calcular el promedio si como
 argumentos se le pasan letras.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introducción.html#cb28-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning in mean.default(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)): argument is not numeric or logical:
-## returning NA</code></pre>
+<pre><code>## Warning in mean.default(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)): argument is not numeric or logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>Esto es importante, porque al introducir datos podemos estar utilizando
 números como palabras:</p>
@@ -399,8 +417,8 @@ presiona <em>Ctrl+Shift+K</em> para previsualizar el archivo HMTL)</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="principios-de-tidydata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -442,7 +460,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["CursoProgramacion.pdf", "CursoProgramacion.epub"],
+"download": ["CursoProgramacion.pdf", "CursoProgramacion.epub", "CursoProgramacion.docx"],
 "search": {
 "engine": "fuse",
 "options": null
@@ -454,6 +472,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
