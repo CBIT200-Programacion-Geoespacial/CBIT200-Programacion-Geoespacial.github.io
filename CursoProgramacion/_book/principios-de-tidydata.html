@@ -211,20 +211,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="principios-de-tidydata" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Capítulo 3</span> Principios de Tidydata<a href="principios-de-tidydata.html#principios-de-tidydata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Gran parte del manejo de datos consiste en limpiar, ordenar, redistribuir, reemplazar datos.
-La gran mayoría de esas tareas son complejas y repetitivas.</p>
-<p>Se dice <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">aqui</a> que:</p>
+<p>Gran parte del manejo de datos consiste en limpiar, ordenar,
+redistribuir, reemplazar datos. La gran mayoría de esas tareas son
+complejas y repetitivas.</p>
+<p>La documentación dice
+<a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">aqui</a>
+que:</p>
 <blockquote>
-<p>Los principios de tidydata (datos ordenados, en castellano) proporcionan una forma estándar de organizar los valores de los datos dentro de un conjunto de datos. Un estándar facilita la limpieza inicial de los datos, ya que no es necesario empezar de cero y reinventar la rueda cada vez. El estándar tidydata se ha diseñado para facilitar la exploración y el análisis de los datos, y para simplificar el desarrollo de herramientas de análisis de datos que funcionen bien juntas. Las herramientas actuales suelen requerir traducción. Hay que dedicar tiempo a procesar los resultados de una herramienta para poder introducirlos en otra. Los conjuntos de datos ordenados y las herramientas ordenadas trabajan codo a codo para facilitar el análisis, lo que permite centrarse en la parte interesante del problema, no en lo “aburrido” de la logística de los datos.</p>
+<p>Los principios de tidydata (datos ordenados, en castellano)
+proporcionan una forma estándar de organizar los valores de los datos
+dentro de un conjunto de datos. Un estándar facilita la limpieza
+inicial de los datos, ya que no es necesario empezar de cero y
+reinventar la rueda cada vez. El estándar tidydata se ha diseñado para
+facilitar la exploración y el análisis de los datos, y para
+simplificar el desarrollo de herramientas de análisis de datos que
+funcionen bien juntas. Las herramientas actuales suelen requerir
+traducción. Hay que dedicar tiempo a procesar los resultados de una
+herramienta para poder introducirlos en otra. Los conjuntos de datos
+ordenados y las herramientas ordenadas trabajan codo a codo para
+facilitar el análisis, lo que permite centrarse en la parte
+interesante del problema, no en lo “aburrido” de la logística de los
+datos.</p>
 </blockquote>
 <div id="definiciones" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Definiciones<a href="principios-de-tidydata.html#definiciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En el manejo estadístico de los datos estructuramos, usualmente, con tablas (dataframes) con filas y columnas. Las columnas siempre tienen títulos, aunque las filas solo a veces.</p>
+<p>En el manejo estadístico de los datos estructuramos, usualmente, con
+tablas (dataframes) con filas y columnas. Las columnas siempre tienen
+títulos, aunque las filas solo a veces.</p>
 <div class="float">
 <img src="https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png" alt="Elementos de una tabla" />
-<div class="figcaption">Elementos de una tabla</div>
+<div class="figcaption">Elementos de una
+tabla</div>
 </div>
-<p>Usemos el set de datos de ejemplo llamado <code>iris</code>, pero le vamos a agregar un año de colecta ficticio. Para eso, vamos a crear un vector con 3 fechas asignadas de forma aleatoria a cada fila. Veamos las primeras 7 filas con la función <code>head()</code>.</p>
+<p>Usemos el set de datos de ejemplo llamado <code>iris</code>, pero le vamos a
+agregar un año de colecta ficticio. Para eso, vamos a crear un vector
+con 3 fechas asignadas de forma aleatoria a cada fila. Veamos las
+primeras 7 filas con la función <code>head()</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="principios-de-tidydata.html#cb1-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
 <span id="cb1-2"><a href="principios-de-tidydata.html#cb1-2" tabindex="-1"></a>año <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2003&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2023&quot;</span>), <span class="fu">nrow</span>(iris) <span class="sc">/</span> <span class="dv">3</span>))</span>
 <span id="cb1-3"><a href="principios-de-tidydata.html#cb1-3" tabindex="-1"></a></span>
@@ -292,7 +314,7 @@ setosa
 setosa
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -372,7 +394,7 @@ setosa
 setosa
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -400,7 +422,10 @@ setosa
 </div>
 <div id="lógica-y-funciones" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Lógica y funciones<a href="principios-de-tidydata.html#lógica-y-funciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La lógica básica para el manejo de datos usando <code>dplyr</code> es que el resultado de una operación puede ser “conectada” a otra, lo que facilita la letura del código cuando lo revisitamos. Para eso existe una operador que hace esta conexión.</p>
+<p>La lógica básica para el manejo de datos usando <code>dplyr</code> es que el
+resultado de una operación puede ser “conectada” a otra, lo que facilita
+la letura del código cuando lo revisitamos. Para eso existe una operador
+que hace esta conexión.</p>
 <div id="funciones-esenciales" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Funciones esenciales<a href="principios-de-tidydata.html#funciones-esenciales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
@@ -415,8 +440,11 @@ setosa
 </div>
 <div id="pipe" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> pipe<a href="principios-de-tidydata.html#pipe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Esta “conexión”, se hace con este operador <code>%&gt;%</code> o bien <code>|&gt;</code>. La diferencia entre los dos es que el uso del segundo no debieras requerir pre cargar la librería y es de uso mas reciente.</p>
-<p>por ejemplo, podemos calcular el largo promedio de los petalos de las especie en el set de datos <code>iris</code>.</p>
+<p>Esta “conexión”, se hace con este operador <code>%&gt;%</code> o bien <code>|&gt;</code>. La
+diferencia entre los dos es que el uso del segundo no debieras requerir
+pre cargar la librería y es de uso mas reciente.</p>
+<p>por ejemplo, podemos calcular el largo promedio de los petalos de las
+especie en el set de datos <code>iris</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="principios-de-tidydata.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb2-2"><a href="principios-de-tidydata.html#cb2-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
 <span id="cb2-3"><a href="principios-de-tidydata.html#cb2-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
@@ -430,8 +458,16 @@ setosa
 </div>
 <div id="agrupar" class="section level3 hasAnchor" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Agrupar<a href="principios-de-tidydata.html#agrupar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>dplyr</code> provee un set acotado de funciones, pero muy poderosas para manejar y ordenarnos con los datos. El ejemplo anterior muestra como se conecta una función con otra. Lo primero que hace es definir la tabla sobre la que vamos a trabajar, <code>iris</code>. Esta tabla es luego agrupada por la columna Species que es finalmente usada en la función <code>summarize</code> para calcular la media sobre los groupos de filas para cada especie.</p>
-<p>De forma similar, podriamos también buscar la varianza de todas las columnas que son de tipo numérico, adjuntar una columna con el número de filas sobre el que calculamos dicha varianza y luego imprimirla a la pantalla de forma mas estilizada.</p>
+<p><code>dplyr</code> provee un set acotado de funciones, pero muy poderosas para
+manejar y ordenarnos con los datos. El ejemplo anterior muestra como se
+conecta una función con otra. Lo primero que hace es definir la tabla
+sobre la que vamos a trabajar, <code>iris</code>. Esta tabla es luego agrupada por
+la columna Species que es finalmente usada en la función <code>summarize</code>
+para calcular la media sobre los groupos de filas para cada especie.</p>
+<p>De forma similar, podriamos también buscar la varianza de todas las
+columnas que son de tipo numérico, adjuntar una columna con el número de
+filas sobre el que calculamos dicha varianza y luego imprimirla a la
+pantalla de forma mas estilizada.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="principios-de-tidydata.html#cb4-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="principios-de-tidydata.html#cb4-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
 <span id="cb4-3"><a href="principios-de-tidydata.html#cb4-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), var, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">N =</span> <span class="fu">n</span>())<span class="sc">|&gt;</span></span>
@@ -526,185 +562,2568 @@ virginica
 </div>
 <div id="filtrar" class="section level3 hasAnchor" number="3.2.4">
 <h3><span class="header-section-number">3.2.4</span> Filtrar<a href="principios-de-tidydata.html#filtrar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Filter nos permite encontrar, y operar, solo sobre filas que cumplen una condición determinada. Por ejemplo solo un tipo de especie</p>
+<p>Filter nos permite encontrar, y operar, solo sobre filas que cumplen una
+condición determinada. Por ejemplo solo un tipo de especie</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="principios-de-tidydata.html#cb5-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="principios-de-tidydata.html#cb5-2" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&#39;virginica&#39;</span>)</span></code></pre></div>
-<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species  Año
-## 1           6.3         3.3          6.0         2.5 virginica 2013
-## 2           5.8         2.7          5.1         1.9 virginica 2013
-## 3           7.1         3.0          5.9         2.1 virginica 2023
-## 4           6.3         2.9          5.6         1.8 virginica 2003
-## 5           6.5         3.0          5.8         2.2 virginica 2013
-## 6           7.6         3.0          6.6         2.1 virginica 2013
-## 7           4.9         2.5          4.5         1.7 virginica 2013
-## 8           7.3         2.9          6.3         1.8 virginica 2023
-## 9           6.7         2.5          5.8         1.8 virginica 2013
-## 10          7.2         3.6          6.1         2.5 virginica 2003
-## 11          6.5         3.2          5.1         2.0 virginica 2013
-## 12          6.4         2.7          5.3         1.9 virginica 2013
-## 13          6.8         3.0          5.5         2.1 virginica 2023
-## 14          5.7         2.5          5.0         2.0 virginica 2013
-## 15          5.8         2.8          5.1         2.4 virginica 2023
-## 16          6.4         3.2          5.3         2.3 virginica 2013
-## 17          6.5         3.0          5.5         1.8 virginica 2013
-## 18          7.7         3.8          6.7         2.2 virginica 2013
-## 19          7.7         2.6          6.9         2.3 virginica 2003
-## 20          6.0         2.2          5.0         1.5 virginica 2023
-## 21          6.9         3.2          5.7         2.3 virginica 2003
-## 22          5.6         2.8          4.9         2.0 virginica 2003
-## 23          7.7         2.8          6.7         2.0 virginica 2023
-## 24          6.3         2.7          4.9         1.8 virginica 2003
-## 25          6.7         3.3          5.7         2.1 virginica 2023
-## 26          7.2         3.2          6.0         1.8 virginica 2003
-## 27          6.2         2.8          4.8         1.8 virginica 2003
-## 28          6.1         3.0          4.9         1.8 virginica 2023
-## 29          6.4         2.8          5.6         2.1 virginica 2023
-## 30          7.2         3.0          5.8         1.6 virginica 2023
-## 31          7.4         2.8          6.1         1.9 virginica 2003
-## 32          7.9         3.8          6.4         2.0 virginica 2023
-## 33          6.4         2.8          5.6         2.2 virginica 2003
-## 34          6.3         2.8          5.1         1.5 virginica 2003
-## 35          6.1         2.6          5.6         1.4 virginica 2013
-## 36          7.7         3.0          6.1         2.3 virginica 2023
-## 37          6.3         3.4          5.6         2.4 virginica 2003
-## 38          6.4         3.1          5.5         1.8 virginica 2013
-## 39          6.0         3.0          4.8         1.8 virginica 2023
-## 40          6.9         3.1          5.4         2.1 virginica 2013
-## 41          6.7         3.1          5.6         2.4 virginica 2003
-## 42          6.9         3.1          5.1         2.3 virginica 2003
-## 43          5.8         2.7          5.1         1.9 virginica 2023
-## 44          6.8         3.2          5.9         2.3 virginica 2003
-## 45          6.7         3.3          5.7         2.5 virginica 2003
-## 46          6.7         3.0          5.2         2.3 virginica 2013
-## 47          6.3         2.5          5.0         1.9 virginica 2013
-## 48          6.5         3.0          5.2         2.0 virginica 2003
-## 49          6.2         3.4          5.4         2.3 virginica 2003
-## 50          5.9         3.0          5.1         1.8 virginica 2013</code></pre>
-<p>Debemos tener en cuenta que si usamos filter tendremos que siempre tener un operador en el argumento de la función. En este caso era el operado <code>==</code> que es un <em>igual</em>, pero de forma literal, no como una asignación.
-Otro ejemplo podría ser seleccionar aquellas filas que tengan un largo de petalos mayor a 4.5, por ejemplo</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="principios-de-tidydata.html#cb7-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="principios-de-tidydata.html#cb7-2" tabindex="-1"></a>  <span class="fu">filter</span>(Petal.Length <span class="sc">&gt;</span> <span class="fl">4.5</span>)</span></code></pre></div>
-<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species  Año
-## 1           7.0         3.2          4.7         1.4 versicolor 2023
-## 2           6.9         3.1          4.9         1.5 versicolor 2003
-## 3           6.5         2.8          4.6         1.5 versicolor 2003
-## 4           6.3         3.3          4.7         1.6 versicolor 2023
-## 5           6.6         2.9          4.6         1.3 versicolor 2013
-## 6           6.1         2.9          4.7         1.4 versicolor 2023
-## 7           5.9         3.2          4.8         1.8 versicolor 2013
-## 8           6.3         2.5          4.9         1.5 versicolor 2013
-## 9           6.1         2.8          4.7         1.2 versicolor 2003
-## 10          6.8         2.8          4.8         1.4 versicolor 2013
-## 11          6.7         3.0          5.0         1.7 versicolor 2003
-## 12          6.0         2.7          5.1         1.6 versicolor 2013
-## 13          6.7         3.1          4.7         1.5 versicolor 2023
-## 14          6.1         3.0          4.6         1.4 versicolor 2013
-## 15          6.3         3.3          6.0         2.5  virginica 2013
-## 16          5.8         2.7          5.1         1.9  virginica 2013
-## 17          7.1         3.0          5.9         2.1  virginica 2023
-## 18          6.3         2.9          5.6         1.8  virginica 2003
-## 19          6.5         3.0          5.8         2.2  virginica 2013
-## 20          7.6         3.0          6.6         2.1  virginica 2013
-## 21          7.3         2.9          6.3         1.8  virginica 2023
-## 22          6.7         2.5          5.8         1.8  virginica 2013
-## 23          7.2         3.6          6.1         2.5  virginica 2003
-## 24          6.5         3.2          5.1         2.0  virginica 2013
-## 25          6.4         2.7          5.3         1.9  virginica 2013
-## 26          6.8         3.0          5.5         2.1  virginica 2023
-## 27          5.7         2.5          5.0         2.0  virginica 2013
-## 28          5.8         2.8          5.1         2.4  virginica 2023
-## 29          6.4         3.2          5.3         2.3  virginica 2013
-## 30          6.5         3.0          5.5         1.8  virginica 2013
-## 31          7.7         3.8          6.7         2.2  virginica 2013
-## 32          7.7         2.6          6.9         2.3  virginica 2003
-## 33          6.0         2.2          5.0         1.5  virginica 2023
-## 34          6.9         3.2          5.7         2.3  virginica 2003
-## 35          5.6         2.8          4.9         2.0  virginica 2003
-## 36          7.7         2.8          6.7         2.0  virginica 2023
-## 37          6.3         2.7          4.9         1.8  virginica 2003
-## 38          6.7         3.3          5.7         2.1  virginica 2023
-## 39          7.2         3.2          6.0         1.8  virginica 2003
-## 40          6.2         2.8          4.8         1.8  virginica 2003
-## 41          6.1         3.0          4.9         1.8  virginica 2023
-## 42          6.4         2.8          5.6         2.1  virginica 2023
-## 43          7.2         3.0          5.8         1.6  virginica 2023
-## 44          7.4         2.8          6.1         1.9  virginica 2003
-## 45          7.9         3.8          6.4         2.0  virginica 2023
-## 46          6.4         2.8          5.6         2.2  virginica 2003
-## 47          6.3         2.8          5.1         1.5  virginica 2003
-## 48          6.1         2.6          5.6         1.4  virginica 2013
-## 49          7.7         3.0          6.1         2.3  virginica 2023
-## 50          6.3         3.4          5.6         2.4  virginica 2003
-## 51          6.4         3.1          5.5         1.8  virginica 2013
-## 52          6.0         3.0          4.8         1.8  virginica 2023
-## 53          6.9         3.1          5.4         2.1  virginica 2013
-## 54          6.7         3.1          5.6         2.4  virginica 2003
-## 55          6.9         3.1          5.1         2.3  virginica 2003
-## 56          5.8         2.7          5.1         1.9  virginica 2023
-## 57          6.8         3.2          5.9         2.3  virginica 2003
-## 58          6.7         3.3          5.7         2.5  virginica 2003
-## 59          6.7         3.0          5.2         2.3  virginica 2013
-## 60          6.3         2.5          5.0         1.9  virginica 2013
-## 61          6.5         3.0          5.2         2.0  virginica 2003
-## 62          6.2         3.4          5.4         2.3  virginica 2003
-## 63          5.9         3.0          5.1         1.8  virginica 2013</code></pre>
+<span id="cb5-2"><a href="principios-de-tidydata.html#cb5-2" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&#39;virginica&#39;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="principios-de-tidydata.html#cb5-3" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="principios-de-tidydata.html#cb5-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="at">full_width =</span> F) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="principios-de-tidydata.html#cb5-5" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;250px&quot;</span>)</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Sepal.Length
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Sepal.Width
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Petal.Length
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Petal.Width
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Species
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Año
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.1
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.6
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+6.6
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.3
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+3.6
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+3.8
+</td>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.2
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.9
+</td>
+<td style="text-align:right;">
+3.8
+</td>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.4
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.2
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+5.4
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Debemos tener en cuenta que si usamos filter tendremos que siempre tener
+un operador en el argumento de la función. En este caso era el operado
+<code>==</code> que es un <em>igual</em>, pero de forma literal, no como una asignación.
+Otro ejemplo podría ser seleccionar aquellas filas que tengan un largo
+de petalos mayor a 4.5, por ejemplo</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="principios-de-tidydata.html#cb6-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="principios-de-tidydata.html#cb6-2" tabindex="-1"></a>  <span class="fu">filter</span>(Petal.Length <span class="sc">&gt;</span> <span class="fl">4.5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="principios-de-tidydata.html#cb6-3" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="principios-de-tidydata.html#cb6-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="at">full_width =</span> F) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="principios-de-tidydata.html#cb6-5" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;250px&quot;</span>)</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Sepal.Length
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Sepal.Width
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Petal.Length
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Petal.Width
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Species
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Año
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+7.0
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+4.6
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.6
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+4.6
+</td>
+<td style="text-align:right;">
+1.3
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+1.2
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+4.6
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.1
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.6
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+6.6
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.3
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+3.6
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+3.8
+</td>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.2
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.9
+</td>
+<td style="text-align:right;">
+3.8
+</td>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.4
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.7
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.2
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+5.4
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="crear-nuevas-variables" class="section level3 hasAnchor" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> Crear nuevas variables<a href="principios-de-tidydata.html#crear-nuevas-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Con <code>mutate()</code> podemos crear una nueva columna de forma explícita. Por ejemplo, si quisieramos saber cuales son las especies y años en que se colectaron especies con una razon largo/ancho determinado.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="principios-de-tidydata.html#cb9-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="principios-de-tidydata.html#cb9-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Petal.Ratio =</span> Petal.Length<span class="sc">/</span>Petal.Width)<span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="principios-de-tidydata.html#cb9-3" tabindex="-1"></a>  <span class="fu">select</span>(Petal.Ratio,Species,Año) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="principios-de-tidydata.html#cb9-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Species,Año) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="principios-de-tidydata.html#cb9-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Petal.Ratio.Mean =</span> <span class="fu">mean</span>(Petal.Ratio)) <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="principios-de-tidydata.html#cb9-6" tabindex="-1"></a>  <span class="fu">filter</span>(Petal.Ratio.Mean <span class="sc">&gt;</span> <span class="fu">median</span>(Petal.Ratio.Mean))</span></code></pre></div>
+<p>Con <code>mutate()</code> podemos crear una nueva columna de forma explícita. Por
+ejemplo, si quisieramos saber cuales son las especies y años en que se
+colectaron especies con una razon largo/ancho determinado.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="principios-de-tidydata.html#cb7-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="principios-de-tidydata.html#cb7-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Petal.Ratio =</span> Petal.Length<span class="sc">/</span>Petal.Width)<span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="principios-de-tidydata.html#cb7-3" tabindex="-1"></a>  <span class="fu">select</span>(Petal.Ratio,Species,Año) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="principios-de-tidydata.html#cb7-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Species,Año) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="principios-de-tidydata.html#cb7-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Petal.Ratio.Mean =</span> <span class="fu">mean</span>(Petal.Ratio)) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="principios-de-tidydata.html#cb7-6" tabindex="-1"></a>  <span class="fu">filter</span>(Petal.Ratio.Mean <span class="sc">&gt;</span> <span class="fu">median</span>(Petal.Ratio.Mean))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;Species&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 3 × 3
 ## # Groups:   Species [3]
 ##   Species    Año   Petal.Ratio.Mean
 ##   &lt;fct&gt;      &lt;chr&gt;            &lt;dbl&gt;
-## 1 setosa     2003              7.42
-## 2 versicolor 2003              3.38
-## 3 virginica  2023              2.90</code></pre>
+## 1 setosa     2003              7.93
+## 2 versicolor 2023              3.27
+## 3 virginica  2023              2.88</code></pre>
 </div>
 <div id="responder" class="section level3 hasAnchor" number="3.2.6">
 <h3><span class="header-section-number">3.2.6</span> Responder:<a href="principios-de-tidydata.html#responder" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>¿Escriba la pregunta que responde el análisis?</li>
-<li>En función del último análisis, ¿existe diferencia interespecífica en la relación entre largo y ancho largo para estes grupo de especies?
--¿Cómo formularías la pregunta anterior de forma mas precisa en función del análisis anterior?</li>
+<li>En función del último análisis, ¿existe diferencia interespecífica
+en la relación entre largo y ancho largo para estes grupo de
+especies? -¿Cómo formularías la pregunta anterior de forma mas
+precisa en función del análisis anterior?</li>
 </ul>
 </div>
 </div>
 <div id="cambiar-formato-de-tabla" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Cambiar formato de tabla<a href="principios-de-tidydata.html#cambiar-formato-de-tabla" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Muchas veces es necesario reorientar la tabla de datos.</p>
-<p>Primero, podríamos interesarnos en definir clases para las muestras. Definimos tamaños como clases usando terciles.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="principios-de-tidydata.html#cb12-1" tabindex="-1"></a>etiquetas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;alto&quot;</span>,<span class="st">&quot;medio&quot;</span>,<span class="st">&quot;bajo&quot;</span>)</span>
-<span id="cb12-2"><a href="principios-de-tidydata.html#cb12-2" tabindex="-1"></a>miIris <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="principios-de-tidydata.html#cb12-3" tabindex="-1"></a>  <span class="fu">mutate</span>(Tamaño <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">ntile</span>(Petal.Length<span class="sc">/</span>Petal.Width,<span class="dv">3</span>),<span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">labels =</span> etiquetas))</span></code></pre></div>
-<p>Luego vamos a re-orientar la tabla de manera a poder indagar si existe diferencia entre especies respecto de la característica <code>Tamaño</code></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="principios-de-tidydata.html#cb13-1" tabindex="-1"></a>miIris <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="principios-de-tidydata.html#cb13-2" tabindex="-1"></a>  <span class="fu">select</span>(Species, Año,Tamaño,Sepal.Width) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="principios-de-tidydata.html#cb13-3" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Tamaño, <span class="at">values_from =</span> Sepal.Width,<span class="at">values_fn=</span>mean)</span></code></pre></div>
-<pre><code>## # A tibble: 9 × 5
-##   Species    Año    bajo medio  alto
-##   &lt;fct&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 setosa     2013   3.53 NA    NA   
-## 2 setosa     2003   3.29  4.4  NA   
-## 3 setosa     2023   3.39  3.6   3.5 
-## 4 versicolor 2023  NA     2.83  3   
-## 5 versicolor 2003   2.5   2.73  3   
-## 6 versicolor 2013   2.7   2.63  2.77
-## 7 virginica  2013   2.6   2.9   2.96
-## 8 virginica  2023  NA     2.94  2.96
-## 9 virginica  2003  NA     2.92  3.07</code></pre>
+<p>Primero, podríamos interesarnos en definir clases para las muestras.
+Definimos tamaños como clases usando terciles.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="principios-de-tidydata.html#cb10-1" tabindex="-1"></a>etiquetas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;alto&quot;</span>,<span class="st">&quot;medio&quot;</span>,<span class="st">&quot;bajo&quot;</span>)</span>
+<span id="cb10-2"><a href="principios-de-tidydata.html#cb10-2" tabindex="-1"></a>miIris <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="principios-de-tidydata.html#cb10-3" tabindex="-1"></a>  <span class="fu">mutate</span>(Tamaño <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">ntile</span>(Petal.Length<span class="sc">/</span>Petal.Width,<span class="dv">3</span>),<span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">labels =</span> etiquetas))</span></code></pre></div>
+<p>Luego vamos a re-orientar la tabla de manera a poder indagar si existe
+diferencia entre especies respecto de la característica <code>Tamaño</code></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="principios-de-tidydata.html#cb11-1" tabindex="-1"></a>miIris <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="principios-de-tidydata.html#cb11-2" tabindex="-1"></a>  <span class="fu">select</span>(Species, Año,Tamaño,Sepal.Width) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="principios-de-tidydata.html#cb11-3" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Tamaño, <span class="at">values_from =</span> Sepal.Width,<span class="at">values_fn=</span>mean) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="principios-de-tidydata.html#cb11-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Species
+</th>
+<th style="text-align:left;">
+Año
+</th>
+<th style="text-align:right;">
+bajo
+</th>
+<th style="text-align:right;">
+medio
+</th>
+<th style="text-align:right;">
+alto
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+3.312500
+</td>
+<td style="text-align:right;">
+3.300000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:left;">
+2023
+</td>
+<td style="text-align:right;">
+3.350000
+</td>
+<td style="text-align:right;">
+3.900000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:right;">
+3.505556
+</td>
+<td style="text-align:right;">
+4.400000
+</td>
+<td style="text-align:right;">
+3.500000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.858333
+</td>
+<td style="text-align:right;">
+3.133333
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2023
+</td>
+<td style="text-align:right;">
+2.200000
+</td>
+<td style="text-align:right;">
+2.608333
+</td>
+<td style="text-align:right;">
+2.740000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+2.750000
+</td>
+<td style="text-align:right;">
+2.690000
+</td>
+<td style="text-align:right;">
+3.040000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.920000
+</td>
+<td style="text-align:right;">
+2.927273
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.800000
+</td>
+<td style="text-align:right;">
+2.991667
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2023
+</td>
+<td style="text-align:right;">
+2.600000
+</td>
+<td style="text-align:right;">
+3.000000
+</td>
+<td style="text-align:right;">
+3.076923
+</td>
+</tr>
+</tbody>
+</table>
 <div id="podemos-explicar-que-sucedió-aquí" class="section level3 hasAnchor" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> ¿Podemos explicar que sucedió aquí?<a href="principios-de-tidydata.html#podemos-explicar-que-sucedió-aquí" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>¿En qué caso aparecen los <code>NA</code>?</li>
-<li>¿Qué tipo de gráfico evidenciaría la relación entre el ratio largo:ancho del pétalo y el ancho del sépalo?</li>
+<li>¿Qué tipo de gráfico evidenciaría la relación entre el ratio
+largo:ancho del pétalo y el ancho del sépalo?</li>
 <li>grafica</li>
 </ul>
 </div>
@@ -713,7 +3132,7 @@ Otro ejemplo podría ser seleccionar aquellas filas que tengan un largo de petal
 <h2><span class="header-section-number">3.4</span> Recursos<a href="principios-de-tidydata.html#recursos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">data wrangling cheatsheet</a></li>
-<li>[tablas bonitinhas con Kable] (<a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html" class="uri">https://haozhu233.github.io/kableExtra/awesome_table_in_html.html</a>)</li>
+<li><a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">tablas bonitinhas con Kable</a></li>
 </ul>
 
 </div>
