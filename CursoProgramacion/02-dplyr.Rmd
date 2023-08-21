@@ -189,6 +189,28 @@ miIris |>
     largo:ancho del pétalo y el ancho del sépalo?
 -   grafica
 
+## Ejercicio
+
+Usando la base de datos del repositorio del ministerio de ciencias, genera un dataframe que responda lo siguiente:
+
+```{r eval=FALSE}
+url <- "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto19/CasosActivosPorComuna_std.csv"
+Casos_Activos <- read_csv(url)
+```
+
+
+* ¿Qué proporción de las comunas ha tenido en algún momento más de 50 casos por cada 100.000 habitantes?
+* Genera un dataframe, donde aparezca para cada comuna que haya tenido sobre 50 casos por cada 100.000 habitantes, cuantos días ha tenido sobre ese valor.
+* Genera una tabla con las comunas que han tenido sobre 50 casos por cada 100.000 habitantes y de esas comunas crea una variable que sea la prevalencia máxima de dicha comuna.
+
+## **Bonus** (Esto requiere investigar no basta con lo que aprendimos)
+
+* Ve cuales son las 10 comunas que han tenido la mayor mediana de prevalencia, para cada una de estas 10 comunas, genera una tabla con la mediana, prevalencia máxima y fecha en que se alcanzó la prevalencia máxima
+
+* La _prevalencia_ es la proporción de la población afectada en un período de tiempo determinado.
+
+
+
 ## Recursos
 
 -   [data wrangling cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)

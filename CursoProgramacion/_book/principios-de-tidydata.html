@@ -23,7 +23,7 @@
 <meta name="author" content="Horacio Samaniego, Derek Corcoran, Giorgia Graells" />
 
 
-<meta name="date" content="2023-08-18" />
+<meta name="date" content="2023-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -187,7 +187,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#podemos-explicar-que-sucedió-aquí"><i class="fa fa-check"></i><b>3.3.1</b> ¿Podemos explicar que sucedió aquí?</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#recursos"><i class="fa fa-check"></i><b>3.4</b> Recursos</a></li>
+<li class="chapter" data-level="3.4" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#ejercicio"><i class="fa fa-check"></i><b>3.4</b> Ejercicio</a></li>
+<li class="chapter" data-level="3.5" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos"><i class="fa fa-check"></i><b>3.5</b> <strong>Bonus</strong> (Esto requiere investigar no basta con lo que aprendimos)</a></li>
+<li class="chapter" data-level="3.6" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#recursos"><i class="fa fa-check"></i><b>3.6</b> Recursos</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -247,12 +249,12 @@ tabla</div>
 agregar un año de colecta ficticio. Para eso, vamos a crear un vector
 con 3 fechas asignadas de forma aleatoria a cada fila. Veamos las
 primeras 7 filas con la función <code>head()</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="principios-de-tidydata.html#cb1-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
-<span id="cb1-2"><a href="principios-de-tidydata.html#cb1-2" tabindex="-1"></a>año <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2003&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2023&quot;</span>), <span class="fu">nrow</span>(iris) <span class="sc">/</span> <span class="dv">3</span>))</span>
-<span id="cb1-3"><a href="principios-de-tidydata.html#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="principios-de-tidydata.html#cb1-4" tabindex="-1"></a>iris<span class="sc">$</span>Año <span class="ot">&lt;-</span> año</span>
-<span id="cb1-5"><a href="principios-de-tidydata.html#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="principios-de-tidydata.html#cb1-6" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(iris,<span class="dv">7</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="principios-de-tidydata.html#cb59-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb59-2"><a href="principios-de-tidydata.html#cb59-2" tabindex="-1"></a>año <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;2003&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2023&quot;</span>), <span class="fu">nrow</span>(iris) <span class="sc">/</span> <span class="dv">3</span>))</span>
+<span id="cb59-3"><a href="principios-de-tidydata.html#cb59-3" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="principios-de-tidydata.html#cb59-4" tabindex="-1"></a>iris<span class="sc">$</span>Año <span class="ot">&lt;-</span> año</span>
+<span id="cb59-5"><a href="principios-de-tidydata.html#cb59-5" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="principios-de-tidydata.html#cb59-6" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(iris,<span class="dv">7</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -294,7 +296,7 @@ Año
 setosa
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -314,7 +316,7 @@ setosa
 setosa
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -334,7 +336,7 @@ setosa
 setosa
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -354,7 +356,7 @@ setosa
 setosa
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -394,7 +396,7 @@ setosa
 setosa
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -445,10 +447,10 @@ diferencia entre los dos es que el uso del segundo no debieras requerir
 pre cargar la librería y es de uso mas reciente.</p>
 <p>por ejemplo, podemos calcular el largo promedio de los petalos de las
 especie en el set de datos <code>iris</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="principios-de-tidydata.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-2"><a href="principios-de-tidydata.html#cb2-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="principios-de-tidydata.html#cb2-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="principios-de-tidydata.html#cb2-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Promedio=</span><span class="fu">mean</span>(Petal.Length)) </span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="principios-de-tidydata.html#cb60-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb60-2"><a href="principios-de-tidydata.html#cb60-2" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb60-3"><a href="principios-de-tidydata.html#cb60-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb60-4"><a href="principios-de-tidydata.html#cb60-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Promedio=</span><span class="fu">mean</span>(Petal.Length)) </span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   Species    Promedio
 ##   &lt;fct&gt;         &lt;dbl&gt;
@@ -468,11 +470,11 @@ para calcular la media sobre los groupos de filas para cada especie.</p>
 columnas que son de tipo numérico, adjuntar una columna con el número de
 filas sobre el que calculamos dicha varianza y luego imprimirla a la
 pantalla de forma mas estilizada.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="principios-de-tidydata.html#cb4-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="principios-de-tidydata.html#cb4-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="principios-de-tidydata.html#cb4-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), var, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">N =</span> <span class="fu">n</span>())<span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="principios-de-tidydata.html#cb4-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="principios-de-tidydata.html#cb4-5" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="at">full_width =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="principios-de-tidydata.html#cb62-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb62-2"><a href="principios-de-tidydata.html#cb62-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a href="principios-de-tidydata.html#cb62-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), var, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">N =</span> <span class="fu">n</span>())<span class="sc">|&gt;</span></span>
+<span id="cb62-4"><a href="principios-de-tidydata.html#cb62-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb62-5"><a href="principios-de-tidydata.html#cb62-5" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="at">full_width =</span> F)</span></code></pre></div>
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -564,11 +566,11 @@ virginica
 <h3><span class="header-section-number">3.2.4</span> Filtrar<a href="principios-de-tidydata.html#filtrar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Filter nos permite encontrar, y operar, solo sobre filas que cumplen una
 condición determinada. Por ejemplo solo un tipo de especie</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="principios-de-tidydata.html#cb5-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="principios-de-tidydata.html#cb5-2" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&#39;virginica&#39;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="principios-de-tidydata.html#cb5-3" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb5-4"><a href="principios-de-tidydata.html#cb5-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="at">full_width =</span> F) <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="principios-de-tidydata.html#cb5-5" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;250px&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="principios-de-tidydata.html#cb63-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb63-2"><a href="principios-de-tidydata.html#cb63-2" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&#39;virginica&#39;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb63-3"><a href="principios-de-tidydata.html#cb63-3" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb63-4"><a href="principios-de-tidydata.html#cb63-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="at">full_width =</span> F) <span class="sc">|&gt;</span></span>
+<span id="cb63-5"><a href="principios-de-tidydata.html#cb63-5" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;250px&quot;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -611,7 +613,7 @@ Año
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -671,7 +673,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -731,7 +733,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -751,7 +753,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -771,7 +773,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -831,7 +833,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -851,7 +853,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -871,7 +873,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -891,7 +893,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -931,7 +933,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -951,7 +953,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -991,7 +993,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -1011,7 +1013,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -1031,7 +1033,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -1071,7 +1073,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -1091,7 +1093,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -1111,7 +1113,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -1151,7 +1153,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -1171,7 +1173,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -1231,7 +1233,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -1251,7 +1253,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -1271,7 +1273,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -1311,7 +1313,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -1331,7 +1333,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -1351,7 +1353,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -1371,7 +1373,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -1391,7 +1393,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -1491,7 +1493,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -1511,7 +1513,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -1531,7 +1533,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -1551,7 +1553,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -1591,7 +1593,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 </tbody>
@@ -1602,11 +1604,11 @@ un operador en el argumento de la función. En este caso era el operado
 <code>==</code> que es un <em>igual</em>, pero de forma literal, no como una asignación.
 Otro ejemplo podría ser seleccionar aquellas filas que tengan un largo
 de petalos mayor a 4.5, por ejemplo</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="principios-de-tidydata.html#cb6-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="principios-de-tidydata.html#cb6-2" tabindex="-1"></a>  <span class="fu">filter</span>(Petal.Length <span class="sc">&gt;</span> <span class="fl">4.5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="principios-de-tidydata.html#cb6-3" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="principios-de-tidydata.html#cb6-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="at">full_width =</span> F) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="principios-de-tidydata.html#cb6-5" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;250px&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="principios-de-tidydata.html#cb64-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb64-2"><a href="principios-de-tidydata.html#cb64-2" tabindex="-1"></a>  <span class="fu">filter</span>(Petal.Length <span class="sc">&gt;</span> <span class="fl">4.5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a href="principios-de-tidydata.html#cb64-3" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb64-4"><a href="principios-de-tidydata.html#cb64-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="at">full_width =</span> F) <span class="sc">|&gt;</span></span>
+<span id="cb64-5"><a href="principios-de-tidydata.html#cb64-5" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;250px&quot;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1649,7 +1651,7 @@ Año
 versicolor
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -1669,7 +1671,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -1689,7 +1691,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -1729,7 +1731,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -1749,7 +1751,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -1789,7 +1791,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -1829,7 +1831,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -1849,7 +1851,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -1889,7 +1891,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -1909,7 +1911,7 @@ versicolor
 versicolor
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -1929,7 +1931,7 @@ versicolor
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -1989,7 +1991,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -2049,7 +2051,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -2069,7 +2071,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -2129,7 +2131,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -2149,7 +2151,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -2169,7 +2171,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -2189,7 +2191,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -2229,7 +2231,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -2249,7 +2251,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -2289,7 +2291,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -2309,7 +2311,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -2329,7 +2331,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -2369,7 +2371,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -2389,7 +2391,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -2409,7 +2411,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -2449,7 +2451,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -2469,7 +2471,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -2529,7 +2531,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -2549,7 +2551,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -2569,7 +2571,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -2609,7 +2611,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2003
 </td>
 </tr>
 <tr>
@@ -2629,7 +2631,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2023
+2013
 </td>
 </tr>
 <tr>
@@ -2649,7 +2651,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -2669,7 +2671,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2003
 </td>
 </tr>
 <tr>
@@ -2689,7 +2691,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -2789,7 +2791,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2023
 </td>
 </tr>
 <tr>
@@ -2809,7 +2811,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -2829,7 +2831,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 <tr>
@@ -2849,7 +2851,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2003
+2013
 </td>
 </tr>
 <tr>
@@ -2889,7 +2891,7 @@ virginica
 virginica
 </td>
 <td style="text-align:left;">
-2013
+2023
 </td>
 </tr>
 </tbody>
@@ -2901,21 +2903,21 @@ virginica
 <p>Con <code>mutate()</code> podemos crear una nueva columna de forma explícita. Por
 ejemplo, si quisieramos saber cuales son las especies y años en que se
 colectaron especies con una razon largo/ancho determinado.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="principios-de-tidydata.html#cb7-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="principios-de-tidydata.html#cb7-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Petal.Ratio =</span> Petal.Length<span class="sc">/</span>Petal.Width)<span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="principios-de-tidydata.html#cb7-3" tabindex="-1"></a>  <span class="fu">select</span>(Petal.Ratio,Species,Año) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="principios-de-tidydata.html#cb7-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Species,Año) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="principios-de-tidydata.html#cb7-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Petal.Ratio.Mean =</span> <span class="fu">mean</span>(Petal.Ratio)) <span class="sc">|&gt;</span></span>
-<span id="cb7-6"><a href="principios-de-tidydata.html#cb7-6" tabindex="-1"></a>  <span class="fu">filter</span>(Petal.Ratio.Mean <span class="sc">&gt;</span> <span class="fu">median</span>(Petal.Ratio.Mean))</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="principios-de-tidydata.html#cb65-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb65-2"><a href="principios-de-tidydata.html#cb65-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Petal.Ratio =</span> Petal.Length<span class="sc">/</span>Petal.Width)<span class="sc">|&gt;</span></span>
+<span id="cb65-3"><a href="principios-de-tidydata.html#cb65-3" tabindex="-1"></a>  <span class="fu">select</span>(Petal.Ratio,Species,Año) <span class="sc">|&gt;</span></span>
+<span id="cb65-4"><a href="principios-de-tidydata.html#cb65-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Species,Año) <span class="sc">|&gt;</span></span>
+<span id="cb65-5"><a href="principios-de-tidydata.html#cb65-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Petal.Ratio.Mean =</span> <span class="fu">mean</span>(Petal.Ratio)) <span class="sc">|&gt;</span></span>
+<span id="cb65-6"><a href="principios-de-tidydata.html#cb65-6" tabindex="-1"></a>  <span class="fu">filter</span>(Petal.Ratio.Mean <span class="sc">&gt;</span> <span class="fu">median</span>(Petal.Ratio.Mean))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;Species&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 3 × 3
 ## # Groups:   Species [3]
 ##   Species    Año   Petal.Ratio.Mean
 ##   &lt;fct&gt;      &lt;chr&gt;            &lt;dbl&gt;
-## 1 setosa     2003              7.93
-## 2 versicolor 2023              3.27
-## 3 virginica  2023              2.88</code></pre>
+## 1 setosa     2013              7.53
+## 2 versicolor 2023              3.29
+## 3 virginica  2013              2.90</code></pre>
 </div>
 <div id="responder" class="section level3 hasAnchor" number="3.2.6">
 <h3><span class="header-section-number">3.2.6</span> Responder:<a href="principios-de-tidydata.html#responder" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2933,15 +2935,15 @@ precisa en función del análisis anterior?</li>
 <p>Muchas veces es necesario reorientar la tabla de datos.</p>
 <p>Primero, podríamos interesarnos en definir clases para las muestras.
 Definimos tamaños como clases usando terciles.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="principios-de-tidydata.html#cb10-1" tabindex="-1"></a>etiquetas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;alto&quot;</span>,<span class="st">&quot;medio&quot;</span>,<span class="st">&quot;bajo&quot;</span>)</span>
-<span id="cb10-2"><a href="principios-de-tidydata.html#cb10-2" tabindex="-1"></a>miIris <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="principios-de-tidydata.html#cb10-3" tabindex="-1"></a>  <span class="fu">mutate</span>(Tamaño <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">ntile</span>(Petal.Length<span class="sc">/</span>Petal.Width,<span class="dv">3</span>),<span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">labels =</span> etiquetas))</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="principios-de-tidydata.html#cb68-1" tabindex="-1"></a>etiquetas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;alto&quot;</span>,<span class="st">&quot;medio&quot;</span>,<span class="st">&quot;bajo&quot;</span>)</span>
+<span id="cb68-2"><a href="principios-de-tidydata.html#cb68-2" tabindex="-1"></a>miIris <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
+<span id="cb68-3"><a href="principios-de-tidydata.html#cb68-3" tabindex="-1"></a>  <span class="fu">mutate</span>(Tamaño <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">ntile</span>(Petal.Length<span class="sc">/</span>Petal.Width,<span class="dv">3</span>),<span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">labels =</span> etiquetas))</span></code></pre></div>
 <p>Luego vamos a re-orientar la tabla de manera a poder indagar si existe
 diferencia entre especies respecto de la característica <code>Tamaño</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="principios-de-tidydata.html#cb11-1" tabindex="-1"></a>miIris <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="principios-de-tidydata.html#cb11-2" tabindex="-1"></a>  <span class="fu">select</span>(Species, Año,Tamaño,Sepal.Width) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="principios-de-tidydata.html#cb11-3" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Tamaño, <span class="at">values_from =</span> Sepal.Width,<span class="at">values_fn=</span>mean) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="principios-de-tidydata.html#cb11-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="principios-de-tidydata.html#cb69-1" tabindex="-1"></a>miIris <span class="sc">|&gt;</span></span>
+<span id="cb69-2"><a href="principios-de-tidydata.html#cb69-2" tabindex="-1"></a>  <span class="fu">select</span>(Species, Año,Tamaño,Sepal.Width) <span class="sc">|&gt;</span></span>
+<span id="cb69-3"><a href="principios-de-tidydata.html#cb69-3" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Tamaño, <span class="at">values_from =</span> Sepal.Width,<span class="at">values_fn=</span>mean) <span class="sc">|&gt;</span></span>
+<span id="cb69-4"><a href="principios-de-tidydata.html#cb69-4" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2968,47 +2970,13 @@ alto
 setosa
 </td>
 <td style="text-align:left;">
-2013
-</td>
-<td style="text-align:right;">
-3.312500
-</td>
-<td style="text-align:right;">
-3.300000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-setosa
-</td>
-<td style="text-align:left;">
-2023
-</td>
-<td style="text-align:right;">
-3.350000
-</td>
-<td style="text-align:right;">
-3.900000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-setosa
-</td>
-<td style="text-align:left;">
 2003
 </td>
 <td style="text-align:right;">
-3.505556
+3.412500
 </td>
 <td style="text-align:right;">
-4.400000
+3.900000
 </td>
 <td style="text-align:right;">
 3.500000
@@ -3016,6 +2984,57 @@ setosa
 </tr>
 <tr>
 <td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:left;">
+2023
+</td>
+<td style="text-align:right;">
+3.253846
+</td>
+<td style="text-align:right;">
+3.850000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+3.494118
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+2.800000
+</td>
+<td style="text-align:right;">
+2.750000
+</td>
+<td style="text-align:right;">
+3.050000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 versicolor
 </td>
 <td style="text-align:left;">
@@ -3025,10 +3044,10 @@ versicolor
 NA
 </td>
 <td style="text-align:right;">
-2.858333
+2.590000
 </td>
 <td style="text-align:right;">
-3.133333
+2.980000
 </td>
 </tr>
 <tr>
@@ -3039,64 +3058,13 @@ versicolor
 2023
 </td>
 <td style="text-align:right;">
-2.200000
-</td>
-<td style="text-align:right;">
-2.608333
-</td>
-<td style="text-align:right;">
-2.740000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-versicolor
-</td>
-<td style="text-align:left;">
-2013
-</td>
-<td style="text-align:right;">
-2.750000
-</td>
-<td style="text-align:right;">
-2.690000
-</td>
-<td style="text-align:right;">
-3.040000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-virginica
-</td>
-<td style="text-align:left;">
-2013
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-2.920000
-</td>
-<td style="text-align:right;">
-2.927273
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-virginica
-</td>
-<td style="text-align:left;">
-2003
-</td>
-<td style="text-align:right;">
-NA
+2.450000
 </td>
 <td style="text-align:right;">
 2.800000
 </td>
 <td style="text-align:right;">
-2.991667
+2.800000
 </td>
 </tr>
 <tr>
@@ -3110,10 +3078,44 @@ virginica
 2.600000
 </td>
 <td style="text-align:right;">
-3.000000
+2.966667
 </td>
 <td style="text-align:right;">
-3.076923
+3.053846
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.925000
+</td>
+<td style="text-align:right;">
+2.938461
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.900000
+</td>
+<td style="text-align:right;">
+3.020000
 </td>
 </tr>
 </tbody>
@@ -3128,11 +3130,29 @@ largo:ancho del pétalo y el ancho del sépalo?</li>
 </ul>
 </div>
 </div>
-<div id="recursos" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Recursos<a href="principios-de-tidydata.html#recursos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejercicio" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Ejercicio<a href="principios-de-tidydata.html#ejercicio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Usando la base de datos del repositorio del ministerio de ciencias, genera un dataframe que responda lo siguiente:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="principios-de-tidydata.html#cb70-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto19/CasosActivosPorComuna_std.csv&quot;</span></span>
+<span id="cb70-2"><a href="principios-de-tidydata.html#cb70-2" tabindex="-1"></a>Casos_Activos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url)</span></code></pre></div>
+<ul>
+<li>¿Qué proporción de las comunas ha tenido en algún momento más de 50 casos por cada 100.000 habitantes?</li>
+<li>Genera un dataframe, donde aparezca para cada comuna que haya tenido sobre 50 casos por cada 100.000 habitantes, cuantos días ha tenido sobre ese valor.</li>
+<li>Genera una tabla con las comunas que han tenido sobre 50 casos por cada 100.000 habitantes y de esas comunas crea una variable que sea la prevalencia máxima de dicha comuna.</li>
+</ul>
+</div>
+<div id="bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> <strong>Bonus</strong> (Esto requiere investigar no basta con lo que aprendimos)<a href="principios-de-tidydata.html#bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Ve cuales son las 10 comunas que han tenido la mayor mediana de prevalencia, para cada una de estas 10 comunas, genera una tabla con la mediana, prevalencia máxima y fecha en que se alcanzó la prevalencia máxima</p></li>
+<li><p>La <em>prevalencia</em> es la proporción de la población afectada en un período de tiempo determinado.</p></li>
+</ul>
+</div>
+<div id="recursos" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Recursos<a href="principios-de-tidydata.html#recursos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">data wrangling cheatsheet</a></li>
-<li><a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">tablas bonitinhas con Kable</a></li>
+<li><a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">tablas “bonitinhas” con Kable</a></li>
 </ul>
 
 </div>
@@ -3197,6 +3217,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
