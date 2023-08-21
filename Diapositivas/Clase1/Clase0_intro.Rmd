@@ -1,0 +1,205 @@
+---
+title: "CBIT200 - Introducción al análisis geoespacial"
+author: "Horacio Samaniego"
+date: "`r format(Sys.time(), '%d/%m, %Y')`"
+output:
+  ioslides_presentation:
+    widescreen: true
+    incremental: true
+    logo: LogoRverso.jpeg
+revealjs::revealjs_presentation:
+          theme: night
+          center: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, cache = FALSE, tidy = TRUE, tidy.opts = list(width.cutoff = 50))
+library(tidyverse)
+library(broom)
+library(kableExtra)
+options("kableExtra.html.bsTable" = T)
+```
+
+# Bienvenida
+
+## OBJETIVOS  {.build}
+
+__Cambio de nombre__: Introducción al análisis (y manipulación) de datos geoespaciales
+
+1.  Conocer y entender el concepto de _Investigación Reproducible_ como una forma y filosofía de trabajo que permite que las investigaciones sean más ordenadas y replicables, desde la toma de datos hasta la escritura de resultados utilizando R.
+
+2.  Ser capaz de realizar análisis críticos de la naturaleza de los datos al realizar análisis exploratorios y reforzar conociminetos en estadística.
+
+3.  Realizar análisis de datos espaciales, poder visualizarlos y aplicar a preguntas de conservación y manejo de recursos naturales.
+
+4.  Aprender a utilizar, de forma proficiente, el lenguaje de programación R y la plataforma GitHub en un ambiente de trabajo colaborativo.
+
+## Evaluaciones {.build}
+
+
+
+| *Evaluación*               | *Ponderación* |
+|----------------------------|---------------|
+| Ejercicios \& Tareas  $$\frac{1}{n}\sum_i^n nota\, tarea_i$$       | 50%           |
+| Proyecto reporte           | 10%           |
+| Proyecto código            | 20%           |
+| Presentación               | 15%           |
+| Participación / Asistencia | 5%            |
+
+
+## Primeros pasos  {.build}
+
+* Evaluación sencilla (Informes reproducibles + presentación reproducible)
+* Evaluación por pares 
+* Mucho trabajo personal guiado
+* Pagina donde esta [todo el curso](https://cbit200-programacion-geoespacial.github.io/CursoProgramacion/_book/index.html)
+
+- Hacer:
+<ol>
+<li> suscribirse a [servidor Discord](https://discord.gg/TWGvq53tm)
+<li> hacerse usuario de [GitHub](http://www.github.com)
+</ol>
+
+# Elementos básicos
+
+## Objetos {.build}
+<div> <div style="float: left; width: 50%;">
+
+Todo en R es un objeto
+
+- Identidad -- _Nombre_ 
+  * e.g. Teléfono, RORACO (Roble, Raulí, Coihue), BCS, 'uso', etc...
+- Estado -- _Característica_
+  * e.g. verde, = '3', etc...
+- Comportamiento -- _Método_
+  * e.g. riiing, uso$$^2$$ 
+</div>
+
+<div style="float: right; width: 50%;">
+<!-- ![un objeto!](phone.jpg){width=250px}-->
+
+```{r, echo = FALSE}
+knitr::include_graphics("phone.jpg",dpi=1000)
+```
+</div>
+
+## Variables
+
+Tipos de datos básicos en R: 
+
+Los tipos de datos básicos (o "primitivos") más importantes son los tipos "numérico" (para números) y "carácter" (para texto). Otros tipos son el "entero", que puede utilizarse para representar números enteros; el "lógico" para VERDADERO/FALSO, y el "factor" para variables categóricas. 
+
+## Variables
+
+- _numeric_ - (10.5, 55, 787)
+- _integer_ - (1L, 55L, 100L, letra "L" lo declara como un entero)
+- _complex_ - (9 + 3i, donde "i" es la parte imaginaria)
+- _character_ (string) - ("k", "R is exciting", "FALSE", "11.5")
+- _logical_ (boolean) - (`TRUE` or `FALSE`)
+- _missing values_ - `NA` (Not Available / No disponible)
+- _factor_ - Una categoría / nivel, ordenada, o no (i.e. )
+
+  Un factor es una variable nominal (categórica) con un conjunto de valores posibles conocidos denominados niveles. Pueden crearse utilizando la función `as.factor`. En R suele ser necesario convertir (cast) una variable de carácter en un factor para identificar grupos para su uso en pruebas y modelos estadísticos.
+
+# Ejercicios
+
+## Computo simple
+1. Calcula la suma de 100.1, 234.9 and 12.01
+2. La raíz cuadrada de 256
+3. El logaritmo (base 10) de 100, y multiplique el resultado por el coseno de n. Ayuda: vea ?log and ?pi.
+4. Suma acumulada de 2, 3, 4, 5, 6.
+5. Suma acumulada anterior, pero en orden inverso.
+6. Encuentre 10 números enteros aleatorios entre 0 y 100 Ayuda: ?sample, ?runif, o una combinacion de aquello
+
+# Como se organizan los datos en R
+
+## Estructura de datos {.build}
+
+<div style="float: left; width: 40%;">
+
+- Vector: Un conjunto lineal de datos (secuencia génica, serie de tiempo)
+- Matrix: Una tabla con solo números
+- Data Frame: Una tabla donde cada columna tiene un tipo de datos (estándar dorado)
+- List: Aqui podemos meter lo que queramos
+
+</div>
+
+<div style="float: right; width: 60%;">
+
+```{r, echo = FALSE}
+knitr::include_graphics("Data.png")
+```
+
+</div>
+
+## Vector {.build}
+
+<div style="float: left; width: 40%;">
+
+* Secuencia lineal de datos
+* Pueden ser de muchos tipos (numéricos, de carácteres, lógicos, etc.)
+* Ejemplo data(uspop)
+* para crear uno c(1,4,6,7,8)
+* para subsetear un vector se pone el índice entre []
+* uspop[4], uspop[2:10], uspop[c(3,5,8)]
+
+</div>
+
+<div style="float: right; width: 60%;">
+
+```{r, echo = FALSE}
+knitr::include_graphics("Vector.jpg")
+```
+
+</div>
+
+## Errores + comunes
+
+Las siguientes líneas de código contienen algunos errores comunes que impiden que se evalúen correctamente o dan lugar a mensajes de error. 
+1. Mire el código sin ejecutarlo y vea si puede identificar los errores y corregirlos todos. 
+2. Luego, ejecute también el código defectuoso copiando y pegando el texto en la consola (no escribiéndolo, R studio intentará evitar estos errores por defecto) 
+(¡pero no todos producen errores!).
+
+```{r eval=FALSE}
+vector1 <- c('one', 'two', 'three', 'four, 'five', 'seven')
+vec.var <- var(c(1, 3, 5, 3, 5, 1)
+vec.mean <- mean(c(1, 3, 5, 3, 5, 1))
+vec.Min <- Min(c(1, 3, 5, 3, 5, 1))
+Vector2 <- c('a', 'b', 'f', 'g')
+vector2
+vector1 <- c('one', 'two', 'three
+```
+
+## Data Frame {.build}
+
+<div style="float: left; width: 40%;">
+
+* Una tabla, cada columna un tipo de datos (Numérico, lógico, etc)
+* Cada columna un vector
+* Ejemplo data(iris)
+* Para subsetear data.frame[filas,columnas]
+* Ejemplos iris[,3], iris["Petal.Length"], iris[2:5,c(1,5)], iris$Petal.Length
+
+
+</div>
+
+<div style="float: right; width: 60%;">
+
+```{r, echo = FALSE}
+knitr::include_graphics("DataFrame.jpg")
+```
+
+</div>
+
+## Ejercicio {.small}
+
+Crea este `data.frame` en la variable `z`:
+```{r, echo = F}
+set.seed(2023)
+DF <- data.frame(Numero = sample(1:5, size =5, replace = F), Letra = sample(LETTERS, size = 5, replace = F), Medida = rnorm(n = 5, mean = 60, sd = 10) ,stringsAsFactors = F)
+
+kable(DF, digits = 2) |> kable_styling(bootstrap_options = c("striped"), full_width = F)
+```
+
+
