@@ -268,29 +268,46 @@ kable(DF) |> kable_styling(bootstrap_options = c("striped", "hover", "condensed"
 * Selecciona columnas dentro de un data.frame, se pueden restar
 
 ```{r, eval=FALSE}
-iris |> group_by(Species) |> select(Petal.Length, Petal.Width) |> summarize_all(mean)
+iris |> 
+  group_by(Species) |> 
+  select(Petal.Length, Petal.Width) |> 
+  summarize_all(mean)
 ```
 
 ```{r, eval=FALSE}
-iris |> group_by(Species) |> select(-Sepal.Length, -Sepal.Width) |> summarize_all(mean)
+iris |> 
+  group_by(Species) |> 
+  select(-Sepal.Length, -Sepal.Width) |> 
+  summarize_all(mean)
 ```
 
 ```{r, eval=FALSE}
-iris |> group_by(Species) |> select(contains("Petal")) |> summarize_all(mean)
+iris |> 
+  group_by(Species) |> 
+  select(contains("Petal")) |> 
+  summarize_all(mean)
 ```
 
 ```{r, eval=FALSE}
-iris |> group_by(Species) |> select(-contains("Sepal")) |> summarize_all(mean)
+iris |> 
+  group_by(Species) |> 
+  select(-contains("Sepal")) |> 
+  summarize_all(mean)
 ```
 
 ```{r, echo = FALSE}
-DF <- iris |> group_by(Species) |> select(-contains("Sepal")) |> summarize_all(mean)
+DF <- iris |> 
+  group_by(Species) |> 
+  select(-contains("Sepal")) |> 
+  summarize_all(mean)
 ```
 
 ## Resultado
 
 ```{r, echo = FALSE}
-kable(DF) |> kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F)
+kable(DF) |> 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = F)
 ```
 
 

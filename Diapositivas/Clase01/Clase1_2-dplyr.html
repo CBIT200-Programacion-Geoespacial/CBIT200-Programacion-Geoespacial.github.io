@@ -6174,13 +6174,25 @@ virginica
 <li>Selecciona columnas dentro de un data.frame, se pueden restar</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>iris |&gt; group_by(Species) |&gt; select(Petal.Length, Petal.Width) |&gt; summarize_all(mean)</pre>
+<pre class = 'prettyprint lang-r'>iris |&gt; 
+  group_by(Species) |&gt; 
+  select(Petal.Length, Petal.Width) |&gt; 
+  summarize_all(mean)</pre>
 
-<pre class = 'prettyprint lang-r'>iris |&gt; group_by(Species) |&gt; select(-Sepal.Length, -Sepal.Width) |&gt; summarize_all(mean)</pre>
+<pre class = 'prettyprint lang-r'>iris |&gt; 
+  group_by(Species) |&gt; 
+  select(-Sepal.Length, -Sepal.Width) |&gt; 
+  summarize_all(mean)</pre>
 
-<pre class = 'prettyprint lang-r'>iris |&gt; group_by(Species) |&gt; select(contains(&quot;Petal&quot;)) |&gt; summarize_all(mean)</pre>
+<pre class = 'prettyprint lang-r'>iris |&gt; 
+  group_by(Species) |&gt; 
+  select(contains(&quot;Petal&quot;)) |&gt; 
+  summarize_all(mean)</pre>
 
-<pre class = 'prettyprint lang-r'>iris |&gt; group_by(Species) |&gt; select(-contains(&quot;Sepal&quot;)) |&gt; summarize_all(mean)</pre>
+<pre class = 'prettyprint lang-r'>iris |&gt; 
+  group_by(Species) |&gt; 
+  select(-contains(&quot;Sepal&quot;)) |&gt; 
+  summarize_all(mean)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Resultado</h2></hgroup><article  id="resultado">
 
