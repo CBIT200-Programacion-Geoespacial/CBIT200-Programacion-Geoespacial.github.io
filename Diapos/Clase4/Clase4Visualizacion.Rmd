@@ -19,8 +19,8 @@ options("kableExtra.html.bsTable" = T)
 
 ## Trabajemos con las áreas protegidas {.small}
 
-```{r}
-githubURL <- ("https://raw.githubusercontent.com/Curso-programacion/Tarea_1/master/Protected_Areas.rds")
+```{r, echo=TRUE, message=FALSE}
+githubURL <- "https://raw.githubusercontent.com/Curso-programacion/Tarea_1/master/Protected_Areas.rds"
 download.file(githubURL,"PA.rds", method="curl")
 PA <- readRDS("PA.rds")
 ```
@@ -30,7 +30,9 @@ file.remove("PA.rds")
 ```
 
 
-## ggplot2
+## ggplot2 {.small}
+
+<div class="columns-2">
 
 * ggplot(data.frame, aes(nombres de columna))
 * + geom_algo(argumentos, aes(columnas))
@@ -38,15 +40,20 @@ file.remove("PA.rds")
 * Personalización de ejes y leyendas
 * Dos [links](https://ggplot2.tidyverse.org/) para aprender [mas](https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf).
 
-```{r, eval=FALSE}
+```{r, echo=FALSE}
 library(tidyverse)
 ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG)) + theme_classic()
 ```
-
+</div>
 ## Ejemplo
 
-```{r, echo=FALSE}
-ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG)) + theme_classic()
+```{r echo=FALSE}
+#
+ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + 
+  geom_point(aes(color = DESIG))  + 
+  labs(x='año',y='área ("unidades")') + 
+  scale_color_discrete(name='Designación') + 
+  theme(legend.position = "bottom")
 ```
 
 ## Que diablos es aes() y por que +?
@@ -66,7 +73,12 @@ ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG)) + t
 ## color
 
 ```{r}
-ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG)) + theme_classic()
+ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG)) + theme_dark()
+```
+## leyenda
+
+```{r}
+ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG)) + theme_bw() + theme(legend.position = "bottom")
 ```
 
 ## alpha
@@ -75,7 +87,18 @@ ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG)) + t
 ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG), alpha = 0.5) + theme_classic()
 ```
 
-# Arreglemoslo un poco
+
+## Entendimos? -- uso de sheetcheat
+a ver? ¡Pongan los ejes!
+
+```{r echo=FALSE}
+ggplot(PA, aes(x = STATUS_YR, y=TERR_AREA)) + geom_point(aes(color = DESIG))  + labs(x='año',y='área ("unidades??")') + scale_color_discrete(name='Designación')
+```
+
+
+
+
+# Arreglémoslo un poco
 
 ## Eje y con números en vez de con exponente
 
@@ -218,10 +241,11 @@ ggplot(mtcars, aes(x = wt, y = mpg)) + geom_smooth(method = "lm") + geom_point()
 ```{r}
 ggplot(PA, aes(x = STATUS_YR, y = TERR_AREA)) +
   geom_point(aes(color = DESIG)) +
-  theme_bw() + 
+  theme_bw() + facet_wrap(~IUCN_CAT) +
   scale_y_log10(labels = scales::comma) +
   labs(x = "Año", y = "Área en hectáreas", title = "Áreas protegidas de Chile") +
-  facet_wrap(~IUCN_CAT)
+  theme(axis.text.x=element_text(angle=50, hjust=1))
+
 
 ```
 
