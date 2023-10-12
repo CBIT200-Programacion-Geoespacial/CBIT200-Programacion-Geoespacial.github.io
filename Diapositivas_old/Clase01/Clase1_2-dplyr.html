@@ -4287,8 +4287,8 @@ line-height: 1.9;
 
 <pre class = 'prettyprint lang-r'>library(tidyverse)
 data(iris)
-Summary.Petal &lt;- summarize(iris, Mean.Petal.Length = mean(Petal.Length), 
-                           SD.Petal.Length = sd(Petal.Length))</pre>
+Summary.Petal &lt;- summarize(iris, Mean.Petal.Length = mean(Petal.Length),
+    SD.Petal.Length = sd(Petal.Length))</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
@@ -4337,8 +4337,8 @@ SD.Petal.Length
 </article></slide><slide class=""><hgroup><h2>summarize y group_by (continuado)</h2></hgroup><article  id="summarize-y-group_by-continuado" class="small build">
 
 <pre class = 'prettyprint lang-r'>Summary.Petal &lt;- group_by(iris, Species)
-Summary.Petal &lt;- summarize(Summary.Petal, Mean.Petal.Length = mean(Petal.Length), 
-                           SD.Petal.Length = sd(Petal.Length))</pre>
+Summary.Petal &lt;- summarize(Summary.Petal, Mean.Petal.Length = mean(Petal.Length),
+    SD.Petal.Length = sd(Petal.Length))</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
@@ -4448,7 +4448,8 @@ virginica
 
 <pre class = 'prettyprint lang-r'>data(&quot;mtcars&quot;)
 Mtcars2 &lt;- group_by(mtcars, am, cyl)
-Consumo &lt;- summarize(Mtcars2, Consumo_promedio = mean(mpg), desv = sd(mpg))</pre>
+Consumo &lt;- summarize(Mtcars2, Consumo_promedio = mean(mpg),
+    desv = sd(mpg))</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
@@ -5129,15 +5130,19 @@ virginica
 <li>sobrescribir múltiples bases de datos</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>x &lt;- c(1,4,6,8)
-y &lt;- round(mean(sqrt(log(x))),2)</pre>
+<pre class = 'prettyprint lang-r'>x &lt;- c(1, 4, 6, 8)
+y &lt;- round(mean(sqrt(log(x))), 2)</pre>
 
 <ul class = 'build'>
 <li>Que hice ahí?</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>x &lt;- c(1,4,6,8)
-y &lt;- x |&gt; log() |&gt; sqrt() |&gt; mean() |&gt; round(2)</pre>
+<pre class = 'prettyprint lang-r'>x &lt;- c(1, 4, 6, 8)
+y &lt;- x |&gt;
+    log() |&gt;
+    sqrt() |&gt;
+    mean() |&gt;
+    round(2)</pre>
 
 <pre >## [1] 0.99</pre>
 
@@ -5149,7 +5154,8 @@ y &lt;- x |&gt; log() |&gt; sqrt() |&gt; mean() |&gt; round(2)</pre>
 
 <pre class = 'prettyprint lang-r'>DF &lt;- mutate(iris, Petal.Sepal.Ratio = Petal.Length/Sepal.Length)
 BySpecies &lt;- group_by(DF, Species)
-Summary.Byspecies &lt;- summarize(BySpecies, MEAN = mean(Petal.Sepal.Ratio), SD = sd(Petal.Sepal.Ratio))</pre>
+Summary.Byspecies &lt;- summarize(BySpecies, MEAN = mean(Petal.Sepal.Ratio),
+    SD = sd(Petal.Sepal.Ratio))</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
@@ -5257,11 +5263,9 @@ virginica
 <li>Con pipe</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>Summary.Byspecies &lt;- summarize(group_by(mutate(iris, 
-                                               Petal.Sepal.Ratio = Petal.Length/Sepal.Length), 
-                                        Species), 
-                               MEAN = mean(Petal.Sepal.Ratio), 
-                               SD = sd(Petal.Sepal.Ratio))</pre>
+<pre class = 'prettyprint lang-r'>Summary.Byspecies &lt;- summarize(group_by(mutate(iris,
+    Petal.Sepal.Ratio = Petal.Length/Sepal.Length),
+    Species), MEAN = mean(Petal.Sepal.Ratio), SD = sd(Petal.Sepal.Ratio))</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
@@ -5366,7 +5370,9 @@ virginica
 </article></slide><slide class=""><hgroup><h2>Pipeline ( %&gt;% ) </h2><h3> otro ejemplo</h3></hgroup><article  id="pipeline-otro-ejemplo" class="small">
 
 <pre class = 'prettyprint lang-r'>library(tidyverse)
-MEAN &lt;- iris |&gt; group_by(Species) |&gt; summarize_all(.funs = list(Mean = mean, SD =sd))</pre>
+MEAN &lt;- iris |&gt;
+    group_by(Species) |&gt;
+    summarize_all(.funs = list(Mean = mean, SD = sd))</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
@@ -5794,7 +5800,10 @@ menor o igual a
 </article></slide><slide class=""><hgroup><h2>Ejemplos de filter agregando a lo anterior</h2></hgroup><article  id="ejemplos-de-filter-agregando-a-lo-anterior" class="small">
 
 <pre class = 'prettyprint lang-r'>data(&quot;iris&quot;)
-DF &lt;- iris |&gt; filter(Species != &quot;versicolor&quot;) |&gt; group_by(Species) |&gt; summarise_all(mean)</pre>
+DF &lt;- iris |&gt;
+    filter(Species != &quot;versicolor&quot;) |&gt;
+    group_by(Species) |&gt;
+    summarise_all(mean)</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
@@ -5912,7 +5921,10 @@ virginica
 
 </article></slide><slide class=""><hgroup><h2>Ejemplos de filter</h2></hgroup><article  id="ejemplos-de-filter" class="small">
 
-<pre class = 'prettyprint lang-r'>DF &lt;- iris |&gt; filter(Petal.Length &gt;= 4 &amp; Sepal.Length &gt;= 5) |&gt; group_by(Species) |&gt; summarise(N = n())</pre>
+<pre class = 'prettyprint lang-r'>DF &lt;- iris |&gt;
+    filter(Petal.Length &gt;= 4 &amp; Sepal.Length &gt;= 5) |&gt;
+    group_by(Species) |&gt;
+    summarise(N = n())</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
@@ -5977,10 +5989,10 @@ virginica
 </article></slide><slide class=""><hgroup><h2>Más de una función</h2></hgroup><article  id="más-de-una-función" class="small">
 
 <pre class = 'prettyprint lang-r'>data(&quot;iris&quot;)
-DF &lt;- iris |&gt;  
-  filter(Species != &quot;versicolor&quot;) |&gt; 
-  group_by(Species) |&gt; 
-  summarise_all(.funs= list(Mean  = mean, SD = sd))</pre>
+DF &lt;- iris |&gt;
+    filter(Species != &quot;versicolor&quot;) |&gt;
+    group_by(Species) |&gt;
+    summarise_all(.funs = list(Mean = mean, SD = sd))</pre>
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; font-family: Avenir; margin-left: auto; margin-right: auto;">
 
@@ -6174,25 +6186,25 @@ virginica
 <li>Selecciona columnas dentro de un data.frame, se pueden restar</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>iris |&gt; 
-  group_by(Species) |&gt; 
-  select(Petal.Length, Petal.Width) |&gt; 
-  summarize_all(mean)</pre>
+<pre class = 'prettyprint lang-r'>iris |&gt;
+    group_by(Species) |&gt;
+    select(Petal.Length, Petal.Width) |&gt;
+    summarize_all(mean)</pre>
 
-<pre class = 'prettyprint lang-r'>iris |&gt; 
-  group_by(Species) |&gt; 
-  select(-Sepal.Length, -Sepal.Width) |&gt; 
-  summarize_all(mean)</pre>
+<pre class = 'prettyprint lang-r'>iris |&gt;
+    group_by(Species) |&gt;
+    select(-Sepal.Length, -Sepal.Width) |&gt;
+    summarize_all(mean)</pre>
 
-<pre class = 'prettyprint lang-r'>iris |&gt; 
-  group_by(Species) |&gt; 
-  select(contains(&quot;Petal&quot;)) |&gt; 
-  summarize_all(mean)</pre>
+<pre class = 'prettyprint lang-r'>iris |&gt;
+    group_by(Species) |&gt;
+    select(contains(&quot;Petal&quot;)) |&gt;
+    summarize_all(mean)</pre>
 
-<pre class = 'prettyprint lang-r'>iris |&gt; 
-  group_by(Species) |&gt; 
-  select(-contains(&quot;Sepal&quot;)) |&gt; 
-  summarize_all(mean)</pre>
+<pre class = 'prettyprint lang-r'>iris |&gt;
+    group_by(Species) |&gt;
+    select(-contains(&quot;Sepal&quot;)) |&gt;
+    summarize_all(mean)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Resultado</h2></hgroup><article  id="resultado">
 

@@ -1,0 +1,368 @@
+---
+title: "Practico para Reporte Métricas II"
+output:
+  html_notebook: default
+  always_allow_html: true
+  pdf_document: default
+---
+
+```{r}
+# load libraries
+list.of.packages <- c("landscapemetrics","sf","mapview","terra","dplyr","RColorBrewer")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages,dep=TRUE,repos = "http://cran.us.r-project.org")
+```
+
+```{r message=FALSE, warning=FALSE}
+library(landscapemetrics)
+#library(raster)
+library(RColorBrewer)
+library(terra)
+library(sf)
+library(dplyr)
+
+library(mapview)
+```
+
+# Preparacion de datos
+
+Algunos insumos para manejo de cartografía que usaremos:
+
+-   Mapas vectoriales de Chile [Aquí](https://www.bcn.cl/siit/mapas_vectoriales/index_html)
+-   Procesamiento de datos geográficos con `R` [Aquí](https://r.geocompx.org/index.html) o [aquí](https://bookdown.org/robinlovelace/geocompr/)
+
+## Usos de suelo para Chile
+
+Importamos raster de cobertura de usos de suelo para Chile. Esta cobertura viene del lab de Jaime Hernandez en la U de Chile y esta [documentada aqui](http://www.gep.uchile.cl/Landcover/Landcover%20de%20Chile%20-%20Descripci%C3%B3n%20del%20Producto%20-%20GEP%20UCHILE%202016.pdf) y [disponible aqui](http://www.gep.uchile.cl/Landcover_CHILE.html).
+
+Luego de [descargar los datos](http://www.gep.uchile.cl/Landcover/LandCover%20CHILE%202014.zip) y descomprimirlos en nuestro directorio de trabajo podemos "cargar" el archivo TIF como un objeto en `R`
+
+```{r}
+chiler <- terra::rast("LC_CHILE_2014_b.tif")
+
+```
+
+Miremos la descripcion del archivo, fijemosnos en qué sistema de coordenadas está.
+
+```{r}
+chiler
+
+```
+
+Vemos que sus coordenadas están definidas en UTM 19S
+
+Podemos también ver los datos con `plot()`.
+
+```{r}
+plot(chiler,main="Usos de suelo")
+```
+
+## Región de los Ríos
+
+Esta es una cobertura en formato `KML` de la región de los ríos.
+
+Fuente: [aqui](https://obtienearchivo.bcn.cl/obtienearchivo?id=repositorio/10221/10398/2/Regiones.zip).
+
+```{r}
+reg = st_read("Regional.shp") %>%
+  filter(Region=='Región de Los Ríos')
+
+plot(reg["Region"], axes = TRUE, graticule = TRUE)
+```
+
+## Unificamos proyección geográfica
+
+Ahora debemos reproyectar a UTM19 ([epsg:32719](https://epsg.io/32719))
+
+```{r}
+r14_utm = reg |>
+  filter(Region == 'Región de Los Ríos') |>
+  st_transform(crs=32719)
+plot(r14_utm["Region"], axes = FALSE, graticule = TRUE)
+```
+
+Podemos usar la provincia de Valdivia, o del Ranco, en vez de toda la región
+
+fuente: [Provincias.zip](https://www.bcn.cl/obtienearchivo?id=repositorio/10221/10397/2/Provincias.zip)
+
+```{r warning=FALSE}
+prov = read_sf("Provincias.shp") %>%
+  dplyr::select('Provincia') %>%
+  dplyr::filter(Provincia == 'Valdivia' | Provincia =='Ranco') %>%
+  st_transform(crs=32719)
+#vald=st_transform(prov[prov$Provincia=='Valdivia',],crs=32719) # reproyeccion a UTM19S !!
+#ranco=prov[prov$Provincia=='Ranco',]
+par(mfrow=c(1,2))
+plot(prov, axes = TRUE, graticule = TRUE)
+#plot(ranco['Provincia'], axes = TRUE, graticule = TRUE)
+```
+
+Ojo que solo hemos reproyectado la provincia de Valdivia y no Ranco!
+
+### Comunas de Chile
+
+```{r}
+#library(curl)
+#com_tmp = tempfile()
+#com = curl_download("https://www.bcn.cl/obtienearchivo?id=repositorio/10221/10396/2/Comunas.zip",com_tmp)
+#unzip(com)
+
+lr = read_sf("comunas.shp") %>%
+  dplyr::filter(Region == 'Región de Los Ríos') %>%
+  dplyr::select(Comuna, Provincia) %>%
+  st_transform(crs=32719)
+
+```
+
+En `R` existen librerías que permiten la visualización interactiva como [mapview](https://r-spatial.github.io/mapview/index.html)
+
+```{r}
+library(mapview)
+mapview(lr,alpha=.3,zcol='Comuna')
+```
+
+### Clipping y reclassificación de usos
+
+Debemos (re)cortar el raster con el poligono reproyectado para trabajar unicamente con área de interes. Para eso, usamos funciones de la librería `terra`. La función `crop` recorta a la extensión de *chiler*, pero solamente puede recortar coberturas de tipo raster en formas rectangulares, pues estamos tratando con una matriz (!). Para eliminar todo lo que no está en nuestro polígono de referencia usamos `mask`, lo que va a *enmascarar* lo que no está en nuestro polígono de referencia. Finalmente, `trim` elimina columnas, o filas, que solo tengan `NaN`.
+
+La idea es tener una cobertura raster lo mas pequeña posible para conservar memoria. Por lo mismo, se eliminan las coberturas/objetos que no usaremos mas con la función `rm`.
+
+```{r}
+comuna = 'Máfil'
+
+LC = terra::crop(chiler,subset(lr,Comuna == comuna))
+LC <- mask(LC, subset(lr,Comuna == comuna))
+LC <- trim(LC)
+plot(LC, axes = FALSE, background="grey",mar=c(2,2,2,6))
+
+#rm(chiler,r14,r14_utm)
+```
+
+### Reclasificamos a usos que nos interesan
+
+Vamos a ver qué clases de usos existen. Ver equivalencia en documentación. Po ejemplo, los valores entre 200 y 300 son alguna categoría de *bosque* (ver mas abajo).
+
+```{r}
+sort(unique(values(LC)))
+```
+
+Es mas informativo ver la frecuencia de cada uso con un gráfico de barras
+
+```{r warning=FALSE}
+
+barplot(LC,main='Número de pixeles por clase',horiz=TRUE,las=1)
+```
+
+Ahora necesitamos reclasificar los Usos de Suelos (Land Covers). Usaremos la Tabla 1 de la [documentación](http://www.gep.uchile.cl/Landcover/Landcover%20de%20Chile%20-%20Descripci%C3%B3n%20del%20Producto%20-%20GEP%20UCHILE%202016.pdf).
+
+### Nos interesan retener los siguientes usos:
+
+-   Oceano : 0
+-   Cultivos: 1 a 200
+-   Bosque Nativo: 210,220 y 230)
+-   Plantaciones (240 y 250)
+-   Pastizales (300)
+-   Matorrales (400)
+-   Humedales (500)
+-   Cuerpos de agua (600)
+-   Otros (800,900,1000 y 1200)
+
+Para reclasificar, generamos una tabla con los valores de reclasificacion
+
+```{r warning=FALSE}
+#clases que nos interesan
+clases_usos = c("Cultivos","Bosque Nativo","Plantaciones","Pastizales","Matorrales","Humedales","Agua","Otros")
+# matriz para reclasificar, la primea columna es desde, la 2da hasta y la 3ra el valor de clase que le daremos (ver: ?terra::classify)
+reclass = c(
+  -Inf,1,NaN,
+  1,200,0,  # Cultivos
+  200,240,1, # Bosque Nativo
+  240,300,2, # Plantacion
+  300,400,4, # Pastizales
+  400,500,5,
+  500,600,6,
+  600,800,7,
+  800,2000,8
+)
+reclass_m = matrix(reclass,ncol=3,byrow=TRUE)
+
+col2 = c("red","darkgreen","brown","yellow","wheat","lightblue","blue","white")
+
+LC2 = terra::classify(LC,reclass_m)
+usos = data.frame(id=sort(unique(values(LC2))), usos=clases_usos)
+levels(LC2) = usos # establece los valores del raster como categórico, como clases
+
+#par(mgp=c(3.5, 5, 2, 1))
+barplot(LC2,main='Número de pixeles por clase',names=clases_usos,horiz=TRUE,las=1,col=col2,cex.names=.6)
+#rm(LC,reclass_m, reg)
+```
+
+Luego, vamos a visualizar el raster clasificado
+
+```{r}
+plot(LC2, type="classes",col=col2,main=comuna, axes=F,background="grey", mar=c(1,1,1,6),legend=T)
+```
+
+Podemos ver también solo aquellos parches de bosque nativo
+
+```{r}
+par(mfrow=c(2,2))
+plot(LC2 ==1,main="bosque nativo", axes=F,legend=F,mar=c(1,1,3,1),col=c("grey","darkgreen"))
+plot(LC2 ==2,main="plantación", axes=F,legend=F,mar=c(1,1,3,1),col=c("grey","brown"))
+plot(LC2 ==4,main="pastizales", axes=F,legend=F,mar=c(1,1,3,1),col=c("grey","yellow"))
+plot(LC2 ==5,main="matorrales", axes=F,legend=F,mar=c(1,1,3,1),col=c("grey","orange"))
+
+```
+
+### Una corrección
+
+Para aplicar el calculo de métricas de paisajes, necesitamos que el tamaño de las celdas sea igual. Desafortunadamente, algo sucede en el archivo original que deja las celdas levemente desigual. Si tipiamos el comando `> res(LC2)` vamos a ver que la resolución es de `30.00002, 29.99993  (x, y)`. Si eso está en unidades de metros, la diferencia es milimétrica!
+
+Para corregir eso, usaremos el comando `warp()`. Lo haremos en 2 pasos: 1. Generamos un raster *vacío* de las mismas dimensiones, proyección y con resolución de 30m. 2. "Resampleamos", es decir vamos a remuestrear este nuevo raster con los valores de archivo original.
+
+```{r}
+tmp = terra::rast(nrows=dim(LC2)[1], ncols=dim(LC2)[2], nlyrs=1, xmin=ext(LC2)[1], xmax=ext(LC2)[2], ymin=ext(LC2)[3],ymax=ext(LC2)[4], crs = crs(LC2), resolution=30.0000000, vals=NA)
+LC = resample(LC2,tmp,method="cubic")
+LC
+#rm(LC2)
+```
+
+## Metricas de paisaje
+
+Usaremos una librería descrita en la siguiente publicación:
+
+-   Hesselbarth, M.H.K., Sciaini, M., With, K.A., Wiegand, K., Nowosad, J. 2019. landscapemetrics: an open‐source R tool to calculate landscape metrics. Ecography, 42: 1648-1657 ([paper](https://sci-hub.se/10.1111/ecog.04617))
+
+Según la documentación de la libreria `lansdcapemetrics` [aquí](https://r-spatialecology.github.io/landscapemetrics/index.html), el raster deben ser numeros enteros. Para eso debemos hacer unas correcciones mas.
+
+```{r include=FALSE}
+# ver si son enteros
+unique(values(LC))
+# como no lo son, transformarlos
+values(LC) = as.integer(values(LC))
+#volver a chequear...
+unique(values(LC)) # ahora si!
+
+```
+
+Luego, la libreria (y el paper) nos indica que debemos "chequear" el paisaje que vamos a medir
+
+```{r}
+check_landscape(LC)
+```
+
+Podemos calcular todas las métricas disponibles para la comuna de Máfila a nivel de paisaje.
+
+```{r}
+mafil_l = calculate_lsm(LC,level="landscape",full_name = TRUE)
+mafil_l
+```
+
+### Metricas por clase
+
+Podemos preguntarnos también por la proporción del paisaje utilizada por cada clase,
+
+```{r}
+met_clases_areaBorde =calculate_lsm(LC2,level="class",type="area and edge metric",full_name = T)
+#write.csv("metricasXclase_areaBorde.csv",met_clases_areaBorde) # lo guarda en un CSV
+```
+
+```{r}
+print(dplyr::select(met_clases_areaBorde,c(class,value,name, function_name)))
+
+```
+
+## Construcción de nueva métrica
+
+Podemos tambien construir una nueva métrica.
+
+-   Índice de forma ponderada por área
+
+Para esto, podemo calcular el indice de forma para cada parche y luego dividir cada parche por su área.
+
+```{r}
+iforma_p = lsm_p_shape(LC2)
+area_p = lsm_p_area(LC2)
+frac_c = lsm_c_frac_mn(LC2)
+```
+
+```{r}
+frac_c
+```
+
+Vamos a multiplicar, para cada parche, esta dos metricas y agrupar por cada clase
+
+```{r}
+# calculate weighted mean
+iforma_area <- dplyr::left_join(x = iforma_p, y = area_p, 
+                                     by = c("layer", "level", "class", "id")) |>
+  dplyr::mutate(value.w = value.x * value.y) |>
+  dplyr::group_by(class) |>
+  dplyr::summarise(I.forma.area = sum(value.w) / sum(value.y)) 
+
+```
+
+Ahora, podemos ver esta métrica por clase
+
+```{r}
+kk = dplyr::left_join(
+  x = iforma_area,
+  y = mutate(frac_c,frac_mn=value),
+  by = "class",
+  select(c("class","I.forma.area","frac_mn"))
+)
+kk
+
+cor.test(kk$frac_mn,kk$I.forma.area)
+```
+
+Finalmente, podemos no solo tener este resumen, sino que podemos volver a los datos originales y ver como se distribuyen
+
+```{r}
+par(mfrow=c(2,2))
+hist(log10(iforma_p$value[which(iforma_p$class==1)]),main="bosque nativo",xlab="Índice de forma",prob=F)
+hist(log10(iforma_p$value[which(iforma_p$class==2)]),main="plantación",xlab="Índice de forma")
+hist(log10(area_p$value[which(area_p$class==1)]),main="",xlab="Área de parche")
+hist(log10(area_p$value[which(area_p$class==2)]),main="",xlab="Área de parche")
+```
+
+# Comparando usos
+
+¿Qué podemos decir de las diferencias de configuración de 2 tipos de usos?
+
+Tomemos el bosque nativo y la plantación en la comuna de Máfil. Podemos evaluar la distancia a parches vecinos del la misma clase con la función `lsm_p_enn()`. Esta es una métrica definida, aquí, por parche.
+
+```{r}
+# all patch IDs of class 2 with an ENN > 2.5
+areas_bn <- LC2 |> 
+    lsm_p_enn() |>
+    dplyr::filter(class == 1 ) |>
+    dplyr::pull(value)
+areas_pl <- LC2 |> 
+    lsm_p_enn() |>
+    dplyr::filter(class == 2 ) |>
+    dplyr::pull(value)
+```
+
+Ojo\> notar que la función `dplyr::pull()` (de la librería `dplyr`, como lo indica) extrae solo el vector/columna que nos interesa, `value` en este caso.
+
+```{r}
+par(mfrow=c(1,2))
+hist(log10(areas_bn),main="bosque nativo",xlab="Distancia a parche mas vecino (log10)",xlim=c(1.5,3.5))
+hist(log10(areas_pl),main="plantación",xlab="Distancia a parche mas vecino (log10)",xlim=c(1.5,3.5))
+```
+
+## Visualizar métricas
+
+Finalmente, podemos volver a "mapear" el valor de una métrica en su mismo parche usando funciones auziliares de la librería.
+
+Aqui un ejemplo con la dimensión fractal, una métrica que mide la complejidad de la forma.
+
+¿En qué lugares de la comuna hay mas heterogeneidad en la estructura del bosque nativo?
+
+```{r}
+
+dfrac_bp = show_lsm(LC, what = "lsm_p_frac", class = c(1,2), label_lsm = TRUE)
+
+dfrac_bp
+```

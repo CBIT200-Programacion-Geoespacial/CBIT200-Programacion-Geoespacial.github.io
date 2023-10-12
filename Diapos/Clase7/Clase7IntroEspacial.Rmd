@@ -56,7 +56,9 @@ library(rworldxtra)
 data("countriesHigh")
 Mundo <- st_as_sf(countriesHigh)
 
-ggplot() + geom_sf(data = Mundo, aes(fill = POP_EST))
+Mundo <- Mundo |>
+  mutate(gdp_cap = GDP_MD_EST/POP_EST)
+ggplot() + geom_sf(data = Mundo, aes(fill = gdp_cap))
 ```
 
 ## Ejemplos datos vectoriales (cont.)
