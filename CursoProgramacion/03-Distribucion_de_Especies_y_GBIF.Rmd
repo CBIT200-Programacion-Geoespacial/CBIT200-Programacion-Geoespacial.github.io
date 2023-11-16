@@ -192,7 +192,7 @@ kable(Clima) %>% kable_styling(bootstrap_options = c("striped", "hover", "conden
 ###Correlacion entre vaiables bioclimaticas
 
 Es importante comprender cuales variables bioclimáticas son relevantes para decribir y predecir la distribución de la especies. Identificar la correlación entre variables 
-permite 
+permite elegir las variables que tienen mas sentido a la hora de generar una predicción.
 
 ```{r}
 #install.packages("ggcorrplot")
