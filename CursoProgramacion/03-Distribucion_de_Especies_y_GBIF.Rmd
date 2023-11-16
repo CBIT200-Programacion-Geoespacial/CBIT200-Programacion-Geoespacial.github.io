@@ -1,0 +1,124 @@
+---
+title: "Uso de GBIF"
+author: "Horacio Samaniego"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Uso de GBIF y modelos de distribucion de especies
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, cache = FALSE, tidy = TRUE, tidy.opts= list(blank = FALSE, width.cutoff = 60))
+library(leaflet)
+library(sf)
+library(tidyverse)
+library(rgdal)
+library(raster)
+library(rasterVis)
+library(rworldxtra)
+library(tidyverse)
+library(gridExtra)
+library(kableExtra)
+options("kableExtra.html.bsTable" = T)
+```
+
+## Estudio de abundancia usando datos de [GBIF](http://www.gbif.org)
+
+```{r, echo = TRUE, eval=TRUE}
+library(rgbif)
+library(rworldxtra)
+library(raster)
+library(sf)
+library(tidyverse)
+```
+
+Vamos a hacer un modelo de distribucion de especies para _Octodon degus_
+
+
+### Registros de presencia
+
+La función `occ_count()` retorna la cantidad de registros de presencia de acuerdo con criterios como código del taxón (taxonKey), tipo de registro (basisOfRecord), país y año, entre otros.
+
+Ejemplos de uso de occ_count:
+
+```{r}
+# Total de registros de presencia en GBIF
+occ_count()
+```
+
+
+Cantidad de registros georreferenciados
+
+```{r}
+occ_count(georeferenced = TRUE)
+
+```
+
+# Cantidad de registros ubicados en Chile
+
+
+```{r}
+#código del país
+cr_isocode <- isocodes[grep("Chile", isocodes$name), "code"]
+## Conteo
+occ_count(country=cr_isocode)
+
+```
+
+
+### Ejemplo, pumas en Arg
+
+```{r}
+# registros de Pumas ubicados en Argentina, georreferenciados
+# Obtención del código del taxón
+name <- name_backbone(name='Puma concolor', rank='species')
+name[, c('usageKey', 'scientificName')]
+
+```
+
+
+Contamos
+
+```{r}
+occ_count(taxonKey = 2435099, 
+          country = 'AR',
+          georeferenced = TRUE
+)
+
+```
+
+## Busqueda de registros
+
+Nos vamos a concentrar en describir la distribucion de _Octodon degus_
+
+
+Usaremos `occ_search()` y `occ_data()` para recuperar presencias. Obtendremos  _nombre científico_, _país_, _continente_, _fecha_, entre otros datos.
+
+`occ_search` nos da un resumen de resultados como los del paquete `dplyr` de Tidyverse, mientras que `occ_data` está optimizada para ser más eficiente.
+
+Ojo -> Sólo se entregan **máximo de 100000** registros en cada llamada.
+
+```{r}
+# Registros de presencia de manigordos en Costa Rica, georreferenciados y sin problemas detectados de georreferenciación (ej. coordenadas invertidas)
+occ_search(
+  scientificName = 'Octodon degus', 
+  country = 'CL', 
+  hasCoordinate = TRUE, 
+  hasGeospatialIssue = FALSE
+)
+```
+
+# Ejercicios
+
+1. Describir los datos de ocurrencia de _O. degus_ en base de datos [GBIF](http://www.gbif.org) 
+  a. ¿Cuántos registros existen?
+  b. ¿Qué otros datos pueden asociarse a dichos registros? (bonus, no lo vimos en clase!)
+2. Hacer un mapa de la distribución de _O. degus_ para Chile
+  a. ¿En cuántas Regiones encontramos a esta expecie?
+  b. ¿Cuál es la comuna de Chile que tiene mas registros?
+3. Construye una base de datos (tabla), con los valores de temperatura, pp y variables bioclimáticas donde ocurre _O. degus_ en Chile
+4. Describe estadisticamente el espacio bioclimático en que ocurre _O. degus_
+  a. T y PP máximas y mínimas
+5. Contruye una serie de tiempo con el número de registros de _O. degus_
+  a. ¿Puedes decir cual es la comuna (o región) que ha tenido el registro mas continuo de esta especie?
+      i. Antes de hacer, diseña un algoritmo para producir dichos datos.
