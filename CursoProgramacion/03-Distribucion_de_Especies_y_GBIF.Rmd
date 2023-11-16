@@ -32,7 +32,7 @@ library(sf)
 library(tidyverse)
 ```
 
-Vamos a hacer un modelo de distribucion de especies para _Octodon degus_
+Vamos a hacer un modelo de distribucion de especies para _Octodon degus_. [Aquí](https://es.wikipedia.org/wiki/Octodon_degus) una descripción del ratón de cola de pincel.
 
 
 ### Registros de presencia
@@ -54,14 +54,14 @@ occ_count(georeferenced = TRUE)
 
 ```
 
-# Cantidad de registros ubicados en Chile
+## Cantidad de registros ubicados en Chile
 
 
 ```{r}
 #código del país
-cr_isocode <- isocodes[grep("Chile", isocodes$name), "code"]
+cl_isocode <- isocodes[grep("Chile", isocodes$name), "code"]
 ## Conteo
-occ_count(country=cr_isocode)
+occ_count(country="CL",georeferenced = TRUE)
 
 ```
 
@@ -108,10 +108,124 @@ occ_search(
 )
 ```
 
-# Ejercicios
+
+```{r}
+od  = occ_search(
+  scientificName = 'Octodon degus', 
+  country = 'CL', 
+  hasCoordinate = TRUE, 
+  hasGeospatialIssue = FALSE
+)
+
+od <- od$data |>
+  dplyr::select(decimalLongitude,decimalLatitude,verbatimLocality) |>
+  distinct()
+```
+
+## Plotear 
+
+```{r}
+
+coordenadas <- tibble(x = od$decimalLongitude, y = od$decimalLatitude) |>
+                   st_as_sf(coords = c("x", "y"), crs= "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
+                                )
+
+ggplot() + geom_sf(data = coordenadas) + theme_bw()
+
+
+```
+
+
+## plotear mas bonito 
+
+
+```{r}
+
+library(curl)
+com_tmp = tempfile()
+com = curl_download("https://www.bcn.cl/obtienearchivo?id=repositorio/10221/10396/2/Comunas.zip",com_tmp)
+unzip(com)
+
+lr = read_sf("comunas.shp") %>%
+#  dplyr::filter(Region == 'Región de Los Ríos') %>%
+  dplyr::select(Comuna, Provincia) %>%
+  st_transform(crs=32719)
+
+ggplot() + 
+  geom_sf(data=lr) +
+    geom_sf(data = coordenadas) + theme_bw()
+
+
+
+#library(mapview)
+
+#mapview(lr)
+
+```
+### con mapview
+
+
+```{r}
+mapview(coordenadas)
+```
+
+
+### Buscando datos climaticos
+
+```{r}
+Bioclim <- getData("worldclim", var = "bio", res = 2.5) %>%
+    crop(coordenadas)
+plot(Bioclim)
+```
+
+El clima para los _O. degus_
+
+```{r}
+
+Clima <- raster::extract(Bioclim, coordenadas) %>%
+    as.data.frame()
+
+kable(Clima) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%  scroll_box(width = "100%", height = "400px")
+```
+
+
+###Correlacion entre vaiables bioclimaticas
+
+Es importante comprender cuales variables bioclimáticas son relevantes para decribir y predecir la distribución de la especies. Identificar la correlación entre variables 
+permite 
+
+```{r}
+#install.packages("ggcorrplot")
+library(ggcorrplot)
+corr <- cor(Clima,use = "pairwise")
+ggcorrplot(corr,method='circle',pch=2,show.diag = FALSE,type="upper",
+           ggtheme = theme_minimal(),hc.order = TRUE)
+```
+Selecctionamos en funcions de la correlacion algunas variables de Bioclim
+
+```{r}
+Bioclim <- Bioclim[[c(1,3,5,9,10)]]
+plot(Bioclim)
+
+Clima2 <- raster::extract(Bioclim, coordenadas) %>%
+    as.data.frame()
+
+
+kable(Clima2) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%  scroll_box(width = "100%", height = "400px")
+```
+
+
+```{r}
+od2 <- coordenadas |>
+  bind_cols(Clima)
+
+```
+
+
+## Ejercicios
 
 1. Describir los datos de ocurrencia de _O. degus_ en base de datos [GBIF](http://www.gbif.org) 
-  a. ¿Cuántos registros existen?
+  a. ¿Cuántos registros totales existen? y ¿En cuántas localidades únicas?
   b. ¿Qué otros datos pueden asociarse a dichos registros? (bonus, no lo vimos en clase!)
 2. Hacer un mapa de la distribución de _O. degus_ para Chile
   a. ¿En cuántas Regiones encontramos a esta expecie?

@@ -1,9 +1,11 @@
 ---
-title: "Practico para Reporte Métricas II"
+title: "SIG y Métricas"
 output:
-  html_notebook: default
-  always_allow_html: true
+  html_document:
+    df_print: paged
+  always_allow_html: yes
   pdf_document: default
+  html_notebook: default
 ---
 
 ```{r}
@@ -20,6 +22,7 @@ library(RColorBrewer)
 library(terra)
 library(sf)
 library(dplyr)
+library(kableExtra)
 
 library(mapview)
 ```
@@ -38,6 +41,11 @@ Importamos raster de cobertura de usos de suelo para Chile. Esta cobertura viene
 Luego de [descargar los datos](http://www.gep.uchile.cl/Landcover/LandCover%20CHILE%202014.zip) y descomprimirlos en nuestro directorio de trabajo podemos "cargar" el archivo TIF como un objeto en `R`
 
 ```{r}
+# library(curl)
+# com_tmp = tempfile()
+# com = curl_download("http://www.gep.uchile.cl/Landcover/LandCover%20CHILE%202014.zip",com_tmp)
+# unzip(com)
+
 chiler <- terra::rast("LC_CHILE_2014_b.tif")
 
 ```
@@ -64,7 +72,7 @@ Esta es una cobertura en formato `KML` de la región de los ríos.
 Fuente: [aqui](https://obtienearchivo.bcn.cl/obtienearchivo?id=repositorio/10221/10398/2/Regiones.zip).
 
 ```{r}
-reg = st_read("Regional.shp") %>%
+reg = st_read("Regional.shp") |>
   filter(Region=='Región de Los Ríos')
 
 plot(reg["Region"], axes = TRUE, graticule = TRUE)
@@ -109,7 +117,7 @@ Ojo que solo hemos reproyectado la provincia de Valdivia y no Ranco!
 
 lr = read_sf("comunas.shp") %>%
   dplyr::filter(Region == 'Región de Los Ríos') %>%
-  dplyr::select(Comuna, Provincia) %>%
+  #dplyr::select(Comuna, Provincia) %>%
   st_transform(crs=32719)
 
 ```
@@ -118,7 +126,7 @@ En `R` existen librerías que permiten la visualización interactiva como [mapvi
 
 ```{r}
 library(mapview)
-mapview(lr,alpha=.3,zcol='Comuna')
+mapview(lr,alpha=.3,zcol=c('Comuna','st_area_sh'),legend=T)
 ```
 
 ### Clipping y reclassificación de usos
@@ -131,8 +139,15 @@ La idea es tener una cobertura raster lo mas pequeña posible para conservar mem
 comuna = 'Máfil'
 
 LC = terra::crop(chiler,subset(lr,Comuna == comuna))
+
+plot(LC)
+
 LC <- mask(LC, subset(lr,Comuna == comuna))
+plot(LC)
+
+
 LC <- trim(LC)
+
 plot(LC, axes = FALSE, background="grey",mar=c(2,2,2,6))
 
 #rm(chiler,r14,r14_utm)
@@ -146,11 +161,21 @@ Vamos a ver qué clases de usos existen. Ver equivalencia en documentación. Po 
 sort(unique(values(LC)))
 ```
 
+```{r}
+# Frecuencias de cada uso
+table(values(LC))
+```
+
 Es mas informativo ver la frecuencia de cada uso con un gráfico de barras
 
 ```{r warning=FALSE}
 
-barplot(LC,main='Número de pixeles por clase',horiz=TRUE,las=1)
+barplot(LC*900/10000,main='Número de pixeles por clase',horiz=TRUE,las=1)
+```
+
+```{r}
+#table(values(LC))
+kableExtra::kable(table(values(sort(LC)))*900/10000)
 ```
 
 Ahora necesitamos reclasificar los Usos de Suelos (Land Covers). Usaremos la Tabla 1 de la [documentación](http://www.gep.uchile.cl/Landcover/Landcover%20de%20Chile%20-%20Descripci%C3%B3n%20del%20Producto%20-%20GEP%20UCHILE%202016.pdf).
@@ -195,6 +220,8 @@ levels(LC2) = usos # establece los valores del raster como categórico, como cla
 #par(mgp=c(3.5, 5, 2, 1))
 barplot(LC2,main='Número de pixeles por clase',names=clases_usos,horiz=TRUE,las=1,col=col2,cex.names=.6)
 #rm(LC,reclass_m, reg)
+
+
 ```
 
 Luego, vamos a visualizar el raster clasificado

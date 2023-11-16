@@ -84,9 +84,31 @@ ggplot() + geom_sf(data = Mapa) + geom_sf(data =  Datos, aes(size = Measurement)
 -   Ver video [tidyverse](https://youtu.be/5tjCeFb2oSk)
 
 ```{r, echo = FALSE}
-Datos %>% as.data.frame() %>% group_by(species) %>% summarise(n = n(), mean = mean(Measurement), max = max(Measurement), min = min(Measurement)) %>% arrange(desc(mean)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+Datos %>% as.data.frame() %>% 
+  group_by(species) %>% 
+  summarise(n = n(), media = mean(Measurement), maximo = max(Measurement), des_est = sd(Measurement)) %>%
+  arrange(desc(media)) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
   scroll_box(width = "100%", height = "400px")
 ```
+
+```{r}
+kk <- Datos |>
+  as.data.frame() |>
+  filter(species == 'Bombus occidentalis' & Measurement >0) |>
+  dplyr::select(Measurement)
+  
+kk2 <- Datos |>
+  as.data.frame() |>
+  filter(species == 'Bombus occidentalis') |>
+  dplyr::select(Measurement)
+
+par(mfrow=c(1,2))
+  
+hist(kk2$Measurement)
+```
+
 
 # Ahora a modelar
 
