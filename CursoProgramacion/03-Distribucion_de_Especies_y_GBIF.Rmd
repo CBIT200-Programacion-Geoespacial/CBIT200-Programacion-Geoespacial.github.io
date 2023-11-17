@@ -19,6 +19,7 @@ library(rworldxtra)
 library(tidyverse)
 library(gridExtra)
 library(kableExtra)
+library(mapview)
 options("kableExtra.html.bsTable" = T)
 ```
 

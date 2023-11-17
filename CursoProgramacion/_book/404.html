@@ -23,7 +23,7 @@
 <meta name="author" content="Horacio Samaniego" />
 
 
-<meta name="date" content="2023-11-16" />
+<meta name="date" content="2023-11-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,26 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -200,7 +220,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.1" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#ejemplo-pumas-en-arg"><i class="fa fa-check"></i><b>4.2.1</b> Ejemplo, pumas en Arg</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#busqueda-de-registros"><i class="fa fa-check"></i><b>4.3</b> Busqueda de registros</a></li>
-<li class="chapter" data-level="4.4" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#ejercicios-1"><i class="fa fa-check"></i><b>4.4</b> Ejercicios</a></li>
+<li class="chapter" data-level="4.4" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#plotear"><i class="fa fa-check"></i><b>4.4</b> Plotear</a></li>
+<li class="chapter" data-level="4.5" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#plotear-mas-bonito"><i class="fa fa-check"></i><b>4.5</b> plotear mas bonito</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#buscando-datos-climaticos"><i class="fa fa-check"></i><b>4.5.1</b> Buscando datos climaticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#ejercicios-1"><i class="fa fa-check"></i><b>4.6</b> Ejercicios</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
