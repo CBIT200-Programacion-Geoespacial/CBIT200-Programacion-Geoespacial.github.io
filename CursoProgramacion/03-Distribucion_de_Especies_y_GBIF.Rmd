@@ -155,12 +155,6 @@ ggplot() +
   geom_sf(data=lr) +
     geom_sf(data = coordenadas) + theme_bw()
 
-
-
-#library(mapview)
-
-#mapview(lr)
-
 ```
 ### con mapview
 
