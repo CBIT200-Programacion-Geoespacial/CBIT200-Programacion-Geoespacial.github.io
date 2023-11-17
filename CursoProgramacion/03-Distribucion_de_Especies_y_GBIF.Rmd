@@ -201,7 +201,7 @@ corr <- cor(Clima,use = "pairwise")
 ggcorrplot(corr,method='circle',pch=2,show.diag = FALSE,type="upper",
            ggtheme = theme_minimal(),hc.order = TRUE)
 ```
-Selecctionamos en funcions de la correlacion algunas variables de Bioclim
+Selecctionamos en función de la correlación algunas variables de _Bioclim_
 
 ```{r}
 Bioclim <- Bioclim[[c(1,3,5,9,10)]]
@@ -214,7 +214,7 @@ Clima2 <- raster::extract(Bioclim, coordenadas) %>%
 kable(Clima2) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%  scroll_box(width = "100%", height = "400px")
 ```
 
-
+Unimos los datos de ocurrencia de _Octodon degus_ con los datos biolimáticos.
 ```{r}
 od2 <- coordenadas |>
   bind_cols(Clima)

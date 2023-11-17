@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Introduccion al Analisis de Datos Geoespaciales</title>
+  <title>Page not found | Uso de GBIF</title>
   <meta name="description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Introduccion al Analisis de Datos Geoespaciales" />
+  <meta property="og:title" content="Page not found | Uso de GBIF" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Introduccion al Analisis de Datos Geoespaciales" />
+  <meta name="twitter:title" content="Page not found | Uso de GBIF" />
   
   <meta name="twitter:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
   
 
-<meta name="author" content="Horacio Samaniego, Derek Corcoran, Giorgia Graells" />
+<meta name="author" content="Horacio Samaniego" />
 
 
-<meta name="date" content="2023-08-21" />
+<meta name="date" content="2023-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,8 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -191,6 +189,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos"><i class="fa fa-check"></i><b>3.5</b> <strong>Bonus</strong> (Esto requiere investigar no basta con lo que aprendimos)</a></li>
 <li class="chapter" data-level="3.6" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#recursos"><i class="fa fa-check"></i><b>3.6</b> Recursos</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><i class="fa fa-check"></i><b>4</b> Uso de GBIF y modelos de distribucion de especies</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#estudio-de-abundancia-usando-datos-de-gbif"><i class="fa fa-check"></i><b>4.1</b> Estudio de abundancia usando datos de GBIF</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#registros-de-presencia"><i class="fa fa-check"></i><b>4.1.1</b> Registros de presencia</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#cantidad-de-registros-ubicados-en-chile"><i class="fa fa-check"></i><b>4.2</b> Cantidad de registros ubicados en Chile</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#ejemplo-pumas-en-arg"><i class="fa fa-check"></i><b>4.2.1</b> Ejemplo, pumas en Arg</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#busqueda-de-registros"><i class="fa fa-check"></i><b>4.3</b> Busqueda de registros</a></li>
+<li class="chapter" data-level="4.4" data-path="uso-de-gbif-y-modelos-de-distribucion-de-especies.html"><a href="uso-de-gbif-y-modelos-de-distribucion-de-especies.html#ejercicios-1"><i class="fa fa-check"></i><b>4.4</b> Ejercicios</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
@@ -203,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduccion al Analisis de Datos Geoespaciales</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Uso de GBIF</a>
           </h1>
         </div>
 
@@ -277,20 +288,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
