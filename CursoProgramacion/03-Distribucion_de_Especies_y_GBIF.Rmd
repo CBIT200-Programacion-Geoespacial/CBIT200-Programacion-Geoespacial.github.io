@@ -24,7 +24,7 @@ library(mapview)
 options("kableExtra.html.bsTable" = T)
 ```
 
-## Estudio de abundancia usando datos de [GBIF](http://www.gbif.org)
+## Estudio de distribución de especies usando datos de [GBIF](http://www.gbif.org)
 
 ```{r include=FALSE}
 library(rgbif)
@@ -109,6 +109,11 @@ occ_count(taxonKey = 2435099,
 
 Ahora, podemos describir la distribucion de __Octodon degus__.
 
+
+![Octodon degus](https://upload.wikimedia.org/wikipedia/commons/4/47/Octodon_degus_-Heidelberg_Zoo%2C_Germany-8a.jpg)
+
+
+
 Ficha del Ministerio del Medio Ambiente aqui ([PDF](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf))
 
 Usaremos `occ_search()` y `occ_data()` para recuperar presencias. Obtendremos  _nombre científico_, _país_, _continente_, _fecha_, entre otros datos.
@@ -185,7 +190,8 @@ comunas = read_sf("comunas.shp") %>%
 
 ggplot() + 
   geom_sf(data=comunas) +
-    geom_sf(data = coordenadas) + theme_bw()
+    geom_sf(data = od_sf) + theme_bw() +
+  ggtitle("Registros de O. degus en GBIF")
 
 ```
 
@@ -195,7 +201,7 @@ Podemos usar mapview para explorar los datos de forma interactiva.
 
 
 ```{r}
-mapview(od_sf)
+mapview(od_sf,zcol="year")
 ```
 
 
@@ -254,12 +260,12 @@ yo veo las variables :
 
 (son todas de temperatura.... mmmh sus...)
 ```{r}
-Bioclim
-
 Bioclim2 <- Bioclim[[c("bio1","bio3","bio5","bio9","bio10")]]
 
 Clima2 <- raster::extract(Bioclim2, od_sf) |>
     as.data.frame()
+
+#rm(Bioclim)
 ```
 
 Unimos los datos de ocurrencia de _Octodon degus_ con los datos biolimáticos.
@@ -276,6 +282,7 @@ kable(od2) |>
 
 
 ## Ejercicios
+Con estos ejercicios iremos haciendo un reporte, que sera evaluado en 4 semanas.
 
 1. Describir los datos de ocurrencia de _O. degus_ en base de datos [GBIF](http://www.gbif.org) 
   a. ¿Cuántos registros totales existen? y ¿En cuántas localidades únicas?
