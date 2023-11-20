@@ -2,10 +2,11 @@
 title: "Uso de GBIF"
 author: "Horacio Samaniego"
 date: "`r Sys.Date()`"
-output: html_document
+
 editor_options: 
   markdown: 
     wrap: 72
+    
 ---
 
 # Ecoinformática y modelos de distribucion de especies
@@ -182,7 +183,7 @@ od = occ_data(
 od$data |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "100%", height = "70%")
+  scroll_box(width = "95%", height = "400px")
 ```
 
 Vemos que la consulta nos retornó `r nrow(od$data)` registros (filas) y
@@ -194,7 +195,9 @@ Para ver la lista completa veamos la lista de nombres de columnas con
 `names()`:
 
 ```{r cols-degus-gbif-chile}
-names(od$data)
+cols_reg_gbif <- names(od$data)
+
+print(cols_reg_gbif)
 ```
 
 ### Construcción de un set de datos geográfico
@@ -228,7 +231,7 @@ od_sf |>
   scroll_box(width = "100%", height = "70%")
 ```
 
-es básicamente la misma que `od`, a anterior, colo que se puede
+es básicamente la misma que `od`, a anterior, s[olo que se puede
 manipular espacialente. Esto es, ver en un mapa pues cada registro
 (fila) tiene asociada una coordenada.
 
@@ -272,11 +275,43 @@ ggplot() +
 
 ### Visualización interactiva
 
-Podemos usar mapview para explorar los datos de forma interactiva.
+Podemos usar mapview para explorar los datos de forma interactiva, usando la columna `year` paraver como se ha muestreado a través de los años.
 
 ```{r ploteo-interactivo}
 mapview(od_sf,zcol="year")
 ```
+### Serie de tiempo
+veamos como ha sido el esfuerzo de muestrea a través del tiempo. Interesa saber si ha habido una tendencia en el número de registros. Para eso, graficamos la seria de tiempo y agregamos una linea de tendencia.
+
+```{r}
+od_sf |>
+  group_by(year)|>
+  count() |>
+  ggplot(aes(x=year,y=n)) +
+    geom_line() +  geom_point() +
+    ylab("Número de registros") + xlab("Año")+ 
+    ggtitle("Registros de O. degus en GBIF  por año") +
+    geom_smooth(method = 'lm', formula = y~x,alpha=.6)
+
+```
+Vemos que existe una tendencia de una disminución en el número de registros, explicado por un pulso de mucho muestreo en la seguna mitad de los años 70, y que ha disminuido con el tiempo.
+
+Existirá variación del muestreo por región?
+
+usando `group_by` y `face_wrap`, podemos ver eso.
+```{r}
+od_sf |>
+  group_by(year,stateProvince)|>
+  count() |>
+  ggplot(aes(x=year,y=n,fill=stateProvince)) +
+    geom_line() +  geom_point() +
+    ylab("Número de registros") + xlab("Año")+ 
+    ggtitle("Registros de O. degus en GBIF  por año") +
+    facet_wrap(~stateProvince) +
+    theme(legend.position = "none")       
+```
+Vemos que el esfuerzo de muestro es espacialmente heterogeneo.
+
 
 ## Nicho climático
 

@@ -156,6 +156,7 @@
 <li class="chapter" data-level="4.2.1" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#construcción-de-un-set-de-datos-geográfico"><i class="fa fa-check"></i><b>4.2.1</b> Construcción de un set de datos geográfico</a></li>
 <li class="chapter" data-level="4.2.2" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#distribución-geográfica-de-registros-de-o.degus-en-gbif-para-chile"><i class="fa fa-check"></i><b>4.2.2</b> Distribución geográfica de registros de O.degus en GBIF para Chile</a></li>
 <li class="chapter" data-level="4.2.3" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#visualización-interactiva"><i class="fa fa-check"></i><b>4.2.3</b> Visualización interactiva</a></li>
+<li class="chapter" data-level="4.2.4" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#serie-de-tiempo"><i class="fa fa-check"></i><b>4.2.4</b> Serie de tiempo</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#nicho-climático"><i class="fa fa-check"></i><b>4.3</b> Nicho climático</a>
 <ul>
@@ -237,7 +238,7 @@ descripción del endémico ratón de cola de pincel.</p>
 <p>La función <code>occ_count()</code> retorna la cantidad de registros de presencia
 de acuerdo con criterios como código del taxón (taxonKey), tipo de
 registro (basisOfRecord), país y año, entre otros.</p>
-<p>Por ejemplo, <code>occ_count()</code> retorna 2.5889388^{9}, el número total de
+<p>Por ejemplo, <code>occ_count()</code> retorna 2.5889428^{9}, el número total de
 registros en la base de datos.</p>
 <p>Ahora, <code>occ_count()</code> acepta una variedad de parámetros (ver
 <code>?occ_count</code>) como por ejemplo, el conteo de registros georreferenciados</p>
@@ -309,7 +310,7 @@ una guía básica para comprender proyecciones geográficas de
 <a href="https://www.nceas.ucsb.edu/">NCEAS</a>.</li>
 </ul>
 <p>ahora, veamos nuevamente la tabla:</p>
-<p>es básicamente la misma que <code>od</code>, a anterior, colo que se puede
+<p>es básicamente la misma que <code>od</code>, a anterior, s[olo que se puede
 manipular espacialente. Esto es, ver en un mapa pues cada registro
 (fila) tiene asociada una coordenada.</p>
 </div>
@@ -322,7 +323,15 @@ shapefiles de la Biblioteca Nacional y lo usamos como mapa base.</p>
 </div>
 <div id="visualización-interactiva" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Visualización interactiva<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#visualización-interactiva" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Podemos usar mapview para explorar los datos de forma interactiva.</p>
+<p>Podemos usar mapview para explorar los datos de forma interactiva, usando la columna <code>year</code> paraver como se ha muestreado a través de los años.</p>
+</div>
+<div id="serie-de-tiempo" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Serie de tiempo<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#serie-de-tiempo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>veamos como ha sido el esfuerzo de muestrea a través del tiempo. Interesa saber si ha habido una tendencia en el número de registros. Para eso, graficamos la seria de tiempo y agregamos una linea de tendencia.</p>
+<p>Vemos que existe una tendencia de una disminución en el número de registros, explicado por un pulso de mucho muestreo en la seguna mitad de los años 70, y que ha disminuido con el tiempo.</p>
+<p>Existirá variación del muestreo por región?</p>
+<p>usando <code>group_by</code> y <code>face_wrap</code>, podemos ver eso.</p>
+<p>Vemos que el esfuerzo de muestro es espacialmente heterogeneo.</p>
 </div>
 </div>
 <div id="nicho-climático" class="section level2 hasAnchor" number="4.3">
