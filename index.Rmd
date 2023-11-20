@@ -2,5 +2,5 @@
 title: "Ciencia de datos para problemas ambientales"
 ---
 
-Curso de introduccion a la progamacion geoespacial
+Curso de introducción a la progamación geoespacial
 
