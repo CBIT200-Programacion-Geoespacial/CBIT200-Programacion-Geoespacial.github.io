@@ -238,7 +238,7 @@ descripción del endémico ratón de cola de pincel.</p>
 <p>La función <code>occ_count()</code> retorna la cantidad de registros de presencia
 de acuerdo con criterios como código del taxón (taxonKey), tipo de
 registro (basisOfRecord), país y año, entre otros.</p>
-<p>Por ejemplo, <code>occ_count()</code> retorna 2.5889428^{9}, el número total de
+<p>Por ejemplo, <code>occ_count()</code> retorna 2.5889693^{9}, el número total de
 registros en la base de datos.</p>
 <p>Ahora, <code>occ_count()</code> acepta una variedad de parámetros (ver
 <code>?occ_count</code>) como por ejemplo, el conteo de registros georreferenciados</p>
@@ -249,7 +249,7 @@ inferir!]). Este es un vector que viene como parte de la librería
 manera:</p>
 <p>Un ejemplo: ¿Cuántos registros georeferenciado de puma (<em>Puma concolor</em>)
 existen en GBIF para Argentina?</p>
-<p>Usando el número de registro en la Base de datos GBIF pordemos
+<p>Usando el número de registro para <em>Puma concolor</em> en la Base de datos GBIF podemos
 contarlos:</p>
 <p>Hay entonces, 466 registros georeferenciados en Argentina en la
 base de datos de GBIF!</p>
@@ -267,9 +267,10 @@ una guía para trabajar con nombres taxonómicos.</li>
 <div class="figcaption">Octodon
 degus</div>
 </div>
-<p>Aqui encuentras la ficha del Ministerio del Medio Ambiente aqui para
-esta especie:
-(<a href="https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf">PDF</a>)</p>
+<ul>
+<li><a href="https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf">Aqui</a>
+encuentras la ficha del Ministerio del Medio Ambiente aqui para esta especie.</li>
+</ul>
 <p>Usaremos dos funciones de la librería <code>rgbif</code> para descargar los
 registros georeferenciados de degu en Chile. Con <code>occ_search()</code> y
 <code>occ_data()</code> puedes recuperar esto y obtener todos los registros

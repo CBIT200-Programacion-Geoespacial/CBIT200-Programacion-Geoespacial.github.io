@@ -101,7 +101,7 @@ registros en la base de datos.
 Ahora, `occ_count()` acepta una variedad de parámetros (ver
 `?occ_count`) como por ejemplo, el conteo de registros georreferenciados
 
-```{r reg-gbig-geo}
+```{r reg-gbig-geo, echo=TRUE}
 occ_count(georeferenced = TRUE)
 ```
 
@@ -111,7 +111,7 @@ inferir!]). Este es un vector que viene como parte de la librería
 `rgbif`, y se llama `isocodes`. Por eso podemos recuperarlo de esta
 manera:
 
-```{r ej-gbif-chile, warning=FALSE}
+```{r ej-gbif-chile, echo=TRUE, warning=FALSE}
 cl_isocode <- isocodes[grep("Chile", isocodes$name), "code"]
 ## Conteo para Chile
 occ_count(country="CL",georeferenced = TRUE)
@@ -120,16 +120,16 @@ occ_count(country="CL",georeferenced = TRUE)
 Un ejemplo: ¿Cuántos registros georeferenciado de puma (*Puma concolor*)
 existen en GBIF para Argentina?
 
-```{r pumas-arg}
+```{r pumas-arg, echo=TRUE}
 name <- name_backbone(name='Puma concolor', rank='species') # Obtención del código del taxón
 
 print(name[, c('usageKey', 'scientificName')])
 ```
 
-Usando el número de registro en la Base de datos GBIF pordemos
+Usando el número de registro para _Puma concolor_ en la Base de datos GBIF podemos
 contarlos:
 
-```{r pumas-n-arg}
+```{r pumas-n-arg, echo=TRUE}
 p_en_ar <- occ_count(taxonKey = 2435099, 
           country = 'AR',
           georeferenced = TRUE
@@ -149,9 +149,8 @@ Ahora, podemos describir la distribucion de **Octodon degus**.
 ![Octodon
 degus](https://upload.wikimedia.org/wikipedia/commons/4/47/Octodon_degus_-Heidelberg_Zoo%2C_Germany-8a.jpg)
 
-Aqui encuentras la ficha del Ministerio del Medio Ambiente aqui para
-esta especie:
-([PDF](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf))
+- [Aqui](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf) 
+encuentras la ficha del Ministerio del Medio Ambiente aqui para esta especie.
 
 Usaremos dos funciones de la librería `rgbif` para descargar los
 registros georeferenciados de degu en Chile. Con `occ_search()` y
@@ -171,8 +170,9 @@ información desde GBIF.
     [aqui](https://docs.ropensci.org/rgbif/articles/getting_occurrence_data.html)
     para descargas de datos.
 
-```{r degus-chile}
+```{r degus-chile, echo=TRUE}
 od = occ_data(
+#  scientificName = 'Puma concolor', 
   scientificName = 'Octodon degus', 
   country = 'CL', 
   hasCoordinate = TRUE, 
@@ -194,7 +194,7 @@ nos son útiles!!!
 Para ver la lista completa veamos la lista de nombres de columnas con
 `names()`:
 
-```{r cols-degus-gbif-chile}
+```{r cols-degus-gbif-chile, echo=TRUE}
 cols_reg_gbif <- names(od$data)
 
 print(cols_reg_gbif)
@@ -217,14 +217,14 @@ geográfico. Aqui es simplemente la latlon ([epsg:
     una guía básica para comprender proyecciones geográficas de
     [NCEAS](https://www.nceas.ucsb.edu/).
 
-```{r degus-sf}
+```{r degus-sf, echo=TRUE}
 od_sf <- st_as_sf(od$data, coords = c("decimalLongitude", "decimalLatitude"), 
                    crs= "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0")
 ```
 
 ahora, veamos nuevamente la tabla:
 
-```{r ver-table-degus-gbif}
+```{r ver-table-degus-gbif, echo=TRUE}
 od_sf |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
@@ -239,10 +239,20 @@ manipular espacialente. Esto es, ver en un mapa pues cada registro
 
 Lo primero es ver donde quedan estas coordenadas. Usemos `ggplot2`:
 
-```{r mapa-ggplot}
+
+```{r mapa-ggplot, echo=TRUE}
+data("countriesHigh")
+cl <- countriesHigh |>
+  st_as_sf() |>
+  dplyr::filter(NAME=="Chile") |>
+  st_make_valid()
+
 ggplot() + 
-  geom_sf(data = od_sf) + 
-  theme_bw()
+  geom_sf(data=cl,alpha=.6 ) +
+  geom_sf(data = od_sf, pch=4 ) +
+  ylim(st_bbox(od_sf)[2]-.2,st_bbox(od_sf)[4]+.2) +
+  xlim(st_bbox(od_sf)[1]-.5,st_bbox(od_sf)[3]+.5)
+
 ```
 
 Pero, es posible poner los registros en un mapa de las comunas de Chile?
@@ -250,7 +260,7 @@ Pero, es posible poner los registros en un mapa de las comunas de Chile?
 Para eso necesitamos un mapa de las comunas. Buscamos entre los
 shapefiles de la Biblioteca Nacional y lo usamos como mapa base.
 
-```{r leer-shp-bcn}
+```{r leer-shp-bcn, echo=TRUE}
 shp='comunas.shp'
 
 if ( !file.exists(shp) ){
@@ -268,8 +278,8 @@ comunas = read_sf("comunas.shp") |>
   st_transform(crs=32719) # es importante manejar esa info en coordenadas "reales"
 
 ggplot() + 
-  geom_sf(data=comunas) +
-    geom_sf(data = od_sf) + theme_bw() +
+  geom_sf(data=comunas, alpha=.7) +
+    geom_sf(data = od_sf, col="blue") + theme_bw() +
   ggtitle("Registros de O. degus en GBIF")
 ```
 
@@ -283,7 +293,7 @@ mapview(od_sf,zcol="year")
 ### Serie de tiempo
 veamos como ha sido el esfuerzo de muestrea a través del tiempo. Interesa saber si ha habido una tendencia en el número de registros. Para eso, graficamos la seria de tiempo y agregamos una linea de tendencia.
 
-```{r}
+```{r timeserie , echo=TRUE}
 od_sf |>
   group_by(year)|>
   count() |>
@@ -291,7 +301,7 @@ od_sf |>
     geom_line() +  geom_point() +
     ylab("Número de registros") + xlab("Año")+ 
     ggtitle("Registros de O. degus en GBIF  por año") +
-    geom_smooth(method = 'lm', formula = y~x,alpha=.6)
+    geom_smooth(method = 'lm', formula = y~x,alpha=.4)
 
 ```
 Vemos que existe una tendencia de una disminución en el número de registros, explicado por un pulso de mucho muestreo en la seguna mitad de los años 70, y que ha disminuido con el tiempo.
@@ -299,7 +309,7 @@ Vemos que existe una tendencia de una disminución en el número de registros, e
 Existirá variación del muestreo por región?
 
 usando `group_by` y `face_wrap`, podemos ver eso.
-```{r}
+```{r time-series-by-region, echo=TRUE}
 od_sf |>
   group_by(year,stateProvince)|>
   count() |>
@@ -323,7 +333,7 @@ documentados [aquí](https://www.worldclim.org). Sólo usaremos las
 variables bioclimáticas.
 
 - Ojo: La función `getData()`, de la librería `raster` permite descargar directamente desde worldclim los datos bioclimáticos con el parámetro 'var'. Así, `getData('worldclim', var='bio', res=10)` o bien  `getData('CMIP5', var='tmin', res=10, rcp=85, model='AC', year=70)` nos permite descargar los datos bioclim[aticos a una resolución mas gruesa, o bien la temperatura mínima para la proyección de cambio climático futuro (CMIP5) del modelo 'AC' para el año 2070, respectivamente   !  
-```{r worldclim}
+```{r worldclim, echo=TRUE}
 Bioclim <- getData("worldclim", var = "bio", res = 2.5) |>
     crop(od_sf)
 
@@ -344,7 +354,7 @@ La función a usar está en la librería `raster` y se llama `extract()`.
 Con eso generamos una tabla con las variables climaticas en cada una de
 las coordenadas en que hay registros de *O. degus* en GBIF.
 
-```{r extraccion-datos-bioclimaticos}
+```{r extraccion-datos-bioclimaticos, echo=TRUE}
 Clima <- raster::extract(Bioclim, od_sf) |>
     as.data.frame()
 
@@ -384,7 +394,7 @@ _O.degus_. Fíjense que se han agrupados las filas y columnas con
 correlaciones similares para facilitar la interpretación. Eso puede
 hacerse con la librería `ggcorrplot` y su parámetro `hc.order`.
 
-```{r tabla-correlaciones-bioclimaticas}
+```{r tabla-correlaciones-bioclimaticas, echo=TRUE}
 
 # install.packages("ggcorrplot")
 # library(ggcorrplot)
@@ -411,7 +421,7 @@ yo veo las variables :
 
 (son todas de temperatura.... mmmh sus. Creo que será importante considerar directamente las variables climáticas.)
 
-```{r sel-vars-bioclimaticas}
+```{r sel-vars-bioclimaticas, echo=TRUE}
 Bioclim2 <- Bioclim[[c("bio1","bio3","bio5","bio9","bio10")]]
 
 Clima2 <- raster::extract(Bioclim2, od_sf) |>
@@ -425,7 +435,7 @@ biolimáticos para tener todo en una sola tabla que tendrá las
 coordenadas geográficas de las ocurrencias de *O.degus* en GBIF para
 Chile.
 
-```{r juntar-datos}
+```{r juntar-datos, echo=TRUE}
 od2 <- od_sf |>
   bind_cols(Clima2)
 
