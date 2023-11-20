@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 4 Ecoinformática y modelos de distribucion de especies | Uso de GBIF</title>
+  <meta name="description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 4 Ecoinformática y modelos de distribucion de especies | Uso de GBIF" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 4 Ecoinformática y modelos de distribucion de especies | Uso de GBIF" />
+  
+  <meta name="twitter:description" content="Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200), Universidad Austral de Chile" />
+  
+
+<meta name="author" content="Horacio Samaniego" />
+
+
+<meta name="date" content="2023-11-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="principios-de-tidydata.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción al Análisis Geoespacial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Datos del curso</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#descripción-del-curso"><i class="fa fa-check"></i><b>1.1</b> DESCRIPCIÓN DEL CURSO</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i><b>1.1.1</b> OBJETIVOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#evaluación"><i class="fa fa-check"></i><b>1.2</b> Evaluación</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#tareas"><i class="fa fa-check"></i><b>1.2.1</b> tareas</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#proyecto"><i class="fa fa-check"></i><b>1.2.2</b> proyecto</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#calificaciones"><i class="fa fa-check"></i><b>1.2.3</b> calificaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#calendario"><i class="fa fa-check"></i><b>1.3</b> Calendario</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#recursos-adicionales"><i class="fa fa-check"></i><b>1.4</b> Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>2</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción.html"><a href="introducción.html#objetos"><i class="fa fa-check"></i><b>2.1</b> Objetos</a></li>
+<li class="chapter" data-level="2.2" data-path="introducción.html"><a href="introducción.html#variables"><i class="fa fa-check"></i><b>2.2</b> Variables</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introducción.html"><a href="introducción.html#tipos-de-variables"><i class="fa fa-check"></i><b>2.2.1</b> Tipos de variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introducción.html"><a href="introducción.html#funciones"><i class="fa fa-check"></i><b>2.3</b> Funciones</a></li>
+<li class="chapter" data-level="2.4" data-path="introducción.html"><a href="introducción.html#vectores"><i class="fa fa-check"></i><b>2.4</b> Vectores</a></li>
+<li class="chapter" data-level="2.5" data-path="introducción.html"><a href="introducción.html#instalar-librerías"><i class="fa fa-check"></i><b>2.5</b> Instalar librerías</a></li>
+<li class="chapter" data-level="2.6" data-path="introducción.html"><a href="introducción.html#r-notebook"><i class="fa fa-check"></i><b>2.6</b> R Notebook</a></li>
+<li class="chapter" data-level="2.7" data-path="introducción.html"><a href="introducción.html#leer-datos"><i class="fa fa-check"></i><b>2.7</b> Leer datos</a></li>
+<li class="chapter" data-level="2.8" data-path="introducción.html"><a href="introducción.html#ejercicios"><i class="fa fa-check"></i><b>2.8</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html"><i class="fa fa-check"></i><b>3</b> Principios de Tidydata</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#definiciones"><i class="fa fa-check"></i><b>3.1</b> Definiciones</a></li>
+<li class="chapter" data-level="3.2" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#lógica-y-funciones"><i class="fa fa-check"></i><b>3.2</b> Lógica y funciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#funciones-esenciales"><i class="fa fa-check"></i><b>3.2.1</b> Funciones esenciales</a></li>
+<li class="chapter" data-level="3.2.2" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#pipe"><i class="fa fa-check"></i><b>3.2.2</b> pipe</a></li>
+<li class="chapter" data-level="3.2.3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#agrupar"><i class="fa fa-check"></i><b>3.2.3</b> Agrupar</a></li>
+<li class="chapter" data-level="3.2.4" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#filtrar"><i class="fa fa-check"></i><b>3.2.4</b> Filtrar</a></li>
+<li class="chapter" data-level="3.2.5" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>3.2.5</b> Crear nuevas variables</a></li>
+<li class="chapter" data-level="3.2.6" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#responder"><i class="fa fa-check"></i><b>3.2.6</b> Responder:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#cambiar-formato-de-tabla"><i class="fa fa-check"></i><b>3.3</b> Cambiar formato de tabla</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#podemos-explicar-que-sucedió-aquí"><i class="fa fa-check"></i><b>3.3.1</b> ¿Podemos explicar que sucedió aquí?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#ejercicio"><i class="fa fa-check"></i><b>3.4</b> Ejercicio</a></li>
+<li class="chapter" data-level="3.5" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#bonus-esto-requiere-investigar-no-basta-con-lo-que-aprendimos"><i class="fa fa-check"></i><b>3.5</b> <strong>Bonus</strong> (Esto requiere investigar no basta con lo que aprendimos)</a></li>
+<li class="chapter" data-level="3.6" data-path="principios-de-tidydata.html"><a href="principios-de-tidydata.html#recursos"><i class="fa fa-check"></i><b>3.6</b> Recursos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html"><i class="fa fa-check"></i><b>4</b> Ecoinformática y modelos de distribucion de especies</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#uso-de-gbif-para-el-manejo-de-datos-en-conservación"><i class="fa fa-check"></i><b>4.1</b> Uso de GBIF para el manejo de datos en conservación</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#estudio-de-distribución-de-especies-usando-datos-de-gbif"><i class="fa fa-check"></i><b>4.1.1</b> Estudio de distribución de especies usando datos de GBIF</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#el-degu-octodon-degus"><i class="fa fa-check"></i><b>4.2</b> El degu (<em>Octodon degus</em>)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#construcción-de-un-set-de-datos-geográfico"><i class="fa fa-check"></i><b>4.2.1</b> Construcción de un set de datos geográfico</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#distribución-geográfica-de-registros-de-o.degus-en-gbif-para-chile"><i class="fa fa-check"></i><b>4.2.2</b> Distribución geográfica de registros de O.degus en GBIF para Chile</a></li>
+<li class="chapter" data-level="4.2.3" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#visualización-interactiva"><i class="fa fa-check"></i><b>4.2.3</b> Visualización interactiva</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#nicho-climático"><i class="fa fa-check"></i><b>4.3</b> Nicho climático</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#clima-en-sitios-de-registrp-de-o.-degus"><i class="fa fa-check"></i><b>4.3.1</b> Clima en sitios de registrp de <em>O. degus</em></a></li>
+<li class="chapter" data-level="4.3.2" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#correlacion-entre-vaiables-bioclimaticas"><i class="fa fa-check"></i><b>4.3.2</b> Correlacion entre vaiables bioclimaticas</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ecoinformática-y-modelos-de-distribucion-de-especies.html"><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#ejercicios-1"><i class="fa fa-check"></i><b>4.4</b> Ejercicios</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Uso de GBIF</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ecoinformática-y-modelos-de-distribucion-de-especies" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Ecoinformática y modelos de distribucion de especies<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#ecoinformática-y-modelos-de-distribucion-de-especies" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="uso-de-gbif-para-el-manejo-de-datos-en-conservación" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Uso de GBIF para el manejo de datos en conservación<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#uso-de-gbif-para-el-manejo-de-datos-en-conservación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://www.gbif.org">GBIF</a> es la Global Biodiversity Information
+Facility. Una red de infraestructura de datos internacional financiada
+por distintos gobiernos. Su objetivo es proporcionar acceso libre y
+gratuito a datos sobre biodiversidad a nivel mundial. GBIF movilizan
+datos de diversas fuentes incluyendo museos, herbarios, instituciones de
+investigación y ciudadanos científicos para ponerlos a disposición del
+la comunidad en un único portal.</p>
+<p>Las principales características y funciones de GBIF incluyen: -
+Agregación de datos: GBIF agrega datos sobre biodiversidad de diversas
+instituciones y organizaciones, creando un conjunto de datos completo e
+interoperable. - Accesibilidad a los datos: GBIF proporciona una
+plataforma para que los usuarios accedan a una gran cantidad de datos
+sobre biodiversidad. Los investigadores, los responsables políticos y el
+público en general pueden utilizar la información para diversos fines,
+como la investigación científica, planificación de la conservación y la
+toma de decisiones. - Estándares de datos: GBIF promueve el uso de
+estándares comunes para los datos de biodiversidad, asegurando que la
+información de diferentes fuentes pueda ser fácilmente integrada y
+comparada. - Colaboración Internacional: GBIF fomenta la colaboración
+entre países y organizaciones para compartir datos sobre biodiversidad a
+nivel mundial. Funciona como una red de nodos, cada uno de los cuales
+representa a un país o región. - Informática de la Biodiversidad: GBIF
+desempeña un papel en el avance de la informática de la biodiversidad,
+que implica el uso de tecnología informática para gestionar y analizar
+datos de biodiversidad.</p>
+<p>Al proporcionar una plataforma unificada para acceder a los datos de
+biodiversidad, GBIF contribuye a la comprensión global de los patrones
+de biodiversidad, ayuda a controlar los cambios en los ecosistemas y
+apoya los esfuerzos relacionados con la conservación y el desarrollo
+sostenible. Investigadores y responsables políticos confían a menudo en
+GBIF para acceder a información actualizada y completa sobre
+biodiversidad para su trabajo.</p>
+<p>Existen además distintas API orientadas a distintos lenguajes
+informáticos para acceder a esta información. (i.e.
+<a href="https://github.com/sckott/gbifrb">Ruby</a>,
+<a href="https://github.com/gbif/pygbif">Python</a>,
+<a href="https://gitlab.res-telae.cat/restelae/php-gbif">PHP</a> y
+<a href="https://github.com/ropensci/rgbif">R</a>). Aquí utilizaremos R para poder
+acceder a datos de GBIF como parte de la practica de hacer <a href="https://ropensci.org/">ciencia
+abierta</a>.</p>
+<div id="estudio-de-distribución-de-especies-usando-datos-de-gbif" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Estudio de distribución de especies usando datos de GBIF<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#estudio-de-distribución-de-especies-usando-datos-de-gbif" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vamos a hacer un modelo de distribucion de especies para <em>Octodon
+degus</em>. <a href="https://es.wikipedia.org/wiki/Octodon_degus">Aquí</a> una
+descripción del endémico ratón de cola de pincel.</p>
+<p><strong>¿Cuántos registros de presencia hay?</strong></p>
+<p>La función <code>occ_count()</code> retorna la cantidad de registros de presencia
+de acuerdo con criterios como código del taxón (taxonKey), tipo de
+registro (basisOfRecord), país y año, entre otros.</p>
+<p>Por ejemplo, <code>occ_count()</code> retorna 2.5889388^{9}, el número total de
+registros en la base de datos.</p>
+<p>Ahora, <code>occ_count()</code> acepta una variedad de parámetros (ver
+<code>?occ_count</code>) como por ejemplo, el conteo de registros georreferenciados</p>
+<p>o bien el número de registros por país. Chile en este caso. Para eso
+debemos saber exactamente el código ISO. (Aunque es f[acil de
+inferir!]). Este es un vector que viene como parte de la librería
+<code>rgbif</code>, y se llama <code>isocodes</code>. Por eso podemos recuperarlo de esta
+manera:</p>
+<p>Un ejemplo: ¿Cuántos registros georeferenciado de puma (<em>Puma concolor</em>)
+existen en GBIF para Argentina?</p>
+<p>Usando el número de registro en la Base de datos GBIF pordemos
+contarlos:</p>
+<p>Hay entonces, 466 registros georeferenciados en Argentina en la
+base de datos de GBIF!</p>
+<ul>
+<li><a href="https://docs.ropensci.org/rgbif/articles/taxonomic_names.html">Aqui</a>
+una guía para trabajar con nombres taxonómicos.</li>
+</ul>
+</div>
+</div>
+<div id="el-degu-octodon-degus" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> El degu (<em>Octodon degus</em>)<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#el-degu-octodon-degus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ahora, podemos describir la distribucion de <strong>Octodon degus</strong>.</p>
+<div class="float">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Octodon_degus_-Heidelberg_Zoo%2C_Germany-8a.jpg" alt="Octodon degus" />
+<div class="figcaption">Octodon
+degus</div>
+</div>
+<p>Aqui encuentras la ficha del Ministerio del Medio Ambiente aqui para
+esta especie:
+(<a href="https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf">PDF</a>)</p>
+<p>Usaremos dos funciones de la librería <code>rgbif</code> para descargar los
+registros georeferenciados de degu en Chile. Con <code>occ_search()</code> y
+<code>occ_data()</code> puedes recuperar esto y obtener todos los registros
+existentes. Entre ellos, nos interesará el <em>nombre científico</em>, <em>país</em>,
+<em>continente</em>, <em>fecha</em>, entre otros datos.</p>
+<p><code>occ_search</code> nos da un resumen de resultados como los del paquete
+<code>dplyr</code> de Tidyverse que nos será muy útil para filtrar, seleccionar y
+agrupar los registros, mientras que <code>occ_data</code> está optimizada para ser
+más eficiente y se recomienda en caso de buscar un volumen mayor de
+información desde GBIF.</p>
+<ul>
+<li>Ojo -&gt; Sólo se entregan <strong>máximo de 100000</strong> registros en cada
+llamada.</li>
+<li>Mas info
+<a href="https://docs.ropensci.org/rgbif/articles/getting_occurrence_data.html">aqui</a>
+para descargas de datos.</li>
+</ul>
+<p>Vemos que la consulta nos retornó 500 registros (filas) y
+124 columnas de información para cada registro. Esos son
+muchos datos para cada registro. Debemos evaluar qué son y ver cuales
+nos son útiles!!!</p>
+<p>Para ver la lista completa veamos la lista de nombres de columnas con
+<code>names()</code>:</p>
+<div id="construcción-de-un-set-de-datos-geográfico" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Construcción de un set de datos geográfico<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#construcción-de-un-set-de-datos-geográfico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cada registro tiene asociado coordenadas geográficas, lo que nos permite
+transformar esta tabla a un objeto de tipo <code>sf</code> (<a href="https://r-spatial.github.io/sf/articles/sf1.html">simple
+feature</a>). Con eso
+podemos representarlo espacialmente</p>
+<p>Entonces, primero transformamos estos datos en un objeto “geográfico” de
+<code>sf</code> usando las columnas <code>"decimalLongitude"</code> para <code>x</code> y
+<code>"decimalLatitude"</code> para <code>y</code>. Hay que tambien designar la proyección
+geográfico. Aqui es simplemente la latlon (<a href="https://epsg.io/4326">epsg:
+4326</a>).</p>
+<ul>
+<li><a href="https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf">Aquí</a>
+una guía básica para comprender proyecciones geográficas de
+<a href="https://www.nceas.ucsb.edu/">NCEAS</a>.</li>
+</ul>
+<p>ahora, veamos nuevamente la tabla:</p>
+<p>es básicamente la misma que <code>od</code>, a anterior, colo que se puede
+manipular espacialente. Esto es, ver en un mapa pues cada registro
+(fila) tiene asociada una coordenada.</p>
+</div>
+<div id="distribución-geográfica-de-registros-de-o.degus-en-gbif-para-chile" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Distribución geográfica de registros de O.degus en GBIF para Chile<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#distribución-geográfica-de-registros-de-o.degus-en-gbif-para-chile" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lo primero es ver donde quedan estas coordenadas. Usemos <code>ggplot2</code>:</p>
+<p>Pero, es posible poner los registros en un mapa de las comunas de Chile?</p>
+<p>Para eso necesitamos un mapa de las comunas. Buscamos entre los
+shapefiles de la Biblioteca Nacional y lo usamos como mapa base.</p>
+</div>
+<div id="visualización-interactiva" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Visualización interactiva<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#visualización-interactiva" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Podemos usar mapview para explorar los datos de forma interactiva.</p>
+</div>
+</div>
+<div id="nicho-climático" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Nicho climático<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#nicho-climático" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vamos a buscar cuáles son las condiciones climáticas en que están estos
+registros y generamos asi, una definición (gruesa) del nicho climático.</p>
+<p>Para eso, usaremos los datos de Worldclim, que se encuentran
+documentados <a href="https://www.worldclim.org">aquí</a>. Sólo usaremos las
+variables bioclimáticas.</p>
+<ul>
+<li>Ojo: La función <code>getData()</code>, de la librería <code>raster</code> permite descargar directamente desde worldclim los datos bioclimáticos con el parámetro ‘var’. Así, <code>getData('worldclim', var='bio', res=10)</code> o bien <code>getData('CMIP5', var='tmin', res=10, rcp=85, model='AC', year=70)</code> nos permite descargar los datos bioclim[aticos a una resolución mas gruesa, o bien la temperatura mínima para la proyección de cambio climático futuro (CMIP5) del modelo ‘AC’ para el año 2070, respectivamente !</li>
+</ul>
+<div id="clima-en-sitios-de-registrp-de-o.-degus" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Clima en sitios de registrp de <em>O. degus</em><a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#clima-en-sitios-de-registrp-de-o.-degus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para extraer los datos bioclimáticos en las coordenadas para <em>O. degus</em>,
+debemos consultar los pixeles de los rasters bioclimáticos donde existen
+ocurrencias en gbif.</p>
+<div class="float">
+<img src="https://www.esri.com/arcgis-blog/wp-content/uploads/2018/08/extraction_multi.jpg" alt="Ejemplo de consulta de valores de raster en coordenadas" />
+<div class="figcaption">Ejemplo de consulta de valores de raster en
+coordenadas</div>
+</div>
+<p>La función a usar está en la librería <code>raster</code> y se llama <code>extract()</code>.</p>
+<p>Con eso generamos una tabla con las variables climaticas en cada una de
+las coordenadas en que hay registros de <em>O. degus</em> en GBIF.</p>
+<p>Ahora, a qué corresponde bio1, bio2, etc…??</p>
+<p>Veamos, por una parte, que son estas variable:
+<iframe src="https://www.worldclim.org/data/bioclim.html" width="100%" height="300px" data-external="1"></iframe></p>
+<p>Por otra parte, la inspección de la tabla muestra que sólo tiene los valores bioclimáticos. Necesitamos, ciertamente, asociar los registros y probablemente otros datos climáticos.</p>
+<p>Pero miremos primero como se relacionan los valores bioclimáticos recuperados para <em>O.degus</em>.</p>
+</div>
+<div id="correlacion-entre-vaiables-bioclimaticas" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Correlacion entre vaiables bioclimaticas<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#correlacion-entre-vaiables-bioclimaticas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sabemos que las variables bioclimáticas son variables derivadas
+de la variables de clima. Por lo tanto, han de tener fuertes
+correlaciones entre ellas.</p>
+<ul>
+<li><a href="https://www.worldclim.org/data/bioclim.html">Aqui</a> la descripción de las variable bioclimáticas de worldclim.</li>
+</ul>
+<p>Es, por lo tanto, importante comprender cuales variables bioclimáticas
+son significativamente relevantes para describir, y predecir, la
+distribución de la especies. Esto significa que debemos poder tener una
+buena idea de la correlación entre variables bioclimáticas para no usar
+variables que representan, en realidad, un mismo aspecto del clima a la
+hora de generar una predicción.</p>
+<p>veamos la correlación entre la variables bioclimáticas donde hay
+<em>O.degus</em>. Fíjense que se han agrupados las filas y columnas con
+correlaciones similares para facilitar la interpretación. Eso puede
+hacerse con la librería <code>ggcorrplot</code> y su parámetro <code>hc.order</code>.</p>
+<p>Seleccionamos entonces algunas variables de <em>Bioclim</em> que muestren baja
+correlación (no negativa!).</p>
+<p>yo veo las variables :</p>
+<ul>
+<li>BIO1 = Temperatura media anual</li>
+<li>BIO3 = Isotermia (BIO2/BIO7) (×100)</li>
+<li>BIO5 = Temperatura máxima del mes más cálido</li>
+<li>BIO9 = Temperatura media del trimestre más seco</li>
+<li>BIO10 = Temperatura media del trimestre más cálido</li>
+</ul>
+<p>(son todas de temperatura…. mmmh sus. Creo que será importante considerar directamente las variables climáticas.)</p>
+<p>Unimos los datos de ocurrencia de <em>Octodon degus</em> con los datos
+biolimáticos para tener todo en una sola tabla que tendrá las
+coordenadas geográficas de las ocurrencias de <em>O.degus</em> en GBIF para
+Chile.</p>
+</div>
+</div>
+<div id="ejercicios-1" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Ejercicios<a href="ecoinformática-y-modelos-de-distribucion-de-especies.html#ejercicios-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Con estos ejercicios iremos haciendo un reporte, que sera evaluado en 4
+semanas.</p>
+<ol style="list-style-type: decimal">
+<li>Describir los datos de ocurrencia de <em>O. degus</em> en base de datos <a href="http://www.gbif.org">GBIF</a></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Cuántos registros totales existen? y ¿En cuántas localidades únicas?</li>
+<li>¿Qué otros datos pueden asociarse a dichos registros? (bonus, no lo vimos en clase!)</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Hacer un mapa de la distribución de <em>O. degus</em> para Chile</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿En cuántas Regiones encontramos a esta expecie?</li>
+<li>¿Cuál es la comuna de Chile que tiene mas registros?</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Construye una base de datos (tabla), con los valores de <em>temperatura</em>, <em>pp</em> y variables bioclimáticas donde ocurre <em>O. degus</em> en Chile. (si, T y pp también!)</p></li>
+<li><p>Describe estadisticamente el espacio bioclimático en que ocurre <em>O.degus</em></p></li>
+</ol>
+<!-- -->
+<ol style="list-style-type: lower-alpha">
+<li>Rango de T y PP, promedio, moda, desviaciones…</li>
+</ol>
+<!-- -->
+<ol start="5" style="list-style-type: decimal">
+<li>Construye una serie de tiempo con el número de registros de <em>O.
+degus</em></li>
+</ol>
+<!-- -->
+<ol style="list-style-type: lower-alpha">
+<li>¿Puedes decir cual es la comuna (o región) que ha tenido el registro
+mas continuo de esta especie?
+<ol style="list-style-type: lower-roman">
+<li>Antes de hacer, diseña un algoritmo para producir dichos datos.</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="principios-de-tidydata.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CursoProgramacion.pdf", "CursoProgramacion.epub", "CursoProgramacion.docx"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
