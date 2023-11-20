@@ -13,10 +13,10 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
+	echo = TRUE,
 	message = FALSE,
 	warning = FALSE,
 	cache = FALSE,
-	include = FALSE,
 	tidy = TRUE,
 	tidy.opts = list(blank = FALSE, width.cutoff = 80)
 )
@@ -183,7 +183,7 @@ od = occ_data(
 od$data |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "95%", height = "400px")
+  scroll_box(width = "95%", height = "200px")
 ```
 
 Vemos que la consulta nos retornó `r nrow(od$data)` registros (filas) y
@@ -195,9 +195,17 @@ Para ver la lista completa veamos la lista de nombres de columnas con
 `names()`:
 
 ```{r cols-degus-gbif-chile, echo=TRUE}
-cols_reg_gbif <- names(od$data)
 
-print(cols_reg_gbif)
+
+names(od$data) |>
+  kbl() |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),fixed_thead = T) |>
+  scroll_box(width = "100%", height = "200px")
+
+unique(od$data$locality) |>
+  kbl() |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),fixed_thead = T) |>
+  scroll_box(width = "100%", height = "200px")
 ```
 
 ### Construcción de un set de datos geográfico
@@ -228,7 +236,7 @@ ahora, veamos nuevamente la tabla:
 od_sf |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "100%", height = "70%")
+  scroll_box(width = "95%", height = "250px")
 ```
 
 es básicamente la misma que `od`, a anterior, s[olo que se puede
@@ -285,10 +293,16 @@ ggplot() +
 
 ### Visualización interactiva
 
-Podemos usar mapview para explorar los datos de forma interactiva, usando la columna `year` paraver como se ha muestreado a través de los años.
+Podemos usar mapview para explorar los datos de forma interactiva, usando la columna `year` para ver como se ha muestreado a través de los años. Vamos a usar el parámetro `cex` para ajustar el tamaño del marcador (punto) que nos permite visualizar el número de registros por año. 
 
 ```{r ploteo-interactivo}
-mapview(od_sf,zcol="year")
+conteo <- od_sf |>
+  group_by(locality,year) |>
+  count()
+
+print(conteo)
+
+mapview(conteo,zcol="year",cex="n", alpha=.6)
 ```
 ### Serie de tiempo
 veamos como ha sido el esfuerzo de muestrea a través del tiempo. Interesa saber si ha habido una tendencia en el número de registros. Para eso, graficamos la seria de tiempo y agregamos una linea de tendencia.
@@ -307,6 +321,15 @@ od_sf |>
 Vemos que existe una tendencia de una disminución en el número de registros, explicado por un pulso de mucho muestreo en la seguna mitad de los años 70, y que ha disminuido con el tiempo.
 
 Existirá variación del muestreo por región?
+
+```{r homogenizar-regiones}
+# primero, homogeneizamos los nombres de las regiones
+od_sf <- od_sf |>
+  mutate(stateProvince = replace(stateProvince, stateProvince %in% c("Santiago Metropolitan", "Región Metropolitana de Santiago"),'Santiago' )) |>
+  mutate(stateProvince = replace(stateProvince, stateProvince == "Región de Coquimbo",'Coquimbo' ))|>
+  mutate(stateProvince = replace(stateProvince, stateProvince == 'Región de Valparaíso','Valparaíso' ))
+```
+
 
 usando `group_by` y `face_wrap`, podemos ver eso.
 ```{r time-series-by-region, echo=TRUE}
@@ -360,13 +383,13 @@ Clima <- raster::extract(Bioclim, od_sf) |>
 
 kable(Clima) |> 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "100%", height = "100%")
+  scroll_box(width = "95%", height = "250px")
 ```
 
 Ahora, a qué corresponde bio1, bio2, etc...??
 
 Veamos, por una parte, que son estas variable:
-`r knitr::include_url("https://www.worldclim.org/data/bioclim.html", height="300px")`
+`r knitr::include_url("https://www.worldclim.org/data/bioclim.html", height="400px")`
 
 
 Por otra parte, la inspección de la tabla muestra que sólo tiene los valores bioclimáticos. Necesitamos, ciertamente, asociar los registros y probablemente otros datos climáticos. 
@@ -404,10 +427,6 @@ ggcorrplot::ggcorrplot(corr,method='circle',pch=2,show.diag = FALSE,type="upper"
            ggtheme = theme_minimal(),hc.order = TRUE)
 ```
 
-
-
-
-
 Seleccionamos entonces algunas variables de *Bioclim* que muestren baja
 correlación (no negativa!).
 
@@ -442,7 +461,7 @@ od2 <- od_sf |>
 
 kable(od2) |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))|>
-  scroll_box(width = "100%", height = "100%")
+  scroll_box(width = "95%", height = "250px")
 
 ```
 
