@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 	echo = TRUE,
 	message = FALSE,
 	warning = FALSE,
-	cache = FALSE,
+	cache = TRUE,
 	tidy = TRUE,
 	tidy.opts = list(blank = FALSE, width.cutoff = 80)
 )
@@ -146,8 +146,8 @@ base de datos de GBIF!
 
 Ahora, podemos describir la distribucion de **Octodon degus**.
 
-![Octodon
-degus](https://upload.wikimedia.org/wikipedia/commons/4/47/Octodon_degus_-Heidelberg_Zoo%2C_Germany-8a.jpg)
+![_Octodon
+degus_ (Molina, 1782)](https://upload.wikimedia.org/wikipedia/commons/4/47/Octodon_degus_-Heidelberg_Zoo%2C_Germany-8a.jpg)
 
 - [Aqui](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf) 
 encuentras la ficha del Ministerio del Medio Ambiente aqui para esta especie.
@@ -183,29 +183,34 @@ od = occ_data(
 od$data |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "95%", height = "200px")
+  scroll_box(width = "95%", height = "300px")
 ```
 
-Vemos que la consulta nos retornó `r nrow(od$data)` registros (filas) y
+
+Vemos (con: `dim(od$data)`) que la consulta nos retornó `r nrow(od$data)` registros (filas) y
 `r ncol(od$data)` columnas de información para cada registro. Esos son
 muchos datos para cada registro. Debemos evaluar qué son y ver cuales
 nos son útiles!!!
+
+
 
 Para ver la lista completa veamos la lista de nombres de columnas con
 `names()`:
 
 ```{r cols-degus-gbif-chile, echo=TRUE}
-
-
 names(od$data) |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),fixed_thead = T) |>
-  scroll_box(width = "100%", height = "200px")
+  scroll_box(width = "100%", height = "350px")
+```
 
+De la misma manera, podemos ver en que localidades ocurrienron los muestreos:
+
+```{r localities, echo=TRUE}
 unique(od$data$locality) |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),fixed_thead = T) |>
-  scroll_box(width = "100%", height = "200px")
+  scroll_box(width = "100%", height = "350px")
 ```
 
 ### Construcción de un set de datos geográfico
@@ -230,18 +235,17 @@ od_sf <- st_as_sf(od$data, coords = c("decimalLongitude", "decimalLatitude"),
                    crs= "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0")
 ```
 
-ahora, veamos nuevamente la tabla:
+ahora, veamos nuevamente la tabla completa:
 
 ```{r ver-table-degus-gbif, echo=TRUE}
 od_sf |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "95%", height = "250px")
+  scroll_box(width = "95%", height = "400px")
 ```
 
-es básicamente la misma que `od`, a anterior, s[olo que se puede
-manipular espacialente. Esto es, ver en un mapa pues cada registro
-(fila) tiene asociada una coordenada.
+es básicamente la misma que `od`, la anterior, sólo que se puede
+manipular espacialente y tiene una columna llamada `geometry`. Esto nos permite manipular los datos como si cada fila fuera un punto a ver en un mapa pues cada registro (fila) tiene asociada una coordenada.
 
 ### Distribución geográfica de registros de O.degus en GBIF para Chile
 
@@ -302,22 +306,27 @@ conteo <- od_sf |>
 
 print(conteo)
 
-mapview(conteo,zcol="year",cex="n", alpha=.6)
+mapview(conteo,zcol='year',cex="n", alpha=.6, layer.name='Año')
 ```
+
+
 ### Serie de tiempo
 veamos como ha sido el esfuerzo de muestrea a través del tiempo. Interesa saber si ha habido una tendencia en el número de registros. Para eso, graficamos la seria de tiempo y agregamos una linea de tendencia.
+
+
 
 ```{r timeserie , echo=TRUE}
 od_sf |>
   group_by(year)|>
   count() |>
   ggplot(aes(x=year,y=n)) +
-    geom_line() +  geom_point() +
+    geom_line(color='MidnightBlue') +  geom_point() +
     ylab("Número de registros") + xlab("Año")+ 
     ggtitle("Registros de O. degus en GBIF  por año") +
-    geom_smooth(method = 'lm', formula = y~x,alpha=.4)
+    geom_smooth(method = 'lm',color="SaddleBrown", formula = y~x,alpha=.4)
 
 ```
+
 Vemos que existe una tendencia de una disminución en el número de registros, explicado por un pulso de mucho muestreo en la seguna mitad de los años 70, y que ha disminuido con el tiempo.
 
 Existirá variación del muestreo por región?
@@ -343,7 +352,8 @@ od_sf |>
     facet_wrap(~stateProvince) +
     theme(legend.position = "none")       
 ```
-Vemos que el esfuerzo de muestro es espacialmente heterogeneo.
+
+Vemos que el esfuerzo de muestro es espacialmente heterogeneo y está fuertemente determinado por el muestreo en la región de Santiago a mediados de los 70.
 
 
 ## Nicho climático
@@ -383,7 +393,7 @@ Clima <- raster::extract(Bioclim, od_sf) |>
 
 kable(Clima) |> 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "95%", height = "250px")
+  scroll_box(width = "95%", height = "400px")
 ```
 
 Ahora, a qué corresponde bio1, bio2, etc...??
@@ -461,7 +471,7 @@ od2 <- od_sf |>
 
 kable(od2) |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))|>
-  scroll_box(width = "95%", height = "250px")
+  scroll_box(width = "95%", height = "400px")
 
 ```
 
@@ -478,21 +488,13 @@ semanas.
   a.  ¿En cuántas Regiones encontramos a esta expecie?
   b.  ¿Cuál es la comuna de Chile que tiene mas registros?
 
-3.  Construye una base de datos (tabla), con los valores de *temperatura*, *pp* y variables bioclimáticas donde ocurre *O. degus* en Chile. (si, T y pp también!)
+ 3.  Construye una base de datos (tabla), con los valores de *temperatura*, *pp* y variables bioclimáticas donde ocurre *O. degus* en Chile. (si, T y pp también!)
 
-4.  Describe estadisticamente el espacio bioclimático en que ocurre *O.degus*
+ 4.  Describe estadisticamente el espacio bioclimático en que ocurre *O.degus*
+   a.  Rango de T y PP, promedio, moda, desviaciones...
 
-<!-- -->
-
-a.  Rango de T y PP, promedio, moda, desviaciones...
-
-<!-- -->
-
-5.  Construye una serie de tiempo con el número de registros de *O.
+ 5.  Construye una serie de tiempo con el número de registros de *O.
     degus*
-
-<!-- -->
-
-a.  ¿Puedes decir cual es la comuna (o región) que ha tenido el registro
+  a.  ¿Puedes decir cual es la comuna (o región) que ha tenido el registro
     mas continuo de esta especie?
     i.  Antes de hacer, diseña un algoritmo para producir dichos datos.
