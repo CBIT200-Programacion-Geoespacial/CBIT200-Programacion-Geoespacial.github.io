@@ -1,4 +1,76 @@
 ---
+title: "Programación y Análisis de Datos Geoespaciales"
+author: "Horacio Samaniego, Derek Corcoran, Giorgia Graells"
+date: "`r Sys.Date()`"
+output: pdf_document
+documentclass: book
+bibliography:
+- book.bib
+- packages.bib
+biblio-style: apalike
+link-citations: yes
+description: Gitbook para el curso Introducción al Análisis de Geoespaciales (CBIT200),
+  Universidad Austral de Chile
+site: bookdown::bookdown_site
+---
+
+# Datos del curso
+
+Placeholder
+
+
+## DESCRIPCIÓN DEL CURSO
+### OBJETIVOS
+## Evaluación
+### tareas
+### proyecto
+### calificaciones
+## Calendario
+## Recursos adicionales
+
+<!--chapter:end:index.Rmd-->
+
+
+# Introducción
+
+Placeholder
+
+
+## Objetos
+## Variables
+### Tipos de variables
+## Funciones
+## Vectores
+## Instalar librerías
+## R Notebook
+## Leer datos
+## Ejercicios
+
+<!--chapter:end:01-intro.Rmd-->
+
+
+# Principios de Tidydata
+
+Placeholder
+
+
+## Definiciones
+## Lógica y funciones
+### Funciones esenciales
+### pipe
+### Agrupar
+### Filtrar
+### Crear nuevas variables
+### Responder:
+## Cambiar formato de tabla
+### ¿Podemos explicar que sucedió aquí?
+## Ejercicio
+## **Bonus** (Esto requiere investigar no basta con lo que aprendimos)
+## Recursos
+
+<!--chapter:end:02-dplyr.Rmd-->
+
+---
 title: "Uso de GBIF"
 author: "Horacio Samaniego"
 date: "`r Sys.Date()`"
@@ -453,3 +525,6 @@ Con estos ejercicios iremos haciendo un reporte, que sera evaluado en 4 semanas.
 5.  Construye una serie de tiempo con el número de registros de *O. degus*
   a.  ¿Puedes decir cual es la comuna (o región) que ha tenido el registro mas continuo de esta especie? i. Antes de
     hacer, diseña un algoritmo para producir dichos datos.
+
+<!--chapter:end:03-Distribucion_de_Especies_y_GBIF.Rmd-->
+
