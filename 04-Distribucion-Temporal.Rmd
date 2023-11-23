@@ -1,0 +1,60 @@
+---
+title: "Distribución-temporal"
+author: "Horacio Samaniego"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE,
+	tidy = TRUE,
+	tidy.opts = list(blank = FALSE, width.cutoff = 80)
+)
+
+require(pacman)
+pacman::p_load(rgbif,rworldxtra,sf , terra, ggplot2,tidyverse, 
+               kableExtra, mapview, curl)
+
+options("kableExtra.html.bsTable" = T)
+```
+
+
+
+
+
+## Ejercicios
+
+Con estos ejercicios iremos haciendo un reporte, que sera evaluado en 4
+semanas.
+
+ 1.  Describir los datos de ocurrencia de *O. degus* en base de datos [GBIF](http://www.gbif.org)
+   a.  ¿Cuántos registros totales existen? y ¿En cuántas localidades únicas?
+   
+   R: Los registros totales de _O.degus_ son: `r ncol(od_sf)`
+
+  
+   b.  ¿Qué otros datos pueden asociarse a dichos registros? (bonus, no lo vimos en clase!)
+   
+   R: Hay `r length(names(od_sf))-3` columnas describiendo los datos bajados desde GBIF, restando 3 columnas (lat, lon y geometría)
+
+
+
+
+ 2.  Hacer un mapa de la distribución de *O. degus* para Chile
+  a.  ¿En cuántas Regiones encontramos a esta expecie?
+  b.  ¿Cuál es la comuna de Chile que tiene mas registros?
+
+ 3.  Construye una base de datos (tabla), con los valores de *temperatura*, *pp* y variables bioclimáticas donde ocurre *O. degus* en Chile. (si, T y pp también!)
+
+ 4.  Describe estadisticamente el espacio bioclimático en que ocurre *O.degus*
+   a.  Rango de T y PP, promedio, moda, desviaciones...
+
+ 5.  Construye una serie de tiempo con el número de registros de *O.
+    degus*
+  a.  ¿Puedes decir cual es la comuna (o región) que ha tenido el registro
+    mas continuo de esta especie?
+    i.  Antes de hacer, diseña un algoritmo para producir dichos datos.

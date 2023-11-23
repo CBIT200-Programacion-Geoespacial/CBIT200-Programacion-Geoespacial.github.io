@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 
 editor_options: 
   markdown: 
-    wrap: 72
+    wrap: 80
     
 ---
 
@@ -20,12 +20,11 @@ knitr::opts_chunk$set(
 	tidy = TRUE,
 	tidy.opts = list(blank = FALSE, width.cutoff = 80)
 )
-library(leaflet)
-library(rasterVis)
-library(gridExtra)
-library(kableExtra)
-library(mapview)
-library(curl)
+
+
+require(pacman)
+pacman::p_load(rgbif,rworldxtra,sf , terra, ggplot2,tidyverse, 
+               kableExtra, mapview, curl)
 options("kableExtra.html.bsTable" = T)
 ```
 
@@ -76,14 +75,6 @@ acceder a datos de GBIF como parte de la practica de hacer [ciencia
 abierta](https://ropensci.org/).
 
 ### Estudio de distribución de especies usando datos de GBIF
-
-```{r other-libs, include=FALSE}
-library(rgbif)
-library(rworldxtra)
-library(raster)
-library(sf)
-library(tidyverse)
-```
 
 Vamos a hacer un modelo de distribucion de especies para *Octodon
 degus*. [Aquí](https://es.wikipedia.org/wiki/Octodon_degus) una
@@ -171,7 +162,7 @@ información desde GBIF.
     para descargas de datos.
 
 ```{r degus-chile, echo=TRUE}
-od = occ_data(
+od <- occ_data(
 #  scientificName = 'Puma concolor', 
   scientificName = 'Octodon degus', 
   country = 'CL', 
@@ -241,7 +232,7 @@ ahora, veamos nuevamente la tabla completa:
 od_sf |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "95%", height = "400px")
+  scroll_box(width = "100%", height = "400px")
 ```
 
 es básicamente la misma que `od`, la anterior, sólo que se puede
@@ -261,7 +252,7 @@ cl <- countriesHigh |>
 
 ggplot() + 
   geom_sf(data=cl,alpha=.6 ) +
-  geom_sf(data = od_sf, pch=4 ) +
+  geom_sf(data = od_sf, alpha=.3 ) +
   ylim(st_bbox(od_sf)[2]-.2,st_bbox(od_sf)[4]+.2) +
   xlim(st_bbox(od_sf)[1]-.5,st_bbox(od_sf)[3]+.5)
 
@@ -291,22 +282,33 @@ comunas = read_sf("comunas.shp") |>
 
 ggplot() + 
   geom_sf(data=comunas, alpha=.7) +
-    geom_sf(data = od_sf, col="blue") + theme_bw() +
+    geom_sf(data = od_sf, pch=4, col="MidnightBlue") + theme_bw() +
   ggtitle("Registros de O. degus en GBIF")
 ```
+
+
 
 ### Visualización interactiva
 
 Podemos usar mapview para explorar los datos de forma interactiva, usando la columna `year` para ver como se ha muestreado a través de los años. Vamos a usar el parámetro `cex` para ajustar el tamaño del marcador (punto) que nos permite visualizar el número de registros por año. 
 
-```{r ploteo-interactivo}
+```{r ploteo-interactivo, echo=TRUE}
 conteo <- od_sf |>
   group_by(locality,year) |>
-  count()
+  mutate('Número de registros'=n()) |>
+  st_as_sf()
 
-print(conteo)
+conteo |>
+  dplyr::select('Número de registros', scientificName, locality, year, stateProvince, geometry) |>
+  kbl() |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
+  scroll_box(width = "100%", height = "400px")
+```
 
-mapview(conteo,zcol='year',cex="n", alpha=.6, layer.name='Año')
+```{r ploteo-interactivo2, echo=TRUE}
+
+mapview(conteo,zcol='year',cex="Número de registros", alpha=.35, layer.name='Año')
+
 ```
 
 
@@ -353,6 +355,7 @@ od_sf |>
     theme(legend.position = "none")       
 ```
 
+
 Vemos que el esfuerzo de muestro es espacialmente heterogeneo y está fuertemente determinado por el muestreo en la región de Santiago a mediados de los 70.
 
 
@@ -393,7 +396,7 @@ Clima <- raster::extract(Bioclim, od_sf) |>
 
 kable(Clima) |> 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
-  scroll_box(width = "95%", height = "400px")
+  scroll_box(width = "100%", height = "400px")
 ```
 
 Ahora, a qué corresponde bio1, bio2, etc...??
@@ -471,9 +474,12 @@ od2 <- od_sf |>
 
 kable(od2) |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))|>
-  scroll_box(width = "95%", height = "400px")
+  scroll_box(width = "100%", height = "400px")
 
 ```
+
+
+
 
 ## Ejercicios
 
