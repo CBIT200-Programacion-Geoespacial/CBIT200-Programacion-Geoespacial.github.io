@@ -43,3 +43,4 @@ clima-en-sitios-de-registrp-de-o.-degus
 correlacion-entre-vaiables-bioclimaticas
 ejercicios-1
 serie-de-tiempo
+clima-en-sitios-de-registro-de-o.-degus
