@@ -50,3 +50,4 @@ análisis-de-variables-independientes
 análisis-temporal
 análisis-de-distribución
 predicción
+reporte

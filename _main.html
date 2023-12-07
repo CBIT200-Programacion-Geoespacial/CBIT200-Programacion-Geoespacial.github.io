@@ -9,7 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Horacio Samaniego" />
 
+<meta name="date" content="2023-12-07" />
 
 <title>About This Website</title>
 
@@ -498,14 +500,65 @@ display: none;
 
 
 <h1 class="title toc-ignore">About This Website</h1>
+<h4 class="author">Horacio Samaniego</h4>
+<h4 class="date">2023-12-07</h4>
 
 </div>
 
 
 <p>Curso de introducción a la progamación geoespacial</p>
 <!--chapter:end:index.Rmd-->
+<div id="ejercicios" class="section level2">
+<h2>Ejercicios</h2>
+<p>Con estos ejercicios iremos haciendo un reporte, que sera evaluado en
+4 semanas.</p>
+<ol style="list-style-type: decimal">
+<li>Describir los datos de ocurrencia de <em>O. degus</em> en base de
+datos <a href="http://www.gbif.org">GBIF</a></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Cuántos registros totales existen? y ¿En cuántas localidades
+únicas?</li>
+</ol>
+<p>R: Los registros totales de <em>O.degus</em> son:
+<code>ncol()</code></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>¿Qué otros datos pueden asociarse a dichos registros? (bonus, no lo
+vimos en clase!)</li>
+</ol>
+<p>R: Hay <code>nrow()</code> columnas describiendo los datos bajados
+desde GBIF, restando 3 columnas (lat, lon y geometría)</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Hacer un mapa de la distribución de <em>O. degus</em> para
+Chile</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿En cuántas Regiones encontramos a esta expecie?</p></li>
+<li><p>¿Cuál es la comuna de Chile que tiene mas registros?</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Construye una base de datos (tabla), con los valores de
+<em>temperatura</em>, <em>pp</em> y variables bioclimáticas donde ocurre
+<em>O. degus</em> en Chile. (si, T y pp también!)</p></li>
+<li><p>Describe estadisticamente el espacio bioclimático en que ocurre
+<em>O.degus</em></p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Rango de T y PP, promedio, moda, desviaciones…</li>
+</ol>
+<ol start="5" style="list-style-type: decimal">
+<li>Construye una serie de tiempo con el número de registros de <em>O.
+degus</em></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Puedes decir cual es la comuna (o región) que ha tenido el registro
+mas continuo de esta especie? i. Antes de hacer, diseña un algoritmo
+para producir dichos datos.</li>
+</ol>
+<!--chapter:end:04-Distribucion-Temporal.Rmd-->
 <p>More about this website.</p>
 <!--chapter:end:about.Rmd-->
+</div>
 
 
 
