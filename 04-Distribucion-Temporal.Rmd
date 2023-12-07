@@ -2,7 +2,8 @@
 title: "Distribución-temporal"
 author: "Horacio Samaniego"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  html_document:
 ---
 
 ```{r setup, include=FALSE}
@@ -34,18 +35,19 @@ semanas.
  1.  Describir los datos de ocurrencia de *O. degus* en base de datos [GBIF](http://www.gbif.org)
    a.  ¿Cuántos registros totales existen? y ¿En cuántas localidades únicas?
    
-   R: Los registros totales de _O.degus_ son: `r ncol(od_sf)`
+   R: Los registros totales de _O.degus_ son: `ncol()`
 
   
    b.  ¿Qué otros datos pueden asociarse a dichos registros? (bonus, no lo vimos en clase!)
    
-   R: Hay `r length(names(od_sf))-3` columnas describiendo los datos bajados desde GBIF, restando 3 columnas (lat, lon y geometría)
+   R: Hay `nrow()` columnas describiendo los datos bajados desde GBIF, restando 3 columnas (lat, lon y geometría)
 
 
 
 
  2.  Hacer un mapa de la distribución de *O. degus* para Chile
   a.  ¿En cuántas Regiones encontramos a esta expecie?
+  
   b.  ¿Cuál es la comuna de Chile que tiene mas registros?
 
  3.  Construye una base de datos (tabla), con los valores de *temperatura*, *pp* y variables bioclimáticas donde ocurre *O. degus* en Chile. (si, T y pp también!)

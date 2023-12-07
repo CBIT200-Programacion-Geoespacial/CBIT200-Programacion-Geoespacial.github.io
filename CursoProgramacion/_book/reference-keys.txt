@@ -44,3 +44,9 @@ correlacion-entre-vaiables-bioclimaticas
 ejercicios-1
 serie-de-tiempo
 clima-en-sitios-de-registro-de-o.-degus
+descripción-de-datos-y-análisis-preliminar
+mapeo-y-representación-gráfica
+análisis-de-variables-independientes
+análisis-temporal
+análisis-de-distribución
+predicción

@@ -28,32 +28,17 @@ options("kableExtra.html.bsTable" = T)
 
 ## Uso de GBIF para el manejo de datos en conservación
 
-[GBIF](https://www.gbif.org) es la Global Biodiversity Information Facility. Una red de infraestructura de datos
-internacional financiada por distintos gobiernos. Su objetivo es proporcionar acceso libre y gratuito a datos sobre
-biodiversidad a nivel mundial. GBIF movilizan datos de diversas fuentes incluyendo museos, herbarios, instituciones de
-investigación y ciudadanos científicos para ponerlos a disposición del la comunidad en un único portal.
-
+[GBIF](https://www.gbif.org) es la Global Biodiversity Information Facility. Una red de infraestructura de datos internacional financiada por distintos gobiernos. Su objetivo es proporcionar acceso libre y gratuito a datos sobre biodiversidad a nivel mundial. GBIF movilizan datos de diversas fuentes incluyendo museos, herbarios, instituciones de investigación y ciudadanos científicos para ponerlos a disposición del la comunidad en un único portal.
 Las principales características y funciones de GBIF incluyen: - Agregación de datos: GBIF agrega datos sobre
-biodiversidad de diversas instituciones y organizaciones, creando un conjunto de datos completo e interoperable. -
-Accesibilidad a los datos: GBIF proporciona una plataforma para que los usuarios accedan a una gran cantidad de datos
-sobre biodiversidad. Los investigadores, los responsables políticos y el público en general pueden utilizar la
-información para diversos fines, como la investigación científica, planificación de la conservación y la toma de
-decisiones. - Estándares de datos: GBIF promueve el uso de estándares comunes para los datos de biodiversidad,
-asegurando que la información de diferentes fuentes pueda ser fácilmente integrada y comparada. - Colaboración
-Internacional: GBIF fomenta la colaboración entre países y organizaciones para compartir datos sobre biodiversidad a
-nivel mundial. Funciona como una red de nodos, cada uno de los cuales representa a un país o región. - Informática de la
-Biodiversidad: GBIF desempeña un papel en el avance de la informática de la biodiversidad, que implica el uso de
-tecnología informática para gestionar y analizar datos de biodiversidad.
+biodiversidad de diversas instituciones y organizaciones, creando un conjunto de datos completo e interoperable. 
+ - Accesibilidad a los datos: GBIF proporciona una plataforma para que los usuarios accedan a una gran cantidad de datos sobre biodiversidad. Los investigadores, los responsables políticos y el público en general pueden utilizar la información para diversos fines, como la investigación científica, planificación de la conservación y la toma de decisiones. 
+ - Estándares de datos: GBIF promueve el uso de estándares comunes para los datos de biodiversidad, asegurando que la información de diferentes fuentes pueda ser fácilmente integrada y comparada.
+ - Colaboración Internacional: GBIF fomenta la colaboración entre países y organizaciones para compartir datos sobre biodiversidad a nivel mundial. Funciona como una red de nodos, cada uno de los cuales representa a un país o región.
+ - Informática de la Biodiversidad: GBIF desempeña un papel en el avance de la informática de la biodiversidad, que implica el uso de tecnología informática para gestionar y analizar datos de biodiversidad.
 
-Al proporcionar una plataforma unificada para acceder a los datos de biodiversidad, GBIF contribuye a la comprensión
-global de los patrones de biodiversidad, ayuda a controlar los cambios en los ecosistemas y apoya los esfuerzos
-relacionados con la conservación y el desarrollo sostenible. Investigadores y responsables políticos confían a menudo en
-GBIF para acceder a información actualizada y completa sobre biodiversidad para su trabajo.
+Al proporcionar una plataforma unificada para acceder a los datos de biodiversidad, GBIF contribuye a la comprensión global de los patrones de biodiversidad, ayuda a controlar los cambios en los ecosistemas y apoya los esfuerzos relacionados con la conservación y el desarrollo sostenible. Investigadores y responsables políticos confían a menudo en GBIF para acceder a información actualizada y completa sobre biodiversidad para su trabajo.
 
-Existen además distintas API orientadas a distintos lenguajes informáticos para acceder a esta información. (i.e.
-[Ruby](https://github.com/sckott/gbifrb), [Python](https://github.com/gbif/pygbif),
-[PHP](https://gitlab.res-telae.cat/restelae/php-gbif) y [R](https://github.com/ropensci/rgbif)). Aquí utilizaremos R
-para poder acceder a datos de GBIF como parte de la practica de hacer [ciencia abierta](https://ropensci.org/).
+Existen además distintas API orientadas a distintos lenguajes informáticos para acceder a esta información. (i.e. [Ruby](https://github.com/sckott/gbifrb), [Python](https://github.com/gbif/pygbif), [PHP](https://gitlab.res-telae.cat/restelae/php-gbif) y [R](https://github.com/ropensci/rgbif)). Aquí utilizaremos R para poder acceder a datos de GBIF como parte de la practica de hacer [ciencia abierta](https://ropensci.org/).
 
 ### Estudio de distribución de especies usando datos de GBIF
 
@@ -62,13 +47,11 @@ Vamos a hacer un modelo de distribucion de especies para *Octodon degus*.
 
 **¿Cuántos registros de presencia hay?**
 
-La función `occ_count()` retorna la cantidad de registros de presencia de acuerdo con criterios como código del taxón
-(taxonKey), tipo de registro (basisOfRecord), país y año, entre otros.
+La función `occ_count()` retorna la cantidad de registros de presencia de acuerdo con criterios como código del taxón (taxonKey), tipo de registro (basisOfRecord), país y año, entre otros.
 
 Por ejemplo, `occ_count()` retorna `r occ_count()`, el número total de registros en la base de datos.
 
-Ahora, `occ_count()` acepta una variedad de parámetros (ver `?occ_count`) como por ejemplo, el conteo de registros
-georreferenciados
+Ahora, `occ_count()` acepta una variedad de parámetros (ver `?occ_count`) como por ejemplo, el conteo de registros georreferenciados
 
 ```{r reg-gbig-geo, echo=TRUE}
 occ_count(georeferenced = TRUE)
@@ -113,8 +96,7 @@ Ahora, podemos describir la distribucion de **Octodon degus**.
 ![*Octodon degus* (Molina,
 1782)](https://upload.wikimedia.org/wikipedia/commons/4/47/Octodon_degus_-Heidelberg_Zoo%2C_Germany-8a.jpg)
 
--   [Aqui](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf)
-    encuentras la ficha del Ministerio del Medio Ambiente aqui para esta especie.
+-   [Aqui](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Octodon_lunatus_15RCE_FINAL.pdf)     encuentras la ficha del Ministerio del Medio Ambiente aqui para esta especie.
 
 Usaremos dos funciones de la librería `rgbif` para descargar los registros georeferenciados de degu en Chile. Con
 `occ_search()` y `occ_data()` puedes recuperar esto y obtener todos los registros existentes. Entre ellos, nos
@@ -128,16 +110,20 @@ recomienda en caso de buscar un volumen mayor de información desde GBIF.
 -   Mas info [aqui](https://docs.ropensci.org/rgbif/articles/getting_occurrence_data.html) para descargas de datos.
 
 ```{r degus-chile, echo=TRUE}
+spp ="Lontra felina"
 od <- occ_data(
-#  scientificName = 'Puma concolor', 
-  scientificName = 'Octodon degus', 
+  scientificName = spp, 
   country = 'CL', 
   hasCoordinate = TRUE, 
   hasGeospatialIssue = FALSE
 )
 
-# veamos que datos son
+# plotear año y N
 od$data |>
+#  group_by(year) |>
+#  count() |>
+#  ggplot(aes(x=year,y=n)) + geom_line()+geom_point()
+#  dplyr::select(year)
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
   scroll_box(width = "100%", height = "300px")
@@ -178,8 +164,10 @@ latlon ([epsg: 4326](https://epsg.io/4326)).
     básica para comprender proyecciones geográficas de [NCEAS](https://www.nceas.ucsb.edu/).
 
 ```{r degus-sf, echo=TRUE}
+# od_sf <- st_as_sf(od$data, coords = c("decimalLongitude", "decimalLatitude"), 
+                   # crs= "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0")
 od_sf <- st_as_sf(od$data, coords = c("decimalLongitude", "decimalLatitude"), 
-                   crs= "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0")
+                   crs= "epsg:4326")
 ```
 
 ahora, veamos nuevamente la tabla completa:
@@ -221,11 +209,15 @@ comunas = read_sf("comunas.shp") |>
 #  dplyr::filter(Region == 'Región de Los Ríos') |>
   dplyr::select(Comuna, Provincia) |>
   st_transform(crs=32719) # es importante manejar esa info en coordenadas "reales"
+od_sf2 <- od_sf |>
+  st_transform(crs=32719) # es importante manejar esa info en coordenadas "reales"
 
 ggplot() + 
   geom_sf(data=comunas, alpha=.7) +
     geom_sf(data = od_sf, pch=4, col="MidnightBlue") + theme_bw() +
-  ggtitle("Registros de O. degus en GBIF")
+  ggtitle("Registros de O. degus en GBIF")  +
+  ylim(st_bbox(od_sf2)[2]-.2,st_bbox(od_sf2)[4]+.2) +
+  xlim(st_bbox(od_sf2)[1]-.5,st_bbox(od_sf2)[3]+.5)
 ```
 
 podemos hacer un zoom limitando el `x` e `y` a mostrar con `ylim` y `xlim`. Pero para eso usamos `st_bbox()` que retorna la extensión del objeto geográfico:
@@ -256,10 +248,11 @@ permite visualizar el número de registros por año.
 conteo <- od_sf |>
   group_by(locality,year) |>
   mutate('Número de registros'=n()) |>
+  distinct()|>
   st_as_sf()
 
 conteo |>
-  dplyr::select('Número de registros', scientificName, locality, year, stateProvince, geometry) |>
+  dplyr::select('Número de registros', scientificName, locality, year, stateProvince) |>
   kbl() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) |>
   scroll_box(width = "100%", height = "400px")
@@ -284,7 +277,7 @@ od_sf |>
     geom_line(color='MidnightBlue') +  geom_point() +
     ylab("Número de registros") + xlab("Año")+ 
     ggtitle("Registros de O. degus en GBIF  por año") +
-    geom_smooth(method = 'lm',color="SaddleBrown", formula = y~x,alpha=.4)
+    geom_smooth(method = 'loess',color="SaddleBrown",span=1,alpha=.4)
 
 ```
 
@@ -434,22 +427,48 @@ kable(od2) |>
 
 ## Ejercicios
 
-Con estos ejercicios iremos haciendo un reporte, que sera evaluado en 4 semanas.
+Con estos ejercicios iremos haciendo un reporte, que sera evaluado entregado el 15 de Diciembre 2023.
 
-1.  Describir los datos de ocurrencia de *O. degus* en base de datos [GBIF](http://www.gbif.org)
+### Descripción de datos y análisis preliminar
+1.  Describir los datos de ocurrencia de tu _especies de preferencia_ en base de datos [GBIF](http://www.gbif.org)
   a.  ¿Cuántos registros totales existen? y ¿En cuántas localidades únicas?
   b.  ¿Qué otros datos pueden asociarse a dichos registros? (bonus, no lo vimos en clase!)
 
-2.  Hacer un mapa de la distribución de *O. degus* para Chile
+### Mapeo y representación gráfica
+2.  Hacer un mapa de la distribución de tu _especie de preferencia_ para Chile
   a.  ¿En cuántas Regiones encontramos a esta expecie?
   b.  ¿Cuál es la comuna de Chile que tiene mas registros?
 
+### Análisis de variables independientes
 3.  Construye una base de datos (tabla), con los valores de *temperatura*, *pp* y variables bioclimáticas donde ocurre
-    *O. degus* en Chile. (si, T y pp también!)
+    tu _especie de preferencia_ en Chile. (si, T y pp también!)
 
-4.  Describe estadisticamente el espacio bioclimático en que ocurre *O.degus*
+4.  Describe estadisticamente el espacio bioclimático en que ocurre tu _especie de preferencia_
   a.  Rango de T y PP, promedio, moda, desviaciones...
 
-5.  Construye una serie de tiempo con el número de registros de *O. degus*
+### Análisis temporal
+5.  Construye una serie de tiempo con el número de registros de tu _especie de preferencia_
   a.  ¿Puedes decir cual es la comuna (o región) que ha tenido el registro mas continuo de esta especie? i. Antes de
     hacer, diseña un algoritmo para producir dichos datos.
+
+### Análisis de distribución
+6. Usa un modelo estadístico que explique la distribución del número de registros de tu _especie de preferencia_ por comuna
+  a. ¿Cuál(es) es(son) la(s) variable(s) independe(s) que mejor se asocian con la presencia de tu _especie de preferencia_?
+  
+### Predicción
+7. Indica cual es la predicción para la distribución de tu _especie de preferencia_ en las comunas de 
+  - Putre
+  - Colchagua
+  - Melipeuco
+  - Maullín
+  - Rio Hualaihué
+  - Puerto Natales
+  
+  ¿Cuántos registros se espera en cada una de estas comunas?
+  
+8. Haz un mapa de distribución patra tu _especie de preferencia_ en todo Chile.
+
+9. Discute tus resultados desde las siguientes perspectivas:
+  a. Técnicas la construcción del modelo elegido
+  b. Biológica y de conservación de tu _especie de preferencia_. 
+  
